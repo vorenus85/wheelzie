@@ -1,0 +1,12 @@
+<template>
+  <div class="page page-clients">
+    <PageHeader :title="pageTitle"></PageHeader>
+    <div class="page-content"></div>
+  </div>
+</template>
+<script setup>
+import PageHeader from '@/components/PageHeader.vue'
+import { ref } from 'vue'
+
+const pageTitle = ref('Clients')
+</script>
