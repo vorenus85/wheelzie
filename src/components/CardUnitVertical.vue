@@ -7,6 +7,7 @@ import IconFuel from './icons/special/iconFuel.vue'
 import Button from 'primevue/button'
 import Menu from 'primevue/menu'
 import { ref } from 'vue'
+import CTAButton from './Buttons/CTAButton.vue'
 const props = defineProps({
   id: String,
   brand: String,
@@ -40,15 +41,14 @@ const statusSeverity = computed(() => {
 const menu = ref()
 const items = ref([
   {
-    label: 'Options',
     items: [
       {
-        label: 'Refresh',
-        icon: 'pi pi-refresh'
+        label: 'Edit',
+        icon: 'pi pi-pencil'
       },
       {
-        label: 'Export',
-        icon: 'pi pi-upload'
+        label: 'Delete',
+        icon: 'pi pi-trash'
       }
     ]
   }
@@ -123,11 +123,14 @@ function getImageUrl(image) {
         <span class="label">{{ fuel }}</span>
       </div>
     </div>
-    <div class="unit-car-actions">
-      <div class="action-cta"></div>
+    <div class="unit-car-actions flex gap-2 w-full">
+      <div class="action-cta w-full">
+        <CTAButton label="Select Car" severity="primary" block />
+      </div>
       <div class="more-action">
         <Button
           type="button"
+          severity="secondary"
           icon="pi pi-ellipsis-v"
           @click="toggle"
           aria-haspopup="true"
@@ -147,7 +150,6 @@ function getImageUrl(image) {
   align-items: flex-start;
   gap: 16px;
   flex: 1 0 0;
-  max-width: 33.333%;
   border-radius: 8px;
   background: var(--white);
 }

@@ -5,6 +5,7 @@
     :size="size"
     :disabled="disabled"
     :variant="variant"
+    :class="{ 'w-full': block }"
   />
 </template>
 
@@ -16,17 +17,29 @@ defineProps({
     type: Boolean,
     default: false
   },
+  block: {
+    type: Boolean,
+    default: false
+  },
   size: {
     type: String,
     default: ''
   },
   variant: {
     type: String,
-    default: ''
+    default: '',
+    validator: value => {
+      const available = ['outlined', '']
+      return available.includes(value)
+    }
   },
   severity: {
     type: String,
-    default: 'secondary'
+    default: 'secondary',
+    validator: value => {
+      const available = ['primary', 'secondary']
+      return available.includes(value)
+    }
   }
 })
 </script>

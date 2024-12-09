@@ -20,23 +20,28 @@
           :placeholder="carStatus.placeholder"
           @changePicker="onChangeCarStatus"
         />
-        <CTAButton :label="addNewUnitLabel" severity="primary" size="small" />
+        <CTAButton :label="addNewUnitLabel" severity="primary" size="small" class="ml-auto" />
       </div>
-      <div class="card-units">
-        <CardUnitVertical
-          v-for="car in cars"
-          :key="car.id"
-          :id="car.id"
-          :brand="car.brand"
-          :model="car.model"
-          :type="car.type"
-          :price="car.price"
-          :image="car.image"
-          :status="car.status"
-          :transmission="car.transmission"
-          :capacity="car.capacity"
-          :fuel="car.fuel"
-        />
+      <div class="page-content-center">
+        <div class="card-units">
+          <CardUnitVertical
+            v-for="car in cars"
+            :key="car.id"
+            :id="car.id"
+            :brand="car.brand"
+            :model="car.model"
+            :type="car.type"
+            :price="car.price"
+            :image="car.image"
+            :status="car.status"
+            :transmission="car.transmission"
+            :capacity="car.capacity"
+            :fuel="car.fuel"
+          />
+        </div>
+      </div>
+      <div class="page-content-bottom">
+        <BottomPagination />
       </div>
     </div>
   </div>
@@ -46,6 +51,7 @@ import ButtonPicker from '@/components/ButtonPicker.vue'
 import CTAButton from '@/components/Buttons/CTAButton.vue'
 import CardUnitVertical from '@/components/CardUnitVertical.vue'
 import PageHeader from '@/components/PageHeader.vue'
+import BottomPagination from '@/components/BottomPagination.vue'
 import SearchInput from '@/components/SearchInput.vue'
 import { ref } from 'vue'
 
@@ -63,7 +69,8 @@ const carTypes = ref({
     { name: 'Hatchback' },
     { name: 'Sedan' },
     { name: 'SUV' },
-    { name: 'Truck' }
+    { name: 'Truck' },
+    { name: 'Minivan' }
   ]
 })
 
@@ -121,12 +128,85 @@ const cars = ref([
     transmission: 'automatic',
     capacity: 5,
     fuel: 'hybrid'
+  },
+  {
+    id: 'CAR-004',
+    brand: 'Range Rover',
+    model: 'Velar',
+    type: 'SUV',
+    price: 140,
+    image: 'range_rover_velar.png',
+    status: 'available',
+    transmission: 'automatic',
+    capacity: 7,
+    fuel: 'diesel'
+  },
+  {
+    id: 'CAR-005',
+    brand: 'BMW',
+    model: 'LX3',
+    type: 'SUV',
+    price: 120,
+    image: 'bmw_lx3.png',
+    status: 'available',
+    transmission: 'automatic',
+    capacity: 7,
+    fuel: 'hybrid'
+  },
+  {
+    id: 'CAR-006',
+    brand: 'Audi',
+    model: 'Q7',
+    type: 'SUV',
+    price: 130,
+    image: 'audi_q7.png',
+    status: 'available',
+    transmission: 'automatic',
+    capacity: 7,
+    fuel: 'diesel'
+  },
+  {
+    id: 'CAR-007',
+    brand: 'Mercedes',
+    model: 'S-Class',
+    type: 'Sedan',
+    price: 100,
+    image: 'merci_s_class.png',
+    status: 'available',
+    transmission: 'automatic',
+    capacity: 5,
+    fuel: 'petrol'
+  },
+  {
+    id: 'CAR-008',
+    brand: 'Kia',
+    model: 'EV6',
+    type: 'Hatchback',
+    price: 40,
+    image: 'kia_ev6.png',
+    status: 'available',
+    transmission: 'manual',
+    capacity: 5,
+    fuel: 'hybrid'
+  },
+  {
+    id: 'CAR-009',
+    brand: 'Volkswagen',
+    model: 'Amarok',
+    type: 'Truck',
+    price: 80,
+    image: 'vw_amarok.png',
+    status: 'unavailable',
+    transmission: 'automatic',
+    capacity: 5,
+    fuel: 'diesel'
   }
 ])
 </script>
 <style scoped>
 .card-units {
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
 }
 </style>

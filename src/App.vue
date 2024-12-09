@@ -9,7 +9,14 @@ import Sidebar from './components/Sidebar.vue'
   </main>
 </template>
 <style lang="scss">
-.p-button {
+.p-button.p-component {
+  transition:
+    background var(--p-button-transition-duration),
+    opacity var(--p-button-transition-duration),
+    color var(--p-button-transition-duration),
+    border-color var(--p-button-transition-duration),
+    outline-color var(--p-button-transition-duration),
+    box-shadow var(--p-button-transition-duration);
   // buttons
   --p-button-sm-font-size: 12px;
   --p-button-sm-padding-y: 6px;
@@ -29,8 +36,8 @@ import Sidebar from './components/Sidebar.vue'
 
   // secondary buttons:
   --p-button-secondary-color: var(--gray-30);
-  --p-button-secondary-background: transparent;
-  --p-button-secondary-border-color: transparent;
+  --p-button-secondary-background: var(--gray-bg);
+  --p-button-secondary-border-color: var(--gray-bg);
   --p-button-secondary-active-background: var(--blue-subtle-00);
   --p-button-secondary-active-border-color: var(--blue-subtle-00);
   --p-button-secondary-active-color: var(--gray-30);

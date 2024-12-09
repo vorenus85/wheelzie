@@ -23,6 +23,14 @@
   padding: 24px 20px;
 }
 
+.p-select-option-label {
+  font-size: 13px;
+}
+
+.p-menu-submenu-label:empty {
+  padding: 0;
+}
+
 /* badge */
 .p-badge {
   --p-badge-font-weight: 400;

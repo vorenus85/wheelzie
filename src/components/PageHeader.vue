@@ -1,11 +1,14 @@
 <template>
   <div class="page-head">
     <h1>{{ title }}</h1>
+    <LoggedInUser class="ml-auto" />
   </div>
 </template>
 <script setup>
+import LoggedInUser from './LoggedInUser.vue'
+
 defineProps({
-  title: String,
+  title: String
 })
 </script>
 <style scoped>
