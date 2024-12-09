@@ -22,3 +22,11 @@
   flex: 1 1 calc(100% - 214px);
   padding: 24px 20px;
 }
+
+/* badge */
+.p-badge {
+  --p-badge-font-weight: 400;
+  --p-badge-border-radius: 4px;
+  --p-badge-font-size: 11px;
+}
+/* /badge*/

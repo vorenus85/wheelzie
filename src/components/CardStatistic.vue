@@ -31,7 +31,7 @@ const props = defineProps({
   label: String,
   unit: String,
   change: Number,
-  icon: String, // This is the name of the icon component to load dynamically
+  icon: String // This is the name of the icon component to load dynamically
 })
 
 const interval = 'from last week'
@@ -50,9 +50,7 @@ const changeSeverity = computed(() => {
 
 const iconComponent = computed(() => {
   return props.icon
-    ? defineAsyncComponent(
-        () => import(`@/components/icons/special/${props.icon}.vue`),
-      )
+    ? defineAsyncComponent(() => import(`@/components/icons/special/${props.icon}.vue`))
     : null
 })
 </script>
@@ -116,8 +114,6 @@ const iconComponent = computed(() => {
 .p-badge {
   --p-badge-danger-background: var(--red-10);
   --p-badge-success-background: var(--blue-light);
-  --p-badge-font-weight: 400;
-  --p-badge-border-radius: 4px;
   color: var(--blue-dark);
   font-size: 10px;
   display: flex;
