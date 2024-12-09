@@ -1,4 +1,5 @@
 import './assets/main.css'
+import 'primeicons/primeicons.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -11,8 +12,8 @@ import router from './router'
 const app = createApp(App)
 app.use(PrimeVue, {
   theme: {
-    preset: Aura,
-  },
+    preset: Aura
+  }
 })
 
 app.use(createPinia())
