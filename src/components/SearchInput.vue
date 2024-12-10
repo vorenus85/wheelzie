@@ -1,5 +1,5 @@
 <template>
-  <InputGroup class="search-filter" :class="`variant-${variant}`">
+  <InputGroup class="search-input" :class="`variant-${variant}`">
     <InputGroupAddon class="">
       <IconSearch :size="14" />
     </InputGroupAddon>
@@ -34,15 +34,26 @@ watch(
 )
 </script>
 <style lang="scss">
-.search-filter {
+.search-input {
   max-width: 224px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  outline: 1px solid transparent;
+
+  &:hover {
+    outline: 1px solid var(--gray-20);
+  }
+
+  &:focus-within {
+    outline: 1px solid var(--gray-30);
+  }
 
   .p-inputtext {
     font-size: 11px;
     padding-left: 0.25rem;
     --p-inputtext-focus-ring-shadow: initial;
-    --p-inputtext-hover-border-color: var(--gray-20);
-    --p-inputtext-focus-border-color: var(--gray-10);
+    --p-inputtext-hover-border-color: #fff;
+    --p-inputtext-focus-border-color: #fff;
     --p-inputtext-border-color: #fff;
     --p-inputtext-shadow: initial;
   }

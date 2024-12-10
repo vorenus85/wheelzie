@@ -1,5 +1,5 @@
 <template>
-  <InputGroup class="button-picker" :class="`variant-${variant}`">
+  <InputGroup class="search-filter" :class="`variant-${variant}`">
     <InputGroupAddon>
       <IconFilter :size="14" />
     </InputGroupAddon>
@@ -50,8 +50,8 @@ watch(localSelected, newValue => {
 .p-select {
   --p-select-shadow: none;
   --p-select-border-color: #fff;
-  --p-select-hover-border-color: var(--gray-20);
-  --p-select-focus-border-color: var(--gray-10);
+  --p-select-hover-border-color: #fff;
+  --p-select-focus-border-color: #fff;
 }
 .p-select-option {
   --p-select-option-focus-background: var(--gray-bg);
@@ -66,7 +66,7 @@ watch(localSelected, newValue => {
 }
 </style>
 <style lang="scss">
-.button-picker {
+.search-filter {
   max-width: 180px;
 
   .p-select-label {

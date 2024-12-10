@@ -131,7 +131,7 @@ function getImageUrl(image) {
         <Button
           type="button"
           severity="secondary"
-          icon="pi pi-ellipsis-v"
+          icon="pi pi-ellipsis-h"
           @click="toggle"
           aria-haspopup="true"
           aria-controls="overlay_menu"

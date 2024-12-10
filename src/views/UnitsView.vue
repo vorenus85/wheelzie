@@ -8,13 +8,13 @@
           @searchInput="onSearchInput"
           :filter="filter"
         />
-        <ButtonPicker
+        <SearchFilter
           :options="carTypes.types"
           :selected="selectedCarType"
           :placeholder="carTypes.placeholder"
           @changePicker="onChangeCarTypes"
         />
-        <ButtonPicker
+        <SearchFilter
           :options="carStatus.types"
           :selected="selectedCarStatus"
           :placeholder="carStatus.placeholder"
@@ -41,19 +41,20 @@
         </div>
       </div>
       <div class="page-content-bottom">
-        <BottomPagination />
+        <BottomPagination :limit="limit" :total="total" @pageChange="onPageChange" />
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import ButtonPicker from '@/components/ButtonPicker.vue'
+import SearchFilter from '@/components/SearchFilter.vue'
 import CTAButton from '@/components/Buttons/CTAButton.vue'
 import CardUnitVertical from '@/components/CardUnitVertical.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import BottomPagination from '@/components/BottomPagination.vue'
 import SearchInput from '@/components/SearchInput.vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { computed } from 'vue'
 
 const pageTitle = ref('Units')
 const addNewUnitLabel = ref('Add unit')
@@ -92,7 +93,10 @@ const onChangeCarStatus = event => {
   console.log(event)
 }
 
-const cars = ref([
+const cars = ref([])
+const limit = ref(3)
+const currentPage = ref(0) // zero index
+const carsData = ref([
   {
     id: 'CAR-001',
     brand: 'Aston Martin',
@@ -202,11 +206,33 @@ const cars = ref([
     fuel: 'diesel'
   }
 ])
+
+const total = computed(() => {
+  return carsData.value.length
+})
+
+const onPageChange = event => {
+  const { first, rows, page } = event
+  console.log('onPageChange', event)
+  currentPage.value = page
+  limit.value = rows
+  fetchCars()
+}
+
+const fetchCars = () => {
+  const startItem = currentPage.value === 0 ? 0 : currentPage.value * limit.value
+  const endItem = currentPage.value === 0 ? limit.value : (currentPage.value + 1) * limit.value
+  cars.value = carsData.value.slice(startItem, endItem)
+}
+
+onMounted(() => {
+  fetchCars()
+})
 </script>
 <style scoped>
 .card-units {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 20px;
 }
 </style>
