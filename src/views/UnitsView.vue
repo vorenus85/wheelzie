@@ -55,7 +55,7 @@ import BottomPagination from '@/components/BottomPagination.vue'
 import SearchInput from '@/components/SearchInput.vue'
 import { onMounted, ref } from 'vue'
 import { computed } from 'vue'
-import { mockApi } from '@/api/mockApi'
+import { mockApi } from '@/api/carApi'
 
 const pageTitle = ref('Units')
 const addNewUnitLabel = ref('Add unit')
