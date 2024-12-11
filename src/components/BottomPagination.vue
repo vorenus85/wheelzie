@@ -4,7 +4,7 @@
     class="mt-4 we-pagination"
     :rows="limit"
     :totalRecords="totalRecords"
-    :rowsPerPageOptions="[3, 6, 9]"
+    :rowsPerPageOptions="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
     @page="onPageChange"
     ><template #start> Results per page </template>
     <template #previcon> <IconCaretLeft /> <span>Prev</span></template>

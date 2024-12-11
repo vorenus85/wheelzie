@@ -5,6 +5,7 @@
     </InputGroupAddon>
     <Select
       v-model="localSelected"
+      showClear
       :options="options"
       :optionLabel="optionLabel"
       :placeholder="placeholder"
@@ -80,7 +81,11 @@ watch(localSelected, newValue => {
   }
 
   .p-icon {
-    --p-icon-size: 10px;
+    --p-icon-size: 12px;
+  }
+
+  .p-select-clear-icon {
+    margin-top: -0.35rem;
   }
 
   &.variant-light {

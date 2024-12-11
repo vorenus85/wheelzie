@@ -23,7 +23,7 @@
         <CTAButton :label="addNewUnitLabel" severity="primary" size="small" class="ml-auto" />
       </div>
       <div class="page-content-center">
-        <div class="card-units">
+        <div class="card-units" v-if="!loading">
           <CardUnitVertical
             v-for="car in cars"
             :key="car.id"
@@ -55,12 +55,13 @@ import BottomPagination from '@/components/BottomPagination.vue'
 import SearchInput from '@/components/SearchInput.vue'
 import { onMounted, ref } from 'vue'
 import { computed } from 'vue'
+import { mockApi } from '@/api/mockApi'
 
 const pageTitle = ref('Units')
 const addNewUnitLabel = ref('Add unit')
 
 const filter = ref('')
-const searchInputOptions = ref({ placeholder: 'Search client name, car, etc' })
+const searchInputOptions = ref({ placeholder: 'Search for car, etc' })
 
 const selectedCarType = ref()
 const carTypes = ref({
@@ -82,147 +83,71 @@ const carStatus = ref({
 })
 
 const onSearchInput = event => {
-  console.log(event)
+  filter.value = event
+  fetchCars()
 }
 
 const onChangeCarTypes = event => {
-  console.log(event)
+  selectedCarType.value = event
+  fetchCars()
 }
 
 const onChangeCarStatus = event => {
-  console.log(event)
+  selectedCarStatus.value = event
+  fetchCars()
 }
 
-const cars = ref([])
-const limit = ref(3)
+const limit = ref(8)
 const currentPage = ref(0) // zero index
-const carsData = ref([
-  {
-    id: 'CAR-001',
-    brand: 'Aston Martin',
-    model: 'DB12 Volante',
-    type: 'Convertible',
-    price: 20,
-    image: 'aston_martin.png',
-    status: 'unavailable',
-    transmission: 'automatic',
-    capacity: 2,
-    fuel: 'petrol'
-  },
-  {
-    id: 'CAR-002',
-    brand: 'Hyundai',
-    model: 'Sonata',
-    type: 'Sedan',
-    price: 45,
-    image: 'hyundai_sonata.png',
-    status: 'available',
-    transmission: 'manual',
-    capacity: 5,
-    fuel: 'petrol'
-  },
-  {
-    id: 'CAR-003',
-    brand: 'Nissan',
-    model: 'Ariya',
-    type: 'Hatchback',
-    price: 55,
-    image: 'nissan_ariya.png',
-    status: 'maintenance',
-    transmission: 'automatic',
-    capacity: 5,
-    fuel: 'hybrid'
-  },
-  {
-    id: 'CAR-004',
-    brand: 'Range Rover',
-    model: 'Velar',
-    type: 'SUV',
-    price: 140,
-    image: 'range_rover_velar.png',
-    status: 'available',
-    transmission: 'automatic',
-    capacity: 7,
-    fuel: 'diesel'
-  },
-  {
-    id: 'CAR-005',
-    brand: 'BMW',
-    model: 'LX3',
-    type: 'SUV',
-    price: 120,
-    image: 'bmw_lx3.png',
-    status: 'available',
-    transmission: 'automatic',
-    capacity: 7,
-    fuel: 'hybrid'
-  },
-  {
-    id: 'CAR-006',
-    brand: 'Audi',
-    model: 'Q7',
-    type: 'SUV',
-    price: 130,
-    image: 'audi_q7.png',
-    status: 'available',
-    transmission: 'automatic',
-    capacity: 7,
-    fuel: 'diesel'
-  },
-  {
-    id: 'CAR-007',
-    brand: 'Mercedes',
-    model: 'S-Class',
-    type: 'Sedan',
-    price: 100,
-    image: 'merci_s_class.png',
-    status: 'available',
-    transmission: 'automatic',
-    capacity: 5,
-    fuel: 'petrol'
-  },
-  {
-    id: 'CAR-008',
-    brand: 'Kia',
-    model: 'EV6',
-    type: 'Hatchback',
-    price: 40,
-    image: 'kia_ev6.png',
-    status: 'available',
-    transmission: 'manual',
-    capacity: 5,
-    fuel: 'hybrid'
-  },
-  {
-    id: 'CAR-009',
-    brand: 'Volkswagen',
-    model: 'Amarok',
-    type: 'Truck',
-    price: 80,
-    image: 'vw_amarok.png',
-    status: 'unavailable',
-    transmission: 'automatic',
-    capacity: 5,
-    fuel: 'diesel'
-  }
-])
-
-const total = computed(() => {
-  return carsData.value.length
-})
+const loading = ref(true)
+const total = ref(0)
+const sort = ref('brand_asc')
+const error = ref(null)
+// for skeleton cards
+const cars = ref(
+  Array(limit.value)
+    .fill()
+    .map(() => {
+      ;[]
+    })
+)
 
 const onPageChange = event => {
-  const { first, rows, page } = event
-  console.log('onPageChange', event)
+  const { rows, page } = event
   currentPage.value = page
   limit.value = rows
   fetchCars()
 }
 
-const fetchCars = () => {
-  const startItem = currentPage.value === 0 ? 0 : currentPage.value * limit.value
-  const endItem = currentPage.value === 0 ? limit.value : (currentPage.value + 1) * limit.value
-  cars.value = carsData.value.slice(startItem, endItem)
+const fetchCars = async () => {
+  loading.value = true
+  const expression = filter?.value
+  const type = selectedCarType?.value?.name
+  const status = selectedCarStatus?.value?.name
+  try {
+    const response = await mockApi.getCars(
+      {
+        expression,
+        type,
+        status
+      },
+      sort.value,
+      currentPage.value,
+      limit.value
+    )
+
+    if (!response.ok) {
+      throw new Error('Failed to load data')
+    }
+
+    cars.value = response.data
+    total.value = response.total
+  } catch (error) {
+    console.log(error)
+    error.value = error.message
+  } finally {
+    loading.value = false
+  }
 }
 
 onMounted(() => {
