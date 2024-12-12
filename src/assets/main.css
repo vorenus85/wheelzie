@@ -18,6 +18,11 @@
   background: var(--white);
 }
 
+.module {
+  background: #fff;
+  border-radius: 8px;
+}
+
 .main-content {
   flex: 1 1 calc(100% - 214px);
   padding: 24px 20px;

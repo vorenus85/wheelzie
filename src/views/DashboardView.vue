@@ -12,11 +12,15 @@
           :icon="item.icon"
         ></CardStatistic>
       </div>
+      <div>
+        <BookingsTable />
+      </div>
     </div>
   </div>
 </template>
 <script setup>
 import CardStatistic from '@/components/CardStatistic.vue'
+import BookingsTable from '@/components/BookingsTable.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import { ref } from 'vue'
 
@@ -26,26 +30,26 @@ const statistics = ref([
     label: 'Total Revenue',
     unit: '$8,450',
     change: '2.86',
-    icon: 'iconTotalRevenue',
+    icon: 'iconTotalRevenue'
   },
   {
     label: 'New Bookings',
     unit: '386',
     change: '1.73',
-    icon: 'iconNewBookings',
+    icon: 'iconNewBookings'
   },
   {
     label: 'Rented Cars',
     unit: '214 unit',
     change: '-2.86',
-    icon: 'iconRentedCars',
+    icon: 'iconRentedCars'
   },
   {
     label: 'Available Cars',
     unit: '89 unit',
     change: '3.45',
-    icon: 'iconAvailableCars',
-  },
+    icon: 'iconAvailableCars'
+  }
 ])
 </script>
 <style>

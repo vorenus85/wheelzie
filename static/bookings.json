@@ -1,0 +1,20 @@
+[
+  {
+    "id": "BK-WZ1001",
+    "timestamp": 1727809991,
+    "clientName": "Alice Johnson",
+    "car": {
+      "brand": "Toyota",
+      "model": "Corolla",
+      "id": "TX1234",
+      "price": 40,
+      "brandModel": "Toyota Corolla"
+    },
+    "plan": {
+      "from": 1727896391,
+      "to": 1727982791
+    },
+    "payment": "paid",
+    "status": "returned"
+  }
+]
