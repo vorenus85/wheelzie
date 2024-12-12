@@ -14,11 +14,10 @@
 </template>
 <script setup>
 import InputGroup from 'primevue/inputgroup'
-import InputText from 'primevue/inputtext'
 import InputGroupAddon from 'primevue/inputgroupaddon'
-import { watch } from 'vue'
-import { ref } from 'vue'
-import IconSearch from './icons/common/iconSearch.vue'
+import InputText from 'primevue/inputtext'
+import { ref, watch } from 'vue'
+import IconSearch from '../icons/common/iconSearch.vue'
 const props = defineProps({
   placeholder: String,
   filter: String,

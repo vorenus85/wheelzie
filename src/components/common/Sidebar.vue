@@ -107,8 +107,8 @@ import NavButton from '@/components/buttons/NavButton.vue'
 import { useLayout } from '@/composables/useLayout'
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import IconCaretLeft from './icons/common/iconCaretLeft.vue'
-import IconCaretRight from './icons/common/iconCaretRight.vue'
+import IconCaretLeft from '../icons/common/iconCaretLeft.vue'
+import IconCaretRight from '../icons/common/iconCaretRight.vue'
 
 const layout = useLayout()
 const menuMode = ref(layout.sidebarIsOpen)

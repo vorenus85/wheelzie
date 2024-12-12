@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup>
-import LoggedInUser from './LoggedInUser.vue'
+import LoggedInUser from '@/components/common/LoggedInUser.vue'
 
 defineProps({
   title: String

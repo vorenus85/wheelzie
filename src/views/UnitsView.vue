@@ -48,12 +48,12 @@
 </template>
 <script setup>
 import { mockApi } from '@/api/carApi'
-import BottomPagination from '@/components/BottomPagination.vue'
 import CTAButton from '@/components/buttons/CTAButton.vue'
-import CardUnitVertical from '@/components/CardUnitVertical.vue'
-import PageHeader from '@/components/PageHeader.vue'
-import SearchFilter from '@/components/SearchFilter.vue'
-import SearchInput from '@/components/SearchInput.vue'
+import PageHeader from '@/components/common/PageHeader.vue'
+import SearchFilter from '@/components/common/SearchFilter.vue'
+import SearchInput from '@/components/common/SearchInput.vue'
+import BottomPagination from '@/components/unitsPage/BottomPagination.vue'
+import CardUnitVertical from '@/components/unitsPage/CardUnitVertical.vue'
 import { onMounted, ref } from 'vue'
 
 const pageTitle = ref('Units')

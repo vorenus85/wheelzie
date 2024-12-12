@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup>
-import PageHeader from '@/components/PageHeader.vue'
+import PageHeader from '@/components/common/PageHeader.vue'
 import { ref } from 'vue'
 
 const pageTitle = ref('Clients')

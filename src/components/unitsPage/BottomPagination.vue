@@ -14,10 +14,9 @@
 
 <script setup>
 import Paginator from 'primevue/paginator'
-import IconCaretRight from './icons/common/iconCaretRight.vue'
-import IconCaretLeft from './icons/common/iconCaretLeft.vue'
-import { ref } from 'vue'
 import { computed } from 'vue'
+import IconCaretLeft from '../icons/common/iconCaretLeft.vue'
+import IconCaretRight from '../icons/common/iconCaretRight.vue'
 const emit = defineEmits(['page-change'])
 const props = defineProps({ limit: Number, total: Number })
 

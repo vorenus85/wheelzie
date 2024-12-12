@@ -1,10 +1,8 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import Sidebar from './components/Sidebar.vue'
 import { useLayout } from '@/composables/useLayout'
-import { ref } from 'vue'
-import { onMounted } from 'vue'
-import { onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
+import { RouterView } from 'vue-router'
+import Sidebar from './components/common/Sidebar.vue'
 const layout = useLayout()
 const menuMode = ref(layout.sidebarIsOpen)
 

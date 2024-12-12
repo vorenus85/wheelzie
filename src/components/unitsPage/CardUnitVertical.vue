@@ -3,10 +3,10 @@ import Badge from 'primevue/badge'
 import Button from 'primevue/button'
 import Menu from 'primevue/menu'
 import { computed, ref } from 'vue'
-import CTAButton from './buttons/CTAButton.vue'
-import IconCapacity from './icons/special/iconCapacity.vue'
-import IconFuel from './icons/special/iconFuel.vue'
-import IconTransmission from './icons/special/iconTransmission.vue'
+import CTAButton from '../buttons/CTAButton.vue'
+import IconCapacity from '../icons/special/iconCapacity.vue'
+import IconFuel from '../icons/special/iconFuel.vue'
+import IconTransmission from '../icons/special/iconTransmission.vue'
 const props = defineProps({
   id: String,
   brand: String,
