@@ -6,9 +6,11 @@
     <InputText
       size="small"
       v-model="localFilter"
+      clear
       :placeholder="placeholder"
       autocomplete="off"
-      @keyup.enter="$emit('search-input', localFilter)"
+      @keyup.enter="onEnterFilter"
+      @keyup="onChangeFilter"
     />
   </InputGroup>
 </template>
@@ -18,12 +20,23 @@ import InputGroupAddon from 'primevue/inputgroupaddon'
 import InputText from 'primevue/inputtext'
 import { ref, watch } from 'vue'
 import IconSearch from '../icons/common/iconSearch.vue'
+const emit = defineEmits(['search-input'])
 const props = defineProps({
   placeholder: String,
   filter: String,
   variant: { type: String, default: 'light' }
 })
 const localFilter = ref(props.filter)
+
+const onChangeFilter = () => {
+  if (localFilter.value.length > 3) {
+    emit('search-input', localFilter.value)
+  }
+}
+
+const onEnterFilter = () => {
+  emit('search-input', localFilter.value)
+}
 
 watch(
   () => props.filter,
