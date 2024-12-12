@@ -2,7 +2,7 @@
   <div class="page page-dashboard">
     <PageHeader :title="pageTitle"></PageHeader>
     <div class="page-content">
-      <div class="card-statistics">
+      <div class="card-statistics grid grid-cols-12 gap-4">
         <CardStatistic
           v-for="(item, index) in statistics"
           :key="item.index"
@@ -12,15 +12,13 @@
           :icon="item.icon"
         ></CardStatistic>
       </div>
-      <div>
-        <BookingsTable />
-      </div>
+      <div><BookingsTable /></div>
     </div>
   </div>
 </template>
 <script setup>
-import CardStatistic from '@/components/CardStatistic.vue'
 import BookingsTable from '@/components/BookingsTable.vue'
+import CardStatistic from '@/components/CardStatistic.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import { ref } from 'vue'
 
@@ -52,10 +50,3 @@ const statistics = ref([
   }
 ])
 </script>
-<style>
-.card-statistics {
-  display: grid;
-  grid-template-columns: repeat(2, 2fr);
-  gap: 16px;
-}
-</style>

@@ -1,30 +1,33 @@
 <template>
-  <div class="card-statistic">
-    <div class="card-statistic-body w-full">
-      <div class="card-statistic-icon">
-        <component v-if="iconComponent" :is="iconComponent"></component>
-      </div>
-      <div class="card-statistic-caption">
-        <div class="card-statistic-label">{{ label }}</div>
-        <div class="card-statistic-unit">{{ unit }}</div>
-      </div>
-      <div class="card-statistic-interval">
-        <div class="card-statistic-change">
-          <Badge :class="trend" :severity="changeSeverity"
-            ><div class="card-statistic-change-icon">
-              <IconArrowUp></IconArrowUp>
-            </div>
-            <span>{{ changePercentage }}</span></Badge
-          >
+  <Card class="card-statistic col-span-12 lg:col-span-6 xl:col-span-6">
+    <template #content>
+      <div class="card-statistic-body flex">
+        <div class="card-statistic-icon">
+          <component v-if="iconComponent" :is="iconComponent"></component>
         </div>
-        <div class="card-statistic-interval-text">{{ interval }}</div>
+        <div class="card-statistic-caption">
+          <div class="card-statistic-label">{{ label }}</div>
+          <div class="card-statistic-unit">{{ unit }}</div>
+        </div>
+        <div class="card-statistic-interval">
+          <div class="card-statistic-change">
+            <Badge :class="trend" :severity="changeSeverity"
+              ><div class="card-statistic-change-icon">
+                <IconArrowUp></IconArrowUp>
+              </div>
+              <span>{{ changePercentage }}</span></Badge
+            >
+          </div>
+          <div class="card-statistic-interval-text">{{ interval }}</div>
+        </div>
       </div>
-    </div>
-  </div>
+    </template>
+  </Card>
 </template>
 <script setup>
 import Badge from 'primevue/badge'
-import { defineAsyncComponent, computed } from 'vue'
+import Card from 'primevue/card'
+import { computed, defineAsyncComponent } from 'vue'
 import IconArrowUp from './icons/iconArrowUp.vue'
 
 const props = defineProps({
@@ -56,13 +59,11 @@ const iconComponent = computed(() => {
 </script>
 <style scoped lang="scss">
 .card-statistic {
-  border-radius: 8px;
-  background: var(--white, #fff);
+  --p-card-body-padding: 12px;
+  --p-card-shadow: none;
 }
 
 .card-statistic-body {
-  display: flex;
-  padding: 12px;
   align-items: center;
   gap: 12px;
   flex: 1 0 0;

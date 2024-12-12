@@ -3,7 +3,7 @@ import { shallowMount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import { RouterLinkStub } from '@vue/test-utils'
 import { RouterLink } from 'vue-router'
-import NavButton from '../Buttons/NavButton.vue'
+import NavButton from '../buttons/NavButton.vue'
 
 const TEST_STRING = 'this is a test string'
 

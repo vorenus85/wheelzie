@@ -47,15 +47,14 @@
   </div>
 </template>
 <script setup>
-import SearchFilter from '@/components/SearchFilter.vue'
-import CTAButton from '@/components/Buttons/CTAButton.vue'
+import { mockApi } from '@/api/carApi'
+import BottomPagination from '@/components/BottomPagination.vue'
+import CTAButton from '@/components/buttons/CTAButton.vue'
 import CardUnitVertical from '@/components/CardUnitVertical.vue'
 import PageHeader from '@/components/PageHeader.vue'
-import BottomPagination from '@/components/BottomPagination.vue'
+import SearchFilter from '@/components/SearchFilter.vue'
 import SearchInput from '@/components/SearchInput.vue'
 import { onMounted, ref } from 'vue'
-import { computed } from 'vue'
-import { mockApi } from '@/api/carApi'
 
 const pageTitle = ref('Units')
 const addNewUnitLabel = ref('Add unit')

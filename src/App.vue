@@ -2,33 +2,32 @@
 import { RouterLink, RouterView } from 'vue-router'
 import Sidebar from './components/Sidebar.vue'
 import { useLayout } from '@/composables/useLayout'
-import { ref } from 'vue';
-import { onMounted } from 'vue';
-import { onUnmounted } from 'vue';
+import { ref } from 'vue'
+import { onMounted } from 'vue'
+import { onUnmounted } from 'vue'
 const layout = useLayout()
 const menuMode = ref(layout.sidebarIsOpen)
 
 const updateWindowSize = () => {
   if (window.innerWidth < 991) {
-    console.log("updateWindowSize")
+    console.log('updateWindowSize')
     layout.closeSidebar()
-    }
-};
+  }
+}
 
 // Add event listeners on mount and clean up on unmount
 onMounted(() => {
-  window.addEventListener('resize', updateWindowSize);
-  window.addEventListener('orientationchange', updateWindowSize);
-});
+  window.addEventListener('resize', updateWindowSize)
+  window.addEventListener('orientationchange', updateWindowSize)
+})
 
 onUnmounted(() => {
-  window.removeEventListener('resize', updateWindowSize);
-  window.removeEventListener('orientationchange', updateWindowSize);
-});
-
+  window.removeEventListener('resize', updateWindowSize)
+  window.removeEventListener('orientationchange', updateWindowSize)
+})
 </script>
 <template>
-  <div class="app-layout" :class="{'sidebar-is-open': menuMode}">
+  <div class="app-layout" :class="{ 'sidebar-is-open': menuMode }">
     <Sidebar />
     <main class="main-content">
       <RouterView />
@@ -75,10 +74,9 @@ onUnmounted(() => {
 }
 
 .p-button {
-  font-size: .875rem;
+  font-size: 0.875rem;
   height: 40px;
 }
-
 
 .p-button.p-button-sm {
   height: 30px;
@@ -92,9 +90,9 @@ onUnmounted(() => {
   opacity: 0.9;
 }
 
-.app-layout:not(.sidebar-is-open){
+.app-layout:not(.sidebar-is-open) {
   .main-content,
-  .sidebar{
+  .sidebar {
     --sidebar-width: var(--sidebar-closed-width);
   }
 }

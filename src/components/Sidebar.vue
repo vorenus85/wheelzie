@@ -1,6 +1,11 @@
 <template>
   <div class="sidebar">
-    <RouterLink to="/" class="brand-link" :class="{'pl-0': !menuMode, 'pr-0': !menuMode}" :title="brand">
+    <RouterLink
+      to="/"
+      class="brand-link"
+      :class="{ 'pl-0': !menuMode, 'pr-0': !menuMode }"
+      :title="brand"
+    >
       <div class="brand-content">
         <img alt="Wheelzie" class="logo" src="@/assets/logo.svg" width="22" height="22" />
         <span class="brand-name" v-if="menuMode">{{ brand }}</span>
@@ -10,7 +15,7 @@
     <div class="wrapper w-full relative">
       <div class="toggle-sidebar-btn hidden md:flex" @click="onToggleSidebar">
         <IconCaretLeft v-if="menuMode" />
-        <IconCaretRight v-else/>
+        <IconCaretRight v-else />
       </div>
       <nav class="sidebar-nav">
         <NavButton
@@ -66,7 +71,7 @@
   background: var(--white);
   position: fixed;
   z-index: 1;
-  transition: all .2s
+  transition: all 0.2s;
 }
 
 .sidebar-nav {
@@ -98,12 +103,12 @@
 }
 </style>
 <script setup>
-import { ref } from 'vue'
-import NavButton from '@/components/Buttons/NavButton.vue'
-import { RouterLink } from 'vue-router'
-import IconCaretRight from './icons/common/iconCaretRight.vue'
-import IconCaretLeft from './icons/common/iconCaretLeft.vue'
+import NavButton from '@/components/buttons/NavButton.vue'
 import { useLayout } from '@/composables/useLayout'
+import { ref } from 'vue'
+import { RouterLink } from 'vue-router'
+import IconCaretLeft from './icons/common/iconCaretLeft.vue'
+import IconCaretRight from './icons/common/iconCaretRight.vue'
 
 const layout = useLayout()
 const menuMode = ref(layout.sidebarIsOpen)

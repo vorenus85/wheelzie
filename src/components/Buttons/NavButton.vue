@@ -8,40 +8,34 @@
     :title="title"
   >
     <template #icon>
-      <component
-        v-if="iconComponent"
-        class="sidebar-icon"
-        :is="iconComponent"
-      ></component>
+      <component v-if="iconComponent" class="sidebar-icon" :is="iconComponent"></component>
     </template>
   </Button>
 </template>
 
 <script setup>
-import { defineAsyncComponent, computed } from 'vue'
-import Button from 'primevue/button'
 import { useLayout } from '@/composables/useLayout'
-import { ref } from 'vue';
+import Button from 'primevue/button'
+import { computed, defineAsyncComponent, ref } from 'vue'
 const layout = useLayout()
 const menuMode = ref(layout.sidebarIsOpen)
 
 const props = defineProps({
   title: String,
   to: String,
-  icon: String, // This is the name of the icon component to load dynamically
+  icon: String // This is the name of the icon component to load dynamically
 })
 
 // Dynamically import the icon component based on the `icon` prop value
 const iconComponent = computed(() => {
   return props.icon
-    ? defineAsyncComponent(
-        () => import(`@/components/icons/nav/${props.icon}.vue`),
-      )
+    ? defineAsyncComponent(() => import(`@/components/icons/nav/${props.icon}.vue`))
     : null
 })
 </script>
 <style scoped lang="scss">
 .nav-button {
+  justify-content: start;
   --p-button-icon-only-width: 40px;
   --p-button-secondary-background: var(--white);
   --p-button-secondary-border-color: var(--white);
@@ -52,7 +46,7 @@ const iconComponent = computed(() => {
   --p-button-secondary-active-background: var(--blue-subtle-00);
   --p-button-secondary-active-border-color: var(--blue-subtle-00);
   --p-button-secondary-active-color: var(--blue-dark);
-  &.p-button-icon-only{
+  &.p-button-icon-only {
     padding: 8px;
     width: 40px;
   }

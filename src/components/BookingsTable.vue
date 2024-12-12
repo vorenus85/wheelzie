@@ -1,33 +1,36 @@
 <template>
-  <div class="module p-3 mt-4">
-    <DataTable :value="bookings" tableStyle="min-width: 50rem" :loading="loading">
-      <template #loading> Loading data. Please wait. </template>
-      <Column field="id" header="Booking ID" sortable style="width: 25%"></Column>
-      <Column field="timestamp" header="Booking Date" sortable style="width: 25%"></Column>
-      <Column field="clientName" header="Client Name" sortable style="width: 25%"></Column>
-      <Column field="car.brandModel" header="Car Model" sortable style="width: 25%"></Column>
-      <Column header="Plan" sortable style="width: 25%">
-        <template #body="slotProps"
-          >{{ slotProps.data.plan.from }} - {{ slotProps.data.plan.to }}</template
-        >
-      </Column>
-      <Column field="plan.from" header="Date" sortable style="width: 25%">
-        <template #body="slotProps"
-          ><div>Start {{ slotProps.data.plan.from }}</div>
-          <div>End {{ slotProps.data.plan.to }}</div>
-        </template>
-      </Column>
-      <Column field="payment" header="Payment" sortable style="width: 25%"></Column>
-      <Column field="status" header="Status" sortable style="width: 25%"></Column>
-    </DataTable>
-  </div>
+  <Card class="p-3 mt-4">
+    <template #content>
+      <DataTable :value="bookings" :loading="loading">
+        <template #loading> Loading data. Please wait. </template>
+        <Column field="id" header="Booking ID" sortable style="width: 25%"></Column>
+        <Column field="timestamp" header="Booking Date" sortable style="width: 25%"></Column>
+        <Column field="clientName" header="Client Name" sortable style="width: 25%"></Column>
+        <Column field="car.brandModel" header="Car Model" sortable style="width: 25%"></Column>
+        <Column header="Plan" sortable style="width: 25%">
+          <template #body="slotProps"
+            >{{ slotProps.data.plan.from }} - {{ slotProps.data.plan.to }}</template
+          >
+        </Column>
+        <Column field="plan.from" header="Date" sortable style="width: 25%">
+          <template #body="slotProps"
+            ><div>Start {{ slotProps.data.plan.from }}</div>
+            <div>End {{ slotProps.data.plan.to }}</div>
+          </template>
+        </Column>
+        <Column field="payment" header="Payment" sortable style="width: 25%"></Column>
+        <Column field="status" header="Status" sortable style="width: 25%"></Column>
+      </DataTable>
+    </template>
+  </Card>
 </template>
 
 <script setup>
-import DataTable from 'primevue/datatable'
-import Column from 'primevue/column'
 import { mockApi } from '@/api/bookingApi'
-import { ref, onMounted } from 'vue'
+import Card from 'primevue/card'
+import Column from 'primevue/column'
+import DataTable from 'primevue/datatable'
+import { onMounted, ref } from 'vue'
 const bookings = ref()
 const limit = ref(8)
 const total = ref(0)

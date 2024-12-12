@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import Badge from 'primevue/badge'
-import { computed } from 'vue'
-import IconTransmission from './icons/special/iconTransmission.vue'
-import IconCapacity from './icons/special/iconCapacity.vue'
-import IconFuel from './icons/special/iconFuel.vue'
 import Button from 'primevue/button'
 import Menu from 'primevue/menu'
-import { ref } from 'vue'
-import CTAButton from './Buttons/CTAButton.vue'
+import { computed, ref } from 'vue'
+import CTAButton from './buttons/CTAButton.vue'
+import IconCapacity from './icons/special/iconCapacity.vue'
+import IconFuel from './icons/special/iconFuel.vue'
+import IconTransmission from './icons/special/iconTransmission.vue'
 const props = defineProps({
   id: String,
   brand: String,
@@ -135,6 +134,7 @@ function getImageUrl(image) {
           @click="toggle"
           aria-haspopup="true"
           aria-controls="overlay_menu"
+          class="p-3"
         />
         <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
       </div>
