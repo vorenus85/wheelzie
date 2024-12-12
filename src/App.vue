@@ -1,12 +1,39 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Sidebar from './components/Sidebar.vue'
+import { useLayout } from '@/composables/useLayout'
+import { ref } from 'vue';
+import { onMounted } from 'vue';
+import { onUnmounted } from 'vue';
+const layout = useLayout()
+const menuMode = ref(layout.sidebarIsOpen)
+
+const updateWindowSize = () => {
+  if (window.innerWidth < 991) {
+    console.log("updateWindowSize")
+    layout.closeSidebar()
+    }
+};
+
+// Add event listeners on mount and clean up on unmount
+onMounted(() => {
+  window.addEventListener('resize', updateWindowSize);
+  window.addEventListener('orientationchange', updateWindowSize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateWindowSize);
+  window.removeEventListener('orientationchange', updateWindowSize);
+});
+
 </script>
 <template>
-  <Sidebar />
-  <main class="main-content">
-    <RouterView />
-  </main>
+  <div class="app-layout" :class="{'sidebar-is-open': menuMode}">
+    <Sidebar />
+    <main class="main-content">
+      <RouterView />
+    </main>
+  </div>
 </template>
 <style lang="scss">
 .p-button.p-component {
@@ -47,11 +74,28 @@ import Sidebar from './components/Sidebar.vue'
   --p-button-secondary-hover-color: var(--gray-30);
 }
 
+.p-button {
+  font-size: .875rem;
+  height: 40px;
+}
+
+
+.p-button.p-button-sm {
+  height: 30px;
+}
+
 .p-button:hover {
   opacity: 0.75;
 }
 
 .p-button:active {
   opacity: 0.9;
+}
+
+.app-layout:not(.sidebar-is-open){
+  .main-content,
+  .sidebar{
+    --sidebar-width: var(--sidebar-closed-width);
+  }
 }
 </style>

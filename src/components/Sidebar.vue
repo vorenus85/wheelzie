@@ -1,15 +1,16 @@
 <template>
   <div class="sidebar">
-    <RouterLink to="/" class="brand-link">
+    <RouterLink to="/" class="brand-link" :class="{'pl-0': !menuMode, 'pr-0': !menuMode}" :title="brand">
       <div class="brand-content">
         <img alt="Wheelzie" class="logo" src="@/assets/logo.svg" width="22" height="22" />
-        <span class="brand-name">{{ brand }}</span>
+        <span class="brand-name" v-if="menuMode">{{ brand }}</span>
       </div>
     </RouterLink>
 
     <div class="wrapper w-full relative">
-      <div class="toggle-sidebar-btn" @click="toggleSidebar">
-        <IconCaretRight />
+      <div class="toggle-sidebar-btn hidden md:flex" @click="onToggleSidebar">
+        <IconCaretLeft v-if="menuMode" />
+        <IconCaretRight v-else/>
       </div>
       <nav class="sidebar-nav">
         <NavButton
@@ -44,10 +45,28 @@
 .brand-content {
   display: flex;
   height: 32px;
-  padding: 5px 37px 5px 6px;
+  padding: 5px;
+  justify-content: center;
   align-items: flex-start;
   gap: 10px;
   align-self: stretch;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  display: flex;
+  padding: 24px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  flex-shrink: 0;
+  align-self: stretch;
+  background: var(--white);
+  position: fixed;
+  z-index: 1;
+  transition: all .2s
 }
 
 .sidebar-nav {
@@ -78,25 +97,17 @@
   }
 }
 </style>
-<style lang="scss">
-.toggle-active {
-  &.sidebar {
-    flex: 0 0 60px;
-  }
-
-  .p-button-label {
-    display: none;
-  }
-}
-</style>
 <script setup>
 import { ref } from 'vue'
 import NavButton from '@/components/Buttons/NavButton.vue'
 import { RouterLink } from 'vue-router'
 import IconCaretRight from './icons/common/iconCaretRight.vue'
+import IconCaretLeft from './icons/common/iconCaretLeft.vue'
+import { useLayout } from '@/composables/useLayout'
 
+const layout = useLayout()
+const menuMode = ref(layout.sidebarIsOpen)
 const brand = 'Wheelzie'
-const toggle = ref(false)
 const navMenus = ref([
   {
     id: 1,
@@ -124,7 +135,7 @@ const navMenus = ref([
   }
 ])
 
-const toggleSidebar = () => {
-  toggle.value = !toggle.value
+const onToggleSidebar = () => {
+  layout.toggleSidebar()
 }
 </script>

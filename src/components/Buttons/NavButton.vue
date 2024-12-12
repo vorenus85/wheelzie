@@ -1,10 +1,11 @@
 <template>
   <Button
     as="router-link"
-    :label="title"
+    :label="menuMode ? title : ''"
     :to="to"
     severity="secondary"
     class="w-full justify-content-start nav-button"
+    :title="title"
   >
     <template #icon>
       <component
@@ -19,6 +20,10 @@
 <script setup>
 import { defineAsyncComponent, computed } from 'vue'
 import Button from 'primevue/button'
+import { useLayout } from '@/composables/useLayout'
+import { ref } from 'vue';
+const layout = useLayout()
+const menuMode = ref(layout.sidebarIsOpen)
 
 const props = defineProps({
   title: String,
@@ -35,8 +40,9 @@ const iconComponent = computed(() => {
     : null
 })
 </script>
-<style scoped>
+<style scoped lang="scss">
 .nav-button {
+  --p-button-icon-only-width: 40px;
   --p-button-secondary-background: var(--white);
   --p-button-secondary-border-color: var(--white);
   --p-button-secondary-color: var(--gray-20);
@@ -46,6 +52,10 @@ const iconComponent = computed(() => {
   --p-button-secondary-active-background: var(--blue-subtle-00);
   --p-button-secondary-active-border-color: var(--blue-subtle-00);
   --p-button-secondary-active-color: var(--blue-dark);
+  &.p-button-icon-only{
+    padding: 8px;
+    width: 40px;
+  }
 }
 
 .router-link-active.nav-button {
