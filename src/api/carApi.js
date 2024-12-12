@@ -10,7 +10,6 @@ export const mockApi = {
     return new Promise(resolve => {
       setTimeout(() => {
         let result = [...inMemoryCars]
-        console.log(filters)
 
         // Apply filtering
         if (filters?.status) {

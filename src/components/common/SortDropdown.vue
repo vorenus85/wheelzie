@@ -20,7 +20,7 @@ import InputGroup from 'primevue/inputgroup'
 import InputGroupAddon from 'primevue/inputgroupaddon'
 import { ref, watch } from 'vue'
 import IconFilter from '../icons/common/iconFilter.vue'
-const emit = defineEmits(['change-picker'])
+const emit = defineEmits(['change-sort'])
 const props = defineProps({
   placeholder: String,
   selected: Object,
@@ -42,7 +42,7 @@ watch(
 )
 
 watch(localSelected, newValue => {
-  emit('change-picker', newValue)
+  emit('change-sort', newValue)
 })
 </script>
 

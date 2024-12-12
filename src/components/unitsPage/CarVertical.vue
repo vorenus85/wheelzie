@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Badge from 'primevue/badge'
 import Button from 'primevue/button'
 import Menu from 'primevue/menu'
+import Tag from 'primevue/tag'
 import { computed, ref } from 'vue'
 import CTAButton from '../buttons/CTAButton.vue'
 import IconCapacity from '../icons/special/iconCapacity.vue'
@@ -92,11 +92,11 @@ function getImageUrl(image) {
       />
     </div>
     <div class="unit-car-status">
-      <Badge
+      <Tag
         :severity="statusSeverity"
         class="unit-car-status-badge"
         :class="`unit-car-status-badge-${status}`"
-        >{{ status }}</Badge
+        >{{ status }}</Tag
       >
       <div class="unit-car-id">
         <strong>{{ id }}</strong>
@@ -216,19 +216,15 @@ function getImageUrl(image) {
   text-transform: capitalize;
 }
 
-.unit-car-status-badge-available {
-  --p-badge-contrast-background: var(--blue-dark);
-  --p-badge-color-background: var(--blue-subtle-10);
-}
-
-.unit-car-status-badge-unavailable {
-  --p-badge-secondary-background: var(--gray-line);
-  --p-badge-secondary-color: var(--gray-30);
-}
-
-.unit-car-status-badge-maintenance {
-  --p-badge-danger-background: var(--red-20);
-  --p-badge-danger-color: var(--black);
+.unit-car-status-badge {
+  --p-tag-font-size: 11px;
+  --p-tag-font-weight: 400;
+  --p-tag-contrast-background: var(--blue-dark);
+  --p-tag-color-background: var(--blue-subtle-10);
+  --p-tag-secondary-background: var(--gray-line);
+  --p-tag-secondary-color: var(--gray-30);
+  --p-tag-danger-background: var(--red-20);
+  --p-tag-danger-color: var(--black);
 }
 
 .car-info-detail {

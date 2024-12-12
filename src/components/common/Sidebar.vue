@@ -119,25 +119,25 @@ const navMenus = ref([
     title: 'Dashboard',
     path: '/',
     icon: 'iconDashboard'
-  },
+  } /*
   {
     id: 2,
     title: 'Bookings',
     path: '/bookings',
     icon: 'iconBookings'
-  },
+  },*/,
   {
     id: 3,
     title: 'Units',
     path: '/units',
     icon: 'iconUnits'
-  },
+  } /*
   {
     id: 4,
     title: 'Clients',
     path: '/clients',
     icon: 'iconClients'
-  }
+  }*/
 ])
 
 const onToggleSidebar = () => {

@@ -8,19 +8,24 @@
           @searchInput="onSearchInput"
           :filter="filter"
         />
-        <SearchFilter
+        <SortDropdown
           :options="carTypes.types"
           :selected="selectedCarType"
           :placeholder="carTypes.placeholder"
-          @changePicker="onChangeCarTypes"
+          @changeSort="onChangeCarTypes"
         />
-        <SearchFilter
+        <SortDropdown
           :options="carStatus.types"
           :selected="selectedCarStatus"
           :placeholder="carStatus.placeholder"
-          @changePicker="onChangeCarStatus"
+          @changeSort="onChangeCarStatus"
         />
-        <CTAButton :label="addNewUnitLabel" severity="primary" size="small" class="ml-auto" />
+        <SelectButton v-model="layout" :options="layoutOptions" :allowEmpty="false" class="ml-auto">
+          <template #option="{ option }">
+            <i :class="[option === 'list' ? 'pi pi-bars' : 'pi pi-table']" />
+          </template>
+        </SelectButton>
+        <CTAButton :label="addNewUnitLabel" severity="primary" size="small" />
       </div>
       <div class="page-content-center">
         <div class="card-units" v-if="!loading">
@@ -50,15 +55,17 @@
 import { mockApi } from '@/api/carApi'
 import CTAButton from '@/components/buttons/CTAButton.vue'
 import PageHeader from '@/components/common/PageHeader.vue'
-import SearchFilter from '@/components/common/SearchFilter.vue'
 import SearchInput from '@/components/common/SearchInput.vue'
+import SortDropdown from '@/components/common/SortDropdown.vue'
 import BottomPagination from '@/components/unitsPage/BottomPagination.vue'
-import CardUnitVertical from '@/components/unitsPage/CardUnitVertical.vue'
+import CardUnitVertical from '@/components/unitsPage/CarVertical.vue'
+import SelectButton from 'primevue/selectbutton'
 import { onMounted, ref } from 'vue'
 
 const pageTitle = ref('Units')
 const addNewUnitLabel = ref('Add unit')
-
+const layout = ref('grid')
+const layoutOptions = ref(['list', 'grid'])
 const filter = ref('')
 const searchInputOptions = ref({ placeholder: 'Search for car, etc' })
 
