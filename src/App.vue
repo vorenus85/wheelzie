@@ -71,6 +71,10 @@ onUnmounted(() => {
   --p-button-secondary-hover-color: var(--gray-30);
 }
 
+.p-dialog {
+  --p-dialog-color: var(--blue-dark);
+}
+
 .p-button {
   font-size: 0.875rem;
   height: 40px;

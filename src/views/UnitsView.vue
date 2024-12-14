@@ -24,9 +24,15 @@
           :placeholder="carStatus.placeholder"
           @changeSort="onChangeCarStatus"
         />
-        <SelectButton v-model="layout" :options="layoutOptions" :allowEmpty="false" class="ml-auto">
+        <SelectButton
+          v-model="layout"
+          :options="layoutOptions"
+          :allowEmpty="false"
+          class="ml-auto cars-toggle-menu"
+        >
           <template #option="{ option }">
-            <i :class="option === 'list' ? 'pi pi-bars' : 'pi pi-table'" />
+            <IconList v-if="option === 'list'" :color="'currentColor'" />
+            <IconGrid v-if="option === 'grid'" :color="'currentColor'" />
           </template>
         </SelectButton>
         <MainButton :label="addNewUnitLabel" severity="primary" size="small" />
@@ -39,9 +45,12 @@
             <template v-for="car in cars" :key="car?.id">
               <template v-if="layout === 'grid'">
                 <SkeletonUnitVertical v-if="loading" />
-                <CardUnitVertical v-bind="car" v-else @deleteOption="showConfirmDialog(car.id)" />
+                <CarUnitVertical v-bind="car" v-else @deleteOption="showConfirmDialog(car.id)" />
               </template>
-              <template v-else></template>
+              <template v-else>
+                <SkeletonUnitHorizontal v-if="loading" />
+                <CarUnitHorizontal v-bind="car" v-else @deleteOption="showConfirmDialog(car.id)" />
+              </template>
             </template>
           </div>
         </template>
@@ -73,8 +82,12 @@ import ConfirmDialog from '@/components/common/ConfirmDialog.vue'
 import PageHeader from '@/components/common/PageHeader.vue'
 import SearchInput from '@/components/common/SearchInput.vue'
 import SortDropdown from '@/components/common/SortDropdown.vue'
+import IconGrid from '@/components/icons/common/iconGrid.vue'
+import IconList from '@/components/icons/common/iconList.vue'
 import BottomPagination from '@/components/unitsPage/BottomPagination.vue'
-import CardUnitVertical from '@/components/unitsPage/CarVertical.vue'
+import CarUnitHorizontal from '@/components/unitsPage/CarUnitHorizontal.vue'
+import CarUnitVertical from '@/components/unitsPage/CarUnitVertical.vue'
+import SkeletonUnitHorizontal from '@/components/unitsPage/SkeletonUnitHorizontal.vue'
 import SkeletonUnitVertical from '@/components/unitsPage/SkeletonUnitVertical.vue'
 import Message from 'primevue/message'
 import SelectButton from 'primevue/selectbutton'
@@ -84,6 +97,7 @@ import { onMounted, ref } from 'vue'
 const pageTitle = ref('Units')
 const addNewUnitLabel = ref('Add unit')
 const layout = ref('grid')
+
 const layoutOptions = ref(['list', 'grid'])
 
 /** Filters **/
@@ -115,11 +129,7 @@ const selectedCar = ref(null)
 const limit = ref(8)
 const currentPage = ref(0)
 const total = ref(0)
-const cars = ref(
-  Array(limit)
-    .fill()
-    .map(() => [])
-)
+const cars = ref(['', '', '', '', '', '', '', ''])
 const loading = ref(true)
 
 /** Fetch Cars **/
@@ -198,5 +208,17 @@ onMounted(fetchCars)
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 20px;
+}
+
+.cars-toggle-menu {
+  --p-togglebutton-border-radius: 0;
+  --p-togglebutton-padding: 5px;
+  --p-togglebutton-background: #fff;
+  --p-togglebutton-checked-color: #fff;
+  --p-togglebutton-border-color: transparent;
+  --p-togglebutton-checked-border-color: transparent;
+  --p-togglebutton-content-checked-background: var(--blue-dark);
+  --p-togglebutton-checked-background: var(--blue-dark);
+  --p-togglebutton-content-checked-shadow: none;
 }
 </style>
