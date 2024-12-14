@@ -34,14 +34,22 @@
 
       <!-- Main Content -->
       <div class="page-content-center">
-        <div class="card-units" v-if="!loading">
-          <CardUnitVertical
-            v-for="car in cars"
-            :key="car.id"
-            v-bind="car"
-            @deleteOption="showConfirmDialog(car.id)"
-          />
-        </div>
+        <template v-if="cars.length">
+          <div class="card-units">
+            <template v-for="car in cars" :key="car?.id">
+              <template v-if="layout === 'grid'">
+                <SkeletonUnitVertical v-if="loading" />
+                <CardUnitVertical v-bind="car" v-else @deleteOption="showConfirmDialog(car.id)" />
+              </template>
+              <template v-else></template>
+            </template>
+          </div>
+        </template>
+        <template v-else>
+          <Message severity="secondary" class="w-full mt-5 mb-5"
+            >No cars were found matching your criteria.</Message
+          >
+        </template>
       </div>
 
       <!-- Pagination -->
@@ -67,6 +75,8 @@ import SearchInput from '@/components/common/SearchInput.vue'
 import SortDropdown from '@/components/common/SortDropdown.vue'
 import BottomPagination from '@/components/unitsPage/BottomPagination.vue'
 import CardUnitVertical from '@/components/unitsPage/CarVertical.vue'
+import SkeletonUnitVertical from '@/components/unitsPage/SkeletonUnitVertical.vue'
+import Message from 'primevue/message'
 import SelectButton from 'primevue/selectbutton'
 import { onMounted, ref } from 'vue'
 
@@ -105,7 +115,11 @@ const selectedCar = ref(null)
 const limit = ref(8)
 const currentPage = ref(0)
 const total = ref(0)
-const cars = ref([])
+const cars = ref(
+  Array(limit)
+    .fill()
+    .map(() => [])
+)
 const loading = ref(true)
 
 /** Fetch Cars **/

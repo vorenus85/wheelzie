@@ -4,7 +4,7 @@
     <div class="page-content">
       <div class="card-statistics grid grid-cols-12 gap-4">
         <CardStatistic
-          v-for="(item, index) in statistics"
+          v-for="item in statistics"
           :key="item.index"
           :label="item.label"
           :unit="item.unit"
