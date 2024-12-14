@@ -3,10 +3,11 @@ import Button from 'primevue/button'
 import Menu from 'primevue/menu'
 import Tag from 'primevue/tag'
 import { computed, ref } from 'vue'
-import CTAButton from '../buttons/CTAButton.vue'
+import MainButton from '../buttons/MainButton.vue'
 import IconCapacity from '../icons/special/iconCapacity.vue'
 import IconFuel from '../icons/special/iconFuel.vue'
 import IconTransmission from '../icons/special/iconTransmission.vue'
+const emit = defineEmits(['delete-car', 'modify-car'])
 const props = defineProps({
   id: String,
   brand: String,
@@ -43,11 +44,13 @@ const items = ref([
     items: [
       {
         label: 'Edit',
-        icon: 'pi pi-pencil'
+        icon: 'pi pi-pencil',
+        command: () => onModify()
       },
       {
         label: 'Delete',
-        icon: 'pi pi-trash'
+        icon: 'pi pi-trash',
+        command: () => onDelete()
       }
     ]
   }
@@ -55,6 +58,14 @@ const items = ref([
 
 const toggle = event => {
   menu.value.toggle(event)
+}
+
+const onModify = () => {
+  emit('modify-car')
+}
+
+const onDelete = () => {
+  emit('delete-car')
 }
 
 function getImageUrl(image) {
@@ -124,7 +135,7 @@ function getImageUrl(image) {
     </div>
     <div class="unit-car-actions flex gap-2 w-full">
       <div class="action-cta w-full">
-        <CTAButton label="Select Car" severity="primary" block />
+        <MainButton label="Select Car" severity="primary" block />
       </div>
       <div class="more-action">
         <Button

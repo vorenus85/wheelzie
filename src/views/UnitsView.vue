@@ -25,7 +25,7 @@
             <i :class="[option === 'list' ? 'pi pi-bars' : 'pi pi-table']" />
           </template>
         </SelectButton>
-        <CTAButton :label="addNewUnitLabel" severity="primary" size="small" />
+        <MainButton :label="addNewUnitLabel" severity="primary" size="small" />
       </div>
       <div class="page-content-center">
         <div class="card-units" v-if="!loading">
@@ -42,18 +42,25 @@
             :transmission="car.transmission"
             :capacity="car.capacity"
             :fuel="car.fuel"
+            @deleteCar="showConfirmDialog(car.id)"
           />
         </div>
       </div>
       <div class="page-content-bottom">
         <BottomPagination :limit="limit" :total="total" @pageChange="onPageChange" />
       </div>
+      <ConfirmDialog
+        :showDialog="showConfirm"
+        @applyConfirmation="applyConfirmDialog"
+        @hide="closeConfirmDialog"
+      />
     </div>
   </div>
 </template>
 <script setup>
 import { mockApi } from '@/api/carApi'
-import CTAButton from '@/components/buttons/CTAButton.vue'
+import MainButton from '@/components/buttons/MainButton.vue'
+import ConfirmDialog from '@/components/common/ConfirmDialog.vue'
 import PageHeader from '@/components/common/PageHeader.vue'
 import SearchInput from '@/components/common/SearchInput.vue'
 import SortDropdown from '@/components/common/SortDropdown.vue'
@@ -101,6 +108,20 @@ const onChangeCarTypes = event => {
 const onChangeCarStatus = event => {
   selectedCarStatus.value = event
   fetchCars()
+}
+
+const showConfirm = ref(false)
+const showConfirmDialog = () => {
+  showConfirm.value = true
+}
+
+const closeConfirmDialog = () => {
+  showConfirm.value = false
+}
+
+const applyConfirmDialog = () => {
+  showConfirm.value = false
+  console.log('applyConfirmDialog')
 }
 
 const limit = ref(8)
