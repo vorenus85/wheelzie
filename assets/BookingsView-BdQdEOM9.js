@@ -1,1 +1,0 @@
-import{r as s,c as t,a as o,P as n,b as l,o as r}from"./index-ueqpa-5p.js";const c={class:"page page-bookings"},_={__name:"BookingsView",setup(i){const a=s("Bookings");return(p,e)=>(r(),t("div",c,[o(n,{title:a.value},null,8,["title"]),e[0]||(e[0]=l("div",{class:"page-content"},null,-1))]))}};export{_ as default};
