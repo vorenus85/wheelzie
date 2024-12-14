@@ -7,7 +7,7 @@ import MainButton from '../buttons/MainButton.vue'
 import IconCapacity from '../icons/special/iconCapacity.vue'
 import IconFuel from '../icons/special/iconFuel.vue'
 import IconTransmission from '../icons/special/iconTransmission.vue'
-const emit = defineEmits(['delete-car', 'modify-car'])
+const emit = defineEmits(['delete-option', 'modify-option'])
 const props = defineProps({
   id: String,
   brand: String,
@@ -61,11 +61,11 @@ const toggle = event => {
 }
 
 const onModify = () => {
-  emit('modify-car')
+  emit('modify-option')
 }
 
 const onDelete = () => {
-  emit('delete-car')
+  emit('delete-option')
 }
 
 function getImageUrl(image) {

@@ -42,7 +42,7 @@
             :transmission="car.transmission"
             :capacity="car.capacity"
             :fuel="car.fuel"
-            @deleteCar="showConfirmDialog(car.id)"
+            @deleteOption="showConfirmDialog(car.id)"
           />
         </div>
       </div>
@@ -111,17 +111,26 @@ const onChangeCarStatus = event => {
 }
 
 const showConfirm = ref(false)
-const showConfirmDialog = () => {
+const selectedCar = ref(false)
+const showConfirmDialog = carId => {
+  selectedCar.value = carId
   showConfirm.value = true
 }
 
 const closeConfirmDialog = () => {
+  selectedCar.value = null
   showConfirm.value = false
 }
 
 const applyConfirmDialog = () => {
+  onDeleteCar(selectedCar.value)
   showConfirm.value = false
-  console.log('applyConfirmDialog')
+  selectedCar.value = null
+}
+
+const onDeleteCar = carId => {
+  mockApi.deleteCar(carId)
+  fetchCars()
 }
 
 const limit = ref(8)
