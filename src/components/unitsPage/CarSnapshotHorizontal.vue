@@ -1,9 +1,9 @@
 <template>
-  <div class="car-snapshot car-snapshot--horizontal flex-col md:flex-row">
+  <div class="car-snapshot car-snapshot--horizontal flex-col xl:flex-row">
     <div
-      class="car-snapshot__horizontal-top flex flex-col md:flex-row justify-between gap-4 bg-white w-full md:w-5/6 rounded-md"
+      class="car-snapshot__horizontal-top flex flex-col lg:flex-row justify-between gap-4 bg-white w-full xl:w-5/6 rounded-md"
     >
-      <div class="car-snapshot__image-container p-4 w-full md:w-4/12">
+      <div class="car-snapshot__image-container p-4 w-full lg:w-4/12">
         <CarImage :brand="brand" :image="image" :model="model" class="w-7/12" />
         <div class="car-snapshot__info-container flex-col justify-center px-3 w-5/12">
           <CarBrand :brand="brand" />
@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div class="car-snapshot__info-container p-4 flex flex-row gap:4 md:gap-8 w-full md:w-5/12">
+      <div class="car-snapshot__info-container p-4 flex flex-row gap:4 lg:gap-8 w-full lg:w-5/12">
         <div class="car-snapshot__info-container w-1/3">
           <CarTransmission :transmission="transmission" showLabel />
         </div>
@@ -25,13 +25,13 @@
         </div>
       </div>
       <div
-        class="car-snapshot__info-container p-5 w-full md:w-2/12 flex flex-col items-center justify-center"
+        class="car-snapshot__info-container p-5 w-full lg:w-2/12 flex flex-col items-center justify-center"
       >
         <MainButton severity="primary" label="Select" block></MainButton>
       </div>
     </div>
     <div
-      class="car-snapshot__horizontal-bottom p-5 flex gap-4 h-full justify-center items-center w-full md:w-1/6"
+      class="car-snapshot__horizontal-bottom p-5 flex gap-4 h-full justify-center items-center w-full xl:w-1/6"
     >
       <MainButton size="small" label="Edit"></MainButton>
       <MainButton size="small" label="Delete"></MainButton>

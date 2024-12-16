@@ -6,7 +6,7 @@
     <!-- Page Content -->
     <div class="page-content">
       <!-- Top Controls -->
-      <div class="page-content-top mb-3 pb-1 flex gap-2">
+      <div class="page-content-top mb-3 pb-1 flex gap-2 flex-wrap">
         <SearchInput
           :placeholder="searchInputOptions.placeholder"
           @searchInput="onSearchInput"
@@ -17,12 +17,14 @@
           :selected="selectedCarType"
           :placeholder="carTypes.placeholder"
           @changeSort="onChangeCarTypes"
+          class="sort-by-types"
         />
         <SortDropdown
           :options="carStatus.types"
           :selected="selectedCarStatus"
           :placeholder="carStatus.placeholder"
           @changeSort="onChangeCarStatus"
+          class="sort-by-status"
         />
         <SelectButton
           v-model="layout"
@@ -35,7 +37,12 @@
             <IconGrid v-if="option === 'grid'" :color="'currentColor'" />
           </template>
         </SelectButton>
-        <MainButton :label="addNewUnitLabel" severity="primary" size="small" />
+        <MainButton
+          :label="addNewUnitLabel"
+          severity="primary"
+          size="small"
+          class="ml-0 add-new-car"
+        />
       </div>
 
       <!-- Main Content -->
@@ -218,7 +225,19 @@ onMounted(fetchCars)
 }
 
 .car-list-grid {
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+@media (max-width: 425px) {
+  .add-new-car {
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .car-list-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
 }
 
 .car-list-list {
@@ -237,6 +256,13 @@ onMounted(fetchCars)
   --p-togglebutton-content-checked-shadow: none;
   background: #fff;
   border-radius: var(--p-togglebutton-border-radius);
+}
+
+@media (max-width: 768px) {
+  .sort-by-types,
+  .sort-by-status {
+    display: none;
+  }
 }
 </style>
 <style lang="scss">

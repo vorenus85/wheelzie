@@ -45,12 +45,19 @@ watch(
   }
 )
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .search-input {
-  max-width: 224px;
+  max-width: 150px;
+  width: initial;
   border-radius: 6px;
   transition: all 0.2s;
   outline: 1px solid transparent;
+
+  @media (min-width: 768px) {
+    .search-input {
+      max-width: 224px;
+    }
+  }
 
   &:hover {
     outline: 1px solid var(--gray-20);

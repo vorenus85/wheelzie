@@ -25,10 +25,16 @@ function getImageUrl(image) {
 <style lang="scss">
 .car-snapshot--horizontal {
   .car-snapshot__image {
-    max-width: 150px;
+    max-width: 100px;
     max-height: 100px;
     width: auto;
     text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .car-snapshot__image {
+      max-width: 150px;
+    }
   }
 }
 </style>

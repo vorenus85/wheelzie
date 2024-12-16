@@ -8,7 +8,7 @@ defineProps({ model: String })
 
 <style lang="scss" scoped>
 .car-snapshot__model {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1rem;
 }
@@ -16,8 +16,16 @@ defineProps({ model: String })
 .car-snapshot--horizontal {
   .car-snapshot__model {
     font-weight: 600;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .car-snapshot--horizontal {
+    .car-snapshot__model {
+      font-size: 24px;
+    }
   }
 }
 </style>
