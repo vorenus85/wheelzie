@@ -41,15 +41,23 @@
       <!-- Main Content -->
       <div class="page-content-center">
         <template v-if="cars.length">
-          <div class="card-units">
+          <div class="car-list" :class="`car-list-${layout}`">
             <template v-for="car in cars" :key="car?.id">
               <template v-if="layout === 'grid'">
                 <SkeletonUnitVertical v-if="loading" />
-                <CarUnitVertical v-bind="car" v-else @deleteOption="showConfirmDialog(car.id)" />
+                <CarSnapshotVertical
+                  v-bind="car"
+                  v-else
+                  @deleteOption="showConfirmDialog(car.id)"
+                />
               </template>
               <template v-else>
                 <SkeletonUnitHorizontal v-if="loading" />
-                <CarUnitHorizontal v-bind="car" v-else @deleteOption="showConfirmDialog(car.id)" />
+                <CarSnapshotHorizontal
+                  v-bind="car"
+                  v-else
+                  @deleteOption="showConfirmDialog(car.id)"
+                />
               </template>
             </template>
           </div>
@@ -85,8 +93,8 @@ import SortDropdown from '@/components/common/SortDropdown.vue'
 import IconGrid from '@/components/icons/common/iconGrid.vue'
 import IconList from '@/components/icons/common/iconList.vue'
 import BottomPagination from '@/components/unitsPage/BottomPagination.vue'
-import CarUnitHorizontal from '@/components/unitsPage/CarUnitHorizontal.vue'
-import CarUnitVertical from '@/components/unitsPage/CarUnitVertical.vue'
+import CarSnapshotHorizontal from '@/components/unitsPage/CarSnapshotHorizontal.vue'
+import CarSnapshotVertical from '@/components/unitsPage/CarSnapshotVertical.vue'
 import SkeletonUnitHorizontal from '@/components/unitsPage/SkeletonUnitHorizontal.vue'
 import SkeletonUnitVertical from '@/components/unitsPage/SkeletonUnitVertical.vue'
 import Message from 'primevue/message'
@@ -203,15 +211,22 @@ const onDeleteCar = carId => {
 /** Lifecycle **/
 onMounted(fetchCars)
 </script>
-<style scoped>
-.card-units {
+<style lang="scss" scoped>
+.car-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 20px;
 }
 
+.car-list-grid {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.car-list-list {
+  grid-template-columns: 1fr;
+}
+
 .cars-toggle-menu {
-  --p-togglebutton-border-radius: 0;
+  --p-togglebutton-border-radius: 6px;
   --p-togglebutton-padding: 5px;
   --p-togglebutton-background: #fff;
   --p-togglebutton-checked-color: #fff;
@@ -220,5 +235,14 @@ onMounted(fetchCars)
   --p-togglebutton-content-checked-background: var(--blue-dark);
   --p-togglebutton-checked-background: var(--blue-dark);
   --p-togglebutton-content-checked-shadow: none;
+  background: #fff;
+  border-radius: var(--p-togglebutton-border-radius);
+}
+</style>
+<style lang="scss">
+.cars-toggle-menu {
+  &.p-selectbutton .p-togglebutton {
+    border-radius: var(--p-togglebutton-border-radius) !important;
+  }
 }
 </style>

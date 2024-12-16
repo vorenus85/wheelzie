@@ -2,7 +2,7 @@
 import { useLayout } from '@/composables/useLayout'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { RouterView } from 'vue-router'
-import Sidebar from './components/common/Sidebar.vue'
+import ToggleSidebar from './components/common/ToggleSidebar.vue'
 const layout = useLayout()
 const menuMode = ref(layout.sidebarIsOpen)
 
@@ -26,7 +26,7 @@ onUnmounted(() => {
 </script>
 <template>
   <div class="app-layout" :class="{ 'sidebar-is-open': menuMode }">
-    <Sidebar />
+    <ToggleSidebar />
     <main class="main-content">
       <RouterView />
     </main>

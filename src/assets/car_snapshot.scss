@@ -1,0 +1,73 @@
+.car-snapshot {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+  border-radius: 8px;
+  background: var(--white);
+
+  &__info-container {
+    display: flex;
+    align-self: stretch;
+  }
+
+  &__image-container {
+    display: flex;
+    padding: 12px 25px 13px 25px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__info-with-icon {
+    display: flex;
+    align-items: center;
+  }
+
+  &__info-icon {
+    border-radius: 4px;
+    background: var(--blue-subtle-10);
+    display: flex;
+    padding: 4px;
+    align-items: center;
+    gap: 10px;
+  }
+  &__info-label-title {
+    font-size: 10px;
+    color: var(--gray-20);
+  }
+
+  &__info-label-value {
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+
+  &--vertical {
+    .car-snapshot__info-with-icon {
+      gap: 8px;
+    }
+  }
+
+  &--horizontal {
+    .car-snapshot__info-icon {
+      padding: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .car-snapshot__info-with-icon {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .car-snapshot__info-label-value {
+      white-space: nowrap;
+      font-weight: 500;
+    }
+  }
+}

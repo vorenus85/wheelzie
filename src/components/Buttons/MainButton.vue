@@ -23,7 +23,11 @@ defineProps({
   },
   size: {
     type: String,
-    default: ''
+    default: '',
+    validator: value => {
+      const available = ['small', 'large', '']
+      return available.includes(value)
+    }
   },
   variant: {
     type: String,
