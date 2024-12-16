@@ -13,9 +13,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="car-snapshot__info-container p-4 flex flex-col md:flex-row gap:4 md:gap-8 w-full md:w-5/12"
-      >
+      <div class="car-snapshot__info-container p-4 flex flex-row gap:4 md:gap-8 w-full md:w-5/12">
         <div class="car-snapshot__info-container w-1/3">
           <CarTransmission :transmission="transmission" showLabel />
         </div>
@@ -29,7 +27,7 @@
       <div
         class="car-snapshot__info-container p-5 w-full md:w-2/12 flex flex-col items-center justify-center"
       >
-        <MainButton severity="primary" label="Select"></MainButton>
+        <MainButton severity="primary" label="Select" block></MainButton>
       </div>
     </div>
     <div
