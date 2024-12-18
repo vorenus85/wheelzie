@@ -39,6 +39,7 @@ const statusSeverity = computed(() => {
   justify-content: center;
   align-items: center;
   text-transform: capitalize;
+  --p-tag-border-radius: 4px;
   --p-tag-font-size: 11px;
   --p-tag-font-weight: 400;
   --p-tag-contrast-background: var(--blue-dark);

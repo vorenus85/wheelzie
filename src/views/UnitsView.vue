@@ -111,7 +111,7 @@ import { onMounted, ref } from 'vue'
 /** Page Data **/
 const pageTitle = ref('Units')
 const addNewUnitLabel = ref('Add unit')
-const layout = ref('grid')
+const layout = ref('list')
 
 const layoutOptions = ref(['list', 'grid'])
 
