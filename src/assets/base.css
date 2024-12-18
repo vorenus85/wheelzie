@@ -13,6 +13,7 @@
   --red-30: #ff7f8f;
   --red-20: #ffadb7;
   --red-10: #ffdadf;
+  --red-00: var(--red);
   --red-subtle: #fff1f3;
 
   --black: #14191f;

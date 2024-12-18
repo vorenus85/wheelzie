@@ -92,6 +92,32 @@ onUnmounted(() => {
   opacity: 0.9;
 }
 
+.p-datatable {
+  --p-datatable-column-title-font-weight: 400;
+  --p-datatable-header-cell-background: var(--blue-subtle-10);
+  --p-datatable-header-cell-border-color: transparent;
+  --p-datatable-sort-icon-size: 0.5rem;
+
+  tr td {
+    font-size: 11px;
+  }
+}
+
+.p-datatable-column-title {
+  font-size: 10px;
+  color: var(--gray-30);
+}
+
+.p-datatable-sortable-column:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.p-datatable-sortable-column:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
 .app-layout:not(.sidebar-is-open) {
   .main-content,
   .sidebar {

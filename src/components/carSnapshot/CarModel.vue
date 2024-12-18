@@ -22,6 +22,12 @@ defineProps({ model: String })
 }
 
 @media (min-width: 768px) {
+  .car-snapshot--vertical {
+    .car-snapshot__model {
+      font-size: 20px;
+    }
+  }
+
   .car-snapshot--horizontal {
     .car-snapshot__model {
       font-size: 24px;

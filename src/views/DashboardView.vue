@@ -27,25 +27,25 @@ const statistics = ref([
   {
     label: 'Total Revenue',
     unit: '$8,450',
-    change: '2.86',
+    change: 2.86,
     icon: 'iconTotalRevenue'
   },
   {
     label: 'New Bookings',
     unit: '386',
-    change: '1.73',
+    change: 1.73,
     icon: 'iconNewBookings'
   },
   {
     label: 'Rented Cars',
     unit: '214 unit',
-    change: '-2.86',
+    change: -2.86,
     icon: 'iconRentedCars'
   },
   {
     label: 'Available Cars',
     unit: '89 unit',
-    change: '3.45',
+    change: 3.45,
     icon: 'iconAvailableCars'
   }
 ])

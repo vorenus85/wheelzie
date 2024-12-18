@@ -34,7 +34,7 @@ const statusSeverity = computed(() => {
 <style lang="scss" scoped>
 .car-snapshot__status {
   height: 20px;
-  display: flex;
+  display: inline-flex;
   padding: 4px 8px;
   justify-content: center;
   align-items: center;
