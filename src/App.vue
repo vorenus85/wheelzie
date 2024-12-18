@@ -45,6 +45,7 @@ onUnmounted(() => {
   --p-button-sm-font-size: 12px;
   --p-button-sm-padding-y: 6px;
   --p-button-sm-padding-x: 12px;
+  --p-button-label-font-weight: 400;
 
   // primary buttons:
   --p-button-primary-color: #fff;
@@ -99,6 +100,8 @@ onUnmounted(() => {
   --p-datatable-sort-icon-size: 0.5rem;
   --p-datatable-header-cell-selected-background: var(--blue-light);
   --p-datatable-header-cell-selected-color: var(--black);
+  --p-datatable-header-cell-padding: 0.75rem;
+  --p-datatable-body-cell-padding: 0.75rem;
 
   tr td {
     font-size: 11px;
@@ -110,14 +113,22 @@ onUnmounted(() => {
   color: var(--gray-30);
 }
 
-.p-datatable-sortable-column:first-child {
+.p-datatable-tbody > tr:last-child > td {
+  --p-datatable-body-cell-border-color: transparent;
+}
+
+.p-datatable-header-cell:first-child {
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
 }
 
-.p-datatable-sortable-column:last-child {
+.p-datatable-header-cell:last-child {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
+}
+
+.p-datatable-column-header-content {
+  line-height: 1rem;
 }
 
 .app-layout:not(.sidebar-is-open) {

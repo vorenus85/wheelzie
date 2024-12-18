@@ -14,11 +14,26 @@
   border-radius: 8px;
 }
 
+.module-head {
+  margin-bottom: 1rem;
+}
+
+.module-head-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 125%; /* 17.5px */
+}
+
 .main-content {
   flex: 1 1 calc(100% - var(--sidebar-width));
   padding: 24px 20px;
   margin-left: var(--sidebar-width);
   transition: all 0.2s;
+}
+
+.text-muted {
+  font-size: 10px;
+  color: var(--gray-20);
 }
 
 @media (max-width: 991px) {

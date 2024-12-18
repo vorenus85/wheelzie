@@ -1,15 +1,15 @@
 import cars from '../../static/cars.json'
 
-const inMemoryCars = [...cars] // Create an in-memory copy of the data
+const inMemoryData = [...cars] // Create an in-memory copy of the data
 
 export const mockApi = {
   getCars: async (filters = {}, sort = null, page = 0, limit = 5) => {
-    // Simulate network latency (e.g., 1 to 3 seconds delay)
-    const latency = Math.floor(Math.random() * (3000 - 1000 + 1)) + 500 // Delay between 0.5 and 1.5 seconds
+    // Simulate network latency (e.g., 1 to 2 seconds delay)
+    const latency = Math.floor(Math.random() * (2000 - 1000 + 1)) + 500 // Delay between 0.5 and 1.5 seconds
 
     return new Promise(resolve => {
       setTimeout(() => {
-        let result = [...inMemoryCars]
+        let result = [...inMemoryData]
 
         // Apply filtering
         if (filters?.status) {
@@ -65,7 +65,7 @@ export const mockApi = {
   addCar: async newCar => {
     return new Promise(resolve => {
       setTimeout(() => {
-        inMemoryCars.push(newCar)
+        inMemoryData.push(newCar)
         resolve({ ok: 1, message: 'Car added successfully', data: newCar })
       }, 500)
     })
@@ -74,10 +74,10 @@ export const mockApi = {
   updateCar: async (id, updatedData) => {
     return new Promise(resolve => {
       setTimeout(() => {
-        const index = inMemoryCars.findIndex(car => car.id === id)
+        const index = inMemoryData.findIndex(car => car.id === id)
         if (index !== -1) {
-          inMemoryCars[index] = { ...inMemoryCars[index], ...updatedData }
-          resolve({ ok: 1, message: 'Car updated successfully', data: inMemoryCars[index] })
+          inMemoryData[index] = { ...inMemoryData[index], ...updatedData }
+          resolve({ ok: 1, message: 'Car updated successfully', data: inMemoryData[index] })
         } else {
           resolve({ ok: 0, message: 'Car not found' })
         }
@@ -88,9 +88,9 @@ export const mockApi = {
   deleteCar: async id => {
     return new Promise(resolve => {
       setTimeout(() => {
-        const index = inMemoryCars.findIndex(car => car.id === id)
+        const index = inMemoryData.findIndex(car => car.id === id)
         if (index !== -1) {
-          const deletedCar = inMemoryCars.splice(index, 1)
+          const deletedCar = inMemoryData.splice(index, 1)
           resolve({ ok: 1, message: 'Car deleted successfully', data: deletedCar })
         } else {
           resolve({ ok: 0, message: 'Car not found' })

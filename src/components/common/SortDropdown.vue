@@ -68,6 +68,8 @@ watch(localSelected, newValue => {
 <style lang="scss">
 .search-filter {
   max-width: 180px;
+  border-radius: 6px;
+  transition: all 0.2s;
 
   .p-select-label {
     font-size: 11px;
@@ -91,6 +93,28 @@ watch(localSelected, newValue => {
     .p-inputgroupaddon:first-child,
     .p-inputgroupaddon + .p-inputgroupaddon {
       --p-inputgroup-addon-border-color: #fff;
+    }
+  }
+
+  &.variant-dark {
+    .p-inputgroupaddon:first-child,
+    .p-inputgroupaddon + .p-inputgroupaddon {
+      --p-inputgroup-addon-border-color: var(--gray-bg);
+    }
+
+    .p-inputgroupaddon {
+      --p-inputgroup-addon-background: var(--gray-bg);
+    }
+
+    .p-select {
+      --p-select-focus-border-color: var(--gray-bg);
+      --p-select-hover-border-color: var(--gray-bg);
+      --p-select-background: var(--gray-bg);
+      --p-select-border-color: var(--gray-bg);
+    }
+
+    &:hover {
+      outline: 1px solid var(--gray-10);
     }
   }
 }

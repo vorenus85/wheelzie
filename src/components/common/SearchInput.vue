@@ -92,3 +92,24 @@ watch(
   }
 }
 </style>
+<style lang="scss">
+.search-input.variant-dark {
+  --p-inputgroup-addon-border-color: transparent;
+  --p-inputgroup-addon-background: var(--gray-bg);
+
+  &:hover {
+    outline: 1px solid var(--gray-10);
+  }
+
+  &:focus-within {
+    outline: 1px solid var(--gray-20);
+  }
+
+  .p-inputtext {
+    --p-inputtext-hover-border-color: var(--gray-bg);
+    --p-inputtext-focus-border-color: var(--gray-bg);
+    --p-inputtext-background: var(--gray-bg);
+    --p-inputtext-border-color: var(--gray-bg);
+  }
+}
+</style>

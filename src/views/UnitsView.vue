@@ -1,28 +1,28 @@
 <template>
   <div class="page page-units">
     <!-- Page Header -->
-    <PageHeader :title="pageTitle" />
+    <PageHeader title="Units" />
 
     <!-- Page Content -->
     <div class="page-content">
       <!-- Top Controls -->
       <div class="page-content-top mb-3 pb-1 flex gap-2 flex-wrap">
         <SearchInput
-          :placeholder="searchInputOptions.placeholder"
+          placeholder="Search for car, etc"
           @searchInput="onSearchInput"
           :filter="filter"
         />
         <SortDropdown
           :options="carTypes.types"
           :selected="selectedCarType"
-          :placeholder="carTypes.placeholder"
+          placeholder="Car Type"
           @changeSort="onChangeCarTypes"
           class="sort-by-types"
         />
         <SortDropdown
           :options="carStatus.types"
           :selected="selectedCarStatus"
-          :placeholder="carStatus.placeholder"
+          placeholder="Status"
           @changeSort="onChangeCarStatus"
           class="sort-by-status"
         />
@@ -37,12 +37,7 @@
             <IconGrid v-if="option === 'grid'" :color="'currentColor'" />
           </template>
         </SelectButton>
-        <MainButton
-          :label="addNewUnitLabel"
-          severity="primary"
-          size="small"
-          class="ml-0 add-new-car"
-        />
+        <MainButton label="Add unit" severity="primary" size="small" class="ml-0 add-new-car" />
       </div>
 
       <!-- Main Content -->
@@ -78,7 +73,7 @@
 
       <!-- Pagination -->
       <div class="page-content-bottom">
-        <BottomPagination :limit="limit" :total="total" @pageChange="onPageChange" />
+        <CustomPagination :limit="limit" :total="total" @pageChange="onPageChange" />
       </div>
 
       <!-- Confirmation Dialog -->
@@ -99,7 +94,6 @@ import SearchInput from '@/components/common/SearchInput.vue'
 import SortDropdown from '@/components/common/SortDropdown.vue'
 import IconGrid from '@/components/icons/common/iconGrid.vue'
 import IconList from '@/components/icons/common/iconList.vue'
-import BottomPagination from '@/components/unitsPage/BottomPagination.vue'
 import CarSnapshotHorizontal from '@/components/unitsPage/CarSnapshotHorizontal.vue'
 import CarSnapshotVertical from '@/components/unitsPage/CarSnapshotVertical.vue'
 import SkeletonUnitHorizontal from '@/components/unitsPage/SkeletonUnitHorizontal.vue'
@@ -108,19 +102,16 @@ import Message from 'primevue/message'
 import SelectButton from 'primevue/selectbutton'
 import { onMounted, ref } from 'vue'
 
+import CustomPagination from '@/components/unitsPage/CustomPagination.vue'
 /** Page Data **/
-const pageTitle = ref('Units')
-const addNewUnitLabel = ref('Add unit')
-const layout = ref('list')
+const layout = ref('grid')
 
 const layoutOptions = ref(['list', 'grid'])
 
 /** Filters **/
 const filter = ref('')
-const searchInputOptions = ref({ placeholder: 'Search for car, etc' })
 const selectedCarType = ref()
 const carTypes = ref({
-  placeholder: 'Car Type',
   types: [
     { name: 'Convertible' },
     { name: 'Hatchback' },
@@ -132,7 +123,6 @@ const carTypes = ref({
 })
 const selectedCarStatus = ref()
 const carStatus = ref({
-  placeholder: 'Status',
   types: [{ name: 'Available' }, { name: 'Unavailable' }, { name: 'Maintenance' }]
 })
 
