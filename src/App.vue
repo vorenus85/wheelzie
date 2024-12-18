@@ -97,6 +97,8 @@ onUnmounted(() => {
   --p-datatable-header-cell-background: var(--blue-subtle-10);
   --p-datatable-header-cell-border-color: transparent;
   --p-datatable-sort-icon-size: 0.5rem;
+  --p-datatable-header-cell-selected-background: var(--blue-light);
+  --p-datatable-header-cell-selected-color: var(--black);
 
   tr td {
     font-size: 11px;
