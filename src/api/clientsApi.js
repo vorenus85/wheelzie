@@ -48,5 +48,19 @@ export const mockApi = {
         })
       }, latency) // Simulate the latency
     })
+  },
+
+  deleteClient: async id => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const index = inMemoryData.findIndex(car => car.id === id)
+        if (index !== -1) {
+          const deletedClient = inMemoryData.splice(index, 1)
+          resolve({ ok: 1, message: 'Client deleted successfully', data: deletedClient })
+        } else {
+          resolve({ ok: 0, message: 'Client not found' })
+        }
+      }, 500)
+    })
   }
 }

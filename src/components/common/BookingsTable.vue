@@ -14,7 +14,7 @@
     <Column field="car.brandModel" header="Car Model" sortable>
       <template #body="slotProps">
         <div>
-          {{ slotProps.data.car.brandModel }}
+          {{ slotProps.data?.car?.brandModel }}
         </div>
         <div class="mt-1">
           <CarNumberTag :id="slotProps.data.car.id" />

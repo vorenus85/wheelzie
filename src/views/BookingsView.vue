@@ -30,7 +30,15 @@
               />
             </div>
 
-            <BookingsTable :bookings="bookings" :loading="loading" />
+            <template v-if="filter.length && !bookings.length">
+              <Message severity="secondary" class="w-full mt-5 mb-5"
+                >No bookings were found matching your criteria.</Message
+              >
+            </template>
+            <template v-else>
+              <BookingsTable :bookings="bookings" :loading="loading" />
+            </template>
+
             <div class="page-content-bottom">
               <CustomPagination :limit="limit" :total="total" @pageChange="onPageChange" />
             </div>
@@ -50,6 +58,7 @@ import SearchInput from '@/components/common/SearchInput.vue'
 import SortDropdown from '@/components/common/SortDropdown.vue'
 import CustomPagination from '@/components/unitsPage/CustomPagination.vue'
 import Card from 'primevue/card'
+import Message from 'primevue/message'
 import { onMounted, ref } from 'vue'
 
 const filter = ref('')
