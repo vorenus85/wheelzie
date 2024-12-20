@@ -15,10 +15,19 @@
                   :filter="filter"
                 />
                 <MainButton
+                  severity="secondary"
+                  label="Delete selecte(d)"
+                  size="small"
+                  class="ml-auto delete-selected-clients"
+                  @click="showConfirmDialog"
+                  v-if="selectedClients.length"
+                ></MainButton>
+                <MainButton
                   label="Add client"
                   severity="primary"
                   size="small"
-                  class="ml-auto add-new-client"
+                  :class="selectedClients.length ? 'ml-0' : 'ml-auto'"
+                  class="add-new-client"
                 />
               </div>
               <template v-if="filter.length && !clients.length">
@@ -118,7 +127,7 @@ const filter = ref('')
 const showConfirm = ref(false)
 const selectedClient = ref(null)
 
-const selectedClients = ref()
+const selectedClients = ref([])
 const clients = ref([])
 const limit = ref(8)
 const total = ref(0)
@@ -152,8 +161,19 @@ const closeConfirmDialog = () => {
 }
 
 const applyConfirmDialog = () => {
-  onDeleteClient(selectedClient.value)
+  if (selectedClients?.value.length) {
+    deleteSelectedClients()
+  } else {
+    onDeleteClient(selectedClient.value)
+  }
   closeConfirmDialog()
+}
+
+const deleteSelectedClients = () => {
+  const ids = selectedClients.value.map(client => client.id)
+  mockApi.deleteClients(ids)
+  selectedClients.value = []
+  fetchClients()
 }
 
 const onDeleteClient = id => {

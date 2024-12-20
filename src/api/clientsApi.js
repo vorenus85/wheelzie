@@ -53,12 +53,41 @@ export const mockApi = {
   deleteClient: async id => {
     return new Promise(resolve => {
       setTimeout(() => {
-        const index = inMemoryData.findIndex(car => car.id === id)
+        const index = inMemoryData.findIndex(client => client.id === id)
         if (index !== -1) {
           const deletedClient = inMemoryData.splice(index, 1)
           resolve({ ok: 1, message: 'Client deleted successfully', data: deletedClient })
         } else {
           resolve({ ok: 0, message: 'Client not found' })
+        }
+      }, 500)
+    })
+  },
+
+  deleteClients: async ids => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        if (!Array.isArray(ids)) {
+          resolve({ ok: 0, message: 'Invalid input. Please provide an array of IDs.' })
+          return
+        }
+
+        const deletedClients = []
+        ids.forEach(id => {
+          const index = inMemoryData.findIndex(client => client.id === id)
+          if (index !== -1) {
+            deletedClients.push(...inMemoryData.splice(index, 1))
+          }
+        })
+
+        if (deletedClients.length > 0) {
+          resolve({
+            ok: 1,
+            message: `${deletedClients.length} client(s) deleted successfully`,
+            data: deletedClients
+          })
+        } else {
+          resolve({ ok: 0, message: 'No matching clients found' })
         }
       }, 500)
     })
