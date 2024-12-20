@@ -93,6 +93,13 @@ onUnmounted(() => {
   opacity: 0.9;
 }
 
+.p-checkbox {
+  --p-checkbox-checked-border-color: var(--blue-dark);
+  --p-checkbox-checked-background: var(--blue-dark);
+  --p-checkbox-checked-hover-border-color: var(--gray-30);
+  --p-checkbox-checked-hover-background: var(--gray-30);
+}
+
 .p-datatable {
   --p-datatable-column-title-font-weight: 400;
   --p-datatable-header-cell-background: var(--blue-subtle-10);
