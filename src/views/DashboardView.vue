@@ -14,14 +14,14 @@
       </div>
       <Card class="booking-table-module mt-4">
         <template #content>
-          <div class="module">
+          <div class="module module-with-scroller p-1">
             <div class="module-head flex justify-center items-center gap-4">
               <h3 class="module-head-title">Car Bookings</h3>
               <SearchInput
                 placeholder="Search for car, etc"
                 @searchInput="onSearchInput"
                 :filter="filter"
-                class="ml-auto"
+                class="ml-auto dashboard-booking-filter"
                 variant="dark"
               />
               <SortDropdown
@@ -30,11 +30,11 @@
                 placeholder="Status"
                 @changeSort="onChangeBookingStatus"
                 variant="dark"
-                class="sort-by-status"
+                class="dashboard-booking-sort ml-auto lg:ml-0"
               />
             </div>
+            <BookingsTable :bookings="bookings" :loading="loading" />
           </div>
-          <BookingsTable :bookings="bookings" :loading="loading" />
         </template>
       </Card>
     </div>
@@ -123,3 +123,10 @@ onMounted(() => {
   fetchBookings()
 })
 </script>
+<style lang="scss">
+@media (max-width: 992px) {
+  .dashboard-booking-filter {
+    display: none !important;
+  }
+}
+</style>

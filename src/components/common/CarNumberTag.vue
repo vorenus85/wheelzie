@@ -1,5 +1,5 @@
 <template>
-  <span class="car-id-tag">
+  <span class="car-id-tag whitespace-nowrap">
     {{ id }}
   </span>
 </template>

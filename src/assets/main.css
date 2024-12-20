@@ -14,6 +14,26 @@
   border-radius: 8px;
 }
 
+.module-with-scroller {
+  overflow-x: auto;
+}
+
+@media (max-width: 992px) {
+  .module-with-scroller {
+    max-width: calc(100vw - 152px);
+  }
+}
+
+@media (max-width: 1200px) {
+  .module-with-scroller-lg {
+    max-width: calc(100vw - 152px);
+  }
+
+  .sidebar-is-open .module-with-scroller-lg {
+    max-width: calc(100vw - 294px);
+  }
+}
+
 .module-head {
   margin-bottom: 1rem;
 }

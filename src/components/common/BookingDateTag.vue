@@ -1,5 +1,5 @@
 <template>
-  <span class="booking-date-tag">
+  <span class="booking-date-tag whitespace-nowrap">
     {{ formattedDate }}
   </span>
 </template>

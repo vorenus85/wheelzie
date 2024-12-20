@@ -4,14 +4,14 @@
     <div class="page-content">
       <Card class="booking-table-module mt-4">
         <template #content>
-          <div class="module">
+          <div class="module module-with-scroller module-with-scroller-lg p-1">
             <div class="module-head flex justify-center items-center gap-4">
               <h3 class="module-head-title">Car Bookings</h3>
               <SearchInput
                 placeholder="Search for car, etc"
                 @searchInput="onSearchInput"
                 :filter="filter"
-                class="ml-auto"
+                class="ml-auto booking-filter"
                 variant="dark"
               />
               <SortDropdown
@@ -20,14 +20,20 @@
                 placeholder="Status"
                 @changeSort="onChangeBookingStatus"
                 variant="dark"
-                class="sort-by-status"
+                class="sort-by-status booking-sort"
               />
-              <MainButton label="Add booking" severity="primary" size="small" class="add-booking" />
+              <MainButton
+                label="Add booking"
+                severity="primary"
+                size="small"
+                class="add-booking ml-auto lg:ml-0"
+              />
             </div>
-          </div>
-          <BookingsTable :bookings="bookings" :loading="loading" />
-          <div class="page-content-bottom">
-            <CustomPagination :limit="limit" :total="total" @pageChange="onPageChange" />
+
+            <BookingsTable :bookings="bookings" :loading="loading" />
+            <div class="page-content-bottom">
+              <CustomPagination :limit="limit" :total="total" @pageChange="onPageChange" />
+            </div>
           </div>
         </template>
       </Card>
@@ -105,3 +111,11 @@ onMounted(() => {
   fetchBookings()
 })
 </script>
+<style lang="scss">
+@media (max-width: 992px) {
+  .booking-filter,
+  .booking-sort {
+    display: none !important;
+  }
+}
+</style>
