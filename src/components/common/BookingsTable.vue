@@ -60,6 +60,11 @@
         <BadgeStatus statusType="rent" :status="slotProps.data.status" />
       </template>
     </Column>
+    <Column header="Actions">
+      <template #body="slotProps">
+        <MainButton size="small" label="Edit" outlined @click="onEditBooking(slotProps.data.id)" />
+      </template>
+    </Column>
   </DataTable>
 </template>
 
@@ -67,6 +72,7 @@
 import { calcPlanPrice } from '@/composables/useCalcPlanPrice'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
+import MainButton from '../buttons/MainButton.vue'
 import BadgeStatus from './BadgeStatus.vue'
 import BookingDateTag from './BookingDateTag.vue'
 import CarNumberTag from './CarNumberTag.vue'
@@ -80,6 +86,10 @@ defineProps({
     default: false
   }
 })
+
+const onEditBooking = id => {
+  console.log('onEditBooking', id)
+}
 </script>
 
 <style lang="scss">

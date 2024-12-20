@@ -103,6 +103,18 @@ onUnmounted(() => {
   --p-datatable-header-cell-padding: 0.75rem;
   --p-datatable-body-cell-padding: 0.75rem;
 
+  &.outlined {
+    border-radius: 6px;
+    border: 1px solid var(--gray-line);
+
+    .p-datatable-tbody > tr:last-child > td:first-child {
+      border-bottom-left-radius: 6px;
+    }
+    .p-datatable-tbody > tr:last-child > td:last-child {
+      border-bottom-right-radius: 6px;
+    }
+  }
+
   tr td {
     font-size: 11px;
   }

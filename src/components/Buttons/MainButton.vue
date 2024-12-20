@@ -4,7 +4,7 @@
     :severity="severity"
     :size="size"
     :disabled="disabled"
-    :variant="variant"
+    :outlined="outlined"
     :class="{ 'w-full': block }"
   />
 </template>
@@ -29,13 +29,8 @@ defineProps({
       return available.includes(value)
     }
   },
-  variant: {
-    type: String,
-    default: '',
-    validator: value => {
-      const available = ['outlined', '']
-      return available.includes(value)
-    }
+  outlined: {
+    type: Boolean
   },
   severity: {
     type: String,

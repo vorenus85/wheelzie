@@ -11,6 +11,31 @@ export const mockApi = {
       setTimeout(() => {
         let result = [...inMemoryData]
 
+        // Apply filtering
+        if (filters?.expression) {
+          // firstName, lastName, fullname, email, phone, addressLine1, addressLine2, city, country, state, zip, additional
+          result = result.filter(item => {
+            return (
+              !item.firstName ||
+              new RegExp(filters?.expression.toLowerCase(), 'i').test(
+                item.firstName.toLowerCase()
+              ) ||
+              !item.lastName ||
+              new RegExp(filters?.expression.toLowerCase(), 'i').test(
+                item.lastName.toLowerCase()
+              ) ||
+              !item.fullname ||
+              new RegExp(filters?.expression.toLowerCase(), 'i').test(
+                item.fullname.toLowerCase()
+              ) ||
+              !item.email ||
+              new RegExp(filters?.expression.toLowerCase(), 'i').test(item.email.toLowerCase()) ||
+              !item.phone ||
+              new RegExp(filters?.expression.toLowerCase(), 'i').test(item.phone.toLowerCase())
+            )
+          })
+        }
+
         // Paging
         const startIndex = page === 0 ? 0 : page * limit
         const endIndex = page === 0 ? limit : (page + 1) * limit

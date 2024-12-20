@@ -43,6 +43,7 @@
 <script setup>
 import { mockApi } from '@/api/bookingApi'
 import BookingsTable from '@/components/common/BookingsTable.vue'
+import PageHeader from '@/components/common/PageHeader.vue'
 import SearchInput from '@/components/common/SearchInput.vue'
 import SortDropdown from '@/components/common/SortDropdown.vue'
 import CardStatistic from '@/components/dashboardPage/CardStatistic.vue'
