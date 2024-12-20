@@ -16,7 +16,7 @@
                 />
                 <MainButton
                   severity="secondary"
-                  label="Delete selecte(d)"
+                  label="Delete selected"
                   size="small"
                   class="ml-auto delete-selected-clients"
                   @click="showConfirmDialog"
@@ -77,7 +77,7 @@
                           size="small"
                           label="Edit"
                           outlined
-                          @click="onEditClient(slotProps.data.id)"
+                          @click="onEditClient(slotProps.data)"
                         />
                         <MainButton
                           size="small"

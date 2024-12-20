@@ -33,8 +33,8 @@
     <div
       class="car-snapshot__horizontal-bottom p-5 flex gap-4 h-full justify-center items-center w-full xl:w-1/6"
     >
-      <MainButton size="small" label="Edit"></MainButton>
-      <MainButton size="small" label="Delete"></MainButton>
+      <MainButton size="small" label="Edit" @click="onModify"></MainButton>
+      <MainButton size="small" label="Delete" @click="onDelete"></MainButton>
     </div>
   </div>
 </template>
@@ -49,6 +49,8 @@ import CarModel from '../carSnapshot/CarModel.vue'
 import CarPrice from '../carSnapshot/CarPrice.vue'
 import CarStatus from '../carSnapshot/CarStatus.vue'
 import CarTransmission from '../carSnapshot/CarTransmission.vue'
+const emit = defineEmits(['delete-option', 'modify-option'])
+
 defineProps({
   id: String,
   brand: String,
@@ -61,6 +63,14 @@ defineProps({
   capacity: Number,
   fuel: String
 })
+
+const onModify = () => {
+  emit('modify-option')
+}
+
+const onDelete = () => {
+  emit('delete-option')
+}
 </script>
 
 <style lang="scss" scoped>
