@@ -26,6 +26,7 @@
                   label="Add client"
                   severity="primary"
                   size="small"
+                  @click="showClientDialog = true"
                   :class="selectedClients.length ? 'ml-0' : 'ml-auto'"
                   class="add-new-client"
                 />
@@ -105,6 +106,11 @@
       @applyConfirmation="applyConfirmDialog"
       @hide="closeConfirmDialog"
     />
+    <ClientDialog
+      :showDialog="showClientDialog"
+      @save="saveClientDialog"
+      @hide="closeClientDialog"
+    />
   </div>
 </template>
 <script setup>
@@ -114,6 +120,7 @@ import ConfirmDialog from '@/components/common/ConfirmDialog.vue'
 import DocumentTag from '@/components/common/DocumentTag.vue'
 import PageHeader from '@/components/common/PageHeader.vue'
 import SearchInput from '@/components/common/SearchInput.vue'
+import ClientDialog from '@/components/dialogs/ClientDialog.vue'
 import CustomPagination from '@/components/unitsPage/CustomPagination.vue'
 import Card from 'primevue/card'
 import Column from 'primevue/column'
@@ -124,6 +131,7 @@ import { onMounted, ref } from 'vue'
 const filter = ref('')
 
 /** Dialog **/
+const showClientDialog = ref(false)
 const showConfirm = ref(false)
 const selectedClient = ref(null)
 
@@ -158,6 +166,15 @@ const showConfirmDialog = id => {
 const closeConfirmDialog = () => {
   selectedClient.value = null
   showConfirm.value = false
+}
+
+const closeClientDialog = () => {
+  showClientDialog.value = false
+}
+
+const saveClientDialog = () => {
+  closeClientDialog()
+  fetchClients()
 }
 
 const applyConfirmDialog = () => {

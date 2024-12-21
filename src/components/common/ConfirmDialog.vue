@@ -11,23 +11,28 @@
       <span>Are you sure you want to proceed?</span>
     </div>
     <template #footer>
-      <Button label="No" icon="pi pi-times" @click="closeConfirmation" text severity="secondary" />
-      <Button
-        label="Yes"
-        icon="pi pi-check"
-        @click="applyConfirmation"
-        severity="danger"
+      <MainButton
+        label="No"
+        @click="closeConfirmation"
         outlined
+        severity="secondary"
+        size="small"
+      />
+      <MainButton
+        label="Yes"
+        @click="applyConfirmation"
+        severity="primary"
         autofocus
+        size="small"
       />
     </template>
   </Dialog>
 </template>
 
 <script setup>
-import Button from 'primevue/button'
 import Dialog from 'primevue/dialog'
 import { ref, watch } from 'vue'
+import MainButton from '../buttons/MainButton.vue'
 const emit = defineEmits(['apply-confirmation', 'hide'])
 const visible = ref(false)
 
