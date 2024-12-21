@@ -26,7 +26,7 @@
                   label="Add client"
                   severity="primary"
                   size="small"
-                  @click="showClientDialog = true"
+                  @click="showClientDialogModal('new')"
                   :class="selectedClients.length ? 'ml-0' : 'ml-auto'"
                   class="add-new-client"
                 />
@@ -78,13 +78,13 @@
                           size="small"
                           label="Edit"
                           outlined
-                          @click="onEditClient(slotProps.data)"
+                          @click="showClientDialogModal('edit', slotProps.data)"
                         />
                         <MainButton
                           size="small"
                           label="Delete"
                           outlined
-                          @click="showConfirmDialog(slotProps.data.id)"
+                          @click="showConfirmDialog(slotProps.data)"
                         />
                       </div>
                     </template>
@@ -107,6 +107,8 @@
       @hide="closeConfirmDialog"
     />
     <ClientDialog
+      :client="selectedClient"
+      :type="clientDialogType"
       :showDialog="showClientDialog"
       @save="saveClientDialog"
       @hide="closeClientDialog"
@@ -132,6 +134,7 @@ const filter = ref('')
 
 /** Dialog **/
 const showClientDialog = ref(false)
+const clientDialogType = ref(null)
 const showConfirm = ref(false)
 const selectedClient = ref(null)
 
@@ -154,12 +157,14 @@ const onSearchInput = value => {
   fetchClients()
 }
 
-const onEditClient = id => {
-  console.log('onEditClient', id)
+const showClientDialogModal = (type, client) => {
+  clientDialogType.value = type
+  selectedClient.value = client
+  showClientDialog.value = true
 }
 
-const showConfirmDialog = id => {
-  selectedClient.value = id
+const showConfirmDialog = client => {
+  selectedClient.value = client
   showConfirm.value = true
 }
 
@@ -169,6 +174,7 @@ const closeConfirmDialog = () => {
 }
 
 const closeClientDialog = () => {
+  clientDialogType.value = null
   showClientDialog.value = false
 }
 
@@ -193,7 +199,8 @@ const deleteSelectedClients = () => {
   fetchClients()
 }
 
-const onDeleteClient = id => {
+const onDeleteClient = client => {
+  const { id } = client
   mockApi.deleteClient(id)
   fetchClients()
 }
