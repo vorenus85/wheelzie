@@ -11,13 +11,33 @@
         <div class="flex items-start pt-3 w-1/2">
           <label for="brand">Brand</label>
         </div>
-        <div class="w-1/2"></div>
+        <div class="w-1/2">
+          <Select
+            id="brand"
+            size="small"
+            v-model="currentCar.brand"
+            :options="groupedBrands"
+            optionLabel="label"
+            placeholder="Select a brand"
+            @change="onBrandChange"
+          ></Select>
+        </div>
       </div>
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="model">Model</label>
         </div>
-        <div class="w-1/2"></div>
+        <div class="w-1/2">
+          <Select
+            id="model"
+            size="small"
+            v-model="currentCar.model"
+            :options="modelOptions"
+            placeholder="Select a model"
+            optionLabel="label"
+            :disabled="!currentCar.brand"
+          ></Select>
+        </div>
       </div>
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
@@ -45,7 +65,7 @@
           <Select
             size="small"
             id="type"
-            :highlightOnSelect="false"
+            checkmark
             v-model="currentCar.type"
             :options="carTypes"
             filter
@@ -75,7 +95,7 @@
           <Select
             id="status"
             size="small"
-            :highlightOnSelect="false"
+            checkmark
             v-model="currentCar.status"
             :options="carStatuses"
             filter
@@ -92,7 +112,7 @@
           <Select
             size="small"
             id="transmission"
-            :highlightOnSelect="false"
+            checkmark
             v-model="currentCar.transmission"
             :options="transmissionTypes"
             filter
@@ -122,7 +142,7 @@
           <Select
             size="small"
             id="fuel"
-            :highlightOnSelect="false"
+            checkmark
             v-model="currentCar.fuel"
             :options="fuelTypes"
             filter
@@ -212,7 +232,14 @@
 </template>
 
 <script setup>
-import { carFeatures, carStatuses, carTypes, fuelTypes, transmissionTypes } from '@/service/cars'
+import {
+  carFeatures,
+  carStatuses,
+  carTypes,
+  fuelTypes,
+  groupedBrands,
+  transmissionTypes
+} from '@/service/cars'
 import {
   Checkbox,
   Dialog,
@@ -251,6 +278,19 @@ const initialCar = {
   features: []
 }
 const currentCar = ref({ ...initialCar })
+const modelOptions = ref([])
+
+const onBrandChange = () => {
+  console.log('Brand changed')
+  console.log(currentCar.value.brand)
+  console.log(findModelOptions(currentCar.value.brand.label))
+  currentCar.value.model = null // Reset model selection
+  modelOptions.value = currentCar.value.brand ? findModelOptions(currentCar.value.brand.label) : []
+}
+
+const findModelOptions = brand => {
+  return groupedBrands.find(item => item.label === brand)?.models || []
+}
 
 // Reactive object for errors
 const errors = ref({})

@@ -5,6 +5,7 @@
     </InputGroupAddon>
     <Select
       size="small"
+      checkmark
       v-model="localSelected"
       showClear
       :options="options"
