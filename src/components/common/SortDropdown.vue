@@ -4,6 +4,7 @@
       <IconFilter :size="14" />
     </InputGroupAddon>
     <Select
+      size="small"
       v-model="localSelected"
       showClear
       :options="options"
@@ -52,6 +53,7 @@ watch(localSelected, newValue => {
   --p-select-border-color: #fff;
   --p-select-hover-border-color: #fff;
   --p-select-focus-border-color: #fff;
+  --p-select-sm-font-size: 11px;
 }
 .p-select-option {
   --p-select-option-focus-background: var(--gray-bg);

@@ -78,6 +78,7 @@ watch(
   }
 
   .p-inputgroupaddon {
+    --p-inputgroup-addon-padding: 0.25rem;
     --p-inputgroup-addon-min-width: 2rem;
   }
 

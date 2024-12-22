@@ -72,6 +72,13 @@ onUnmounted(() => {
   --p-button-secondary-hover-color: var(--gray-30);
 }
 
+.p-select {
+  --p-select-sm-padding-y: 5px;
+}
+
+.p-selectbutton {
+}
+
 .p-dialog {
   --p-dialog-color: var(--blue-dark);
 }

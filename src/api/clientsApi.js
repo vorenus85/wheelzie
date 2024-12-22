@@ -65,7 +65,6 @@ export const mockApi = {
           const newClient = { ...client, id: nanoid() }
           resolve({ ok: 1, message: 'Client added successfully', data: newClient })
           inMemoryData.push(newClient)
-          console.log(newClient)
         }
       }, 500)
     })
