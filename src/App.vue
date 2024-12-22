@@ -72,8 +72,32 @@ onUnmounted(() => {
   --p-button-secondary-hover-color: var(--gray-30);
 }
 
+.p-inputgroup,
+.p-inputgroup .p-iconfield,
+.p-inputgroup .p-floatlabel,
+.p-inputgroup .p-iftalabel {
+  max-height: 30px;
+}
+
+.p-inputgroupaddon,
+.p-inputgroup .p-inputtext,
+.p-inputgroup .p-inputwrapper {
+  font-size: 12px;
+}
+
 .p-select {
   --p-select-sm-padding-y: 5px;
+  --p-select-sm-font-size: 12px;
+}
+
+.p-select-overlay {
+  .p-inputtext {
+    height: 30px;
+  }
+}
+
+.p-select-option {
+  --p-select-option-padding: 0.25rem 0.5rem;
 }
 
 .p-selectbutton {

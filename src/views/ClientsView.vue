@@ -26,7 +26,7 @@
                   label="Add client"
                   severity="primary"
                   size="small"
-                  @click="showClientDialogModal('new')"
+                  @click="showClientDialogModal()"
                   :class="selectedClients.length ? 'ml-0' : 'ml-auto'"
                   class="add-new-client"
                 />
@@ -78,7 +78,7 @@
                           size="small"
                           label="Edit"
                           outlined
-                          @click="showClientDialogModal('edit', slotProps.data)"
+                          @click="showClientDialogModal(slotProps.data)"
                         />
                         <MainButton
                           size="small"
@@ -115,7 +115,6 @@
   </div>
 </template>
 <script setup>
-import { mockApi } from '@/api/clientsApi'
 import MainButton from '@/components/buttons/MainButton.vue'
 import ConfirmDialog from '@/components/common/ConfirmDialog.vue'
 import DocumentTag from '@/components/common/DocumentTag.vue'
@@ -123,6 +122,7 @@ import PageHeader from '@/components/common/PageHeader.vue'
 import SearchInput from '@/components/common/SearchInput.vue'
 import ClientDialog from '@/components/dialogs/ClientDialog.vue'
 import CustomPagination from '@/components/unitsPage/CustomPagination.vue'
+import { clientsApi } from '@/service/clients'
 import Card from 'primevue/card'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
@@ -155,11 +155,6 @@ const onSearchInput = value => {
   fetchClients()
 }
 
-const showClientDialogModal = (type, client) => {
-  selectedClient.value = client
-  showClientDialog.value = true
-}
-
 const showConfirmDialog = client => {
   selectedClient.value = client
   showConfirm.value = true
@@ -168,16 +163,6 @@ const showConfirmDialog = client => {
 const closeConfirmDialog = () => {
   selectedClient.value = null
   showConfirm.value = false
-}
-
-const closeClientDialog = () => {
-  showClientDialog.value = false
-}
-
-const saveClientDialog = client => {
-  mockApi.upsertClient(client)
-  closeClientDialog()
-  fetchClients()
 }
 
 const applyConfirmDialog = () => {
@@ -189,16 +174,31 @@ const applyConfirmDialog = () => {
   closeConfirmDialog()
 }
 
+const showClientDialogModal = client => {
+  selectedClient.value = client
+  showClientDialog.value = true
+}
+
+const closeClientDialog = () => {
+  showClientDialog.value = false
+}
+
+const saveClientDialog = client => {
+  clientsApi.upsertClient(client)
+  closeClientDialog()
+  fetchClients()
+}
+
 const deleteSelectedClients = () => {
   const ids = selectedClients.value.map(client => client.id)
-  mockApi.deleteClients(ids)
+  clientsApi.deleteClients(ids)
   selectedClients.value = []
   fetchClients()
 }
 
 const onDeleteClient = client => {
   const { id } = client
-  mockApi.deleteClient(id)
+  clientsApi.deleteClient(id)
   fetchClients()
 }
 
@@ -206,7 +206,7 @@ const fetchClients = async () => {
   loading.value = true
 
   try {
-    const response = await mockApi.getClients(
+    const response = await clientsApi.getClients(
       {
         expression: filter?.value
       },

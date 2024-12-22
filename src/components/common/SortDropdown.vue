@@ -48,19 +48,21 @@ watch(localSelected, newValue => {
 </script>
 
 <style lang="scss">
-.p-select {
-  --p-select-shadow: none;
-  --p-select-border-color: #fff;
-  --p-select-hover-border-color: #fff;
-  --p-select-focus-border-color: #fff;
-  --p-select-sm-font-size: 11px;
-}
-.p-select-option {
-  --p-select-option-focus-background: var(--gray-bg);
-  --p-select-option-selected-background: var(--blue-subtle-10);
-  --p-select-option-selected-color: var(--gray-30);
-  --p-select-option-selected-focus-background: var(--blue-subtle-10);
-  --p-select-option-selected-focus-color: var(--gray-30);
+.search-filter {
+  .p-select {
+    --p-select-shadow: none;
+    --p-select-border-color: #fff;
+    --p-select-hover-border-color: #fff;
+    --p-select-focus-border-color: #fff;
+    --p-select-sm-font-size: 11px;
+  }
+  .p-select-option {
+    --p-select-option-focus-background: var(--gray-bg);
+    --p-select-option-selected-background: var(--blue-subtle-10);
+    --p-select-option-selected-color: var(--gray-30);
+    --p-select-option-selected-focus-background: var(--blue-subtle-10);
+    --p-select-option-selected-focus-color: var(--gray-30);
+  }
 }
 
 .p-inputgroupaddon {
@@ -72,6 +74,7 @@ watch(localSelected, newValue => {
   max-width: 180px;
   border-radius: 6px;
   transition: all 0.2s;
+  height: 30px;
 
   .p-select-label {
     font-size: 11px;

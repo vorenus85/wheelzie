@@ -2,7 +2,7 @@ import bookings from '../../static/bookings.json'
 
 const inMemoryData = [...bookings] // Create an in-memory copy of the data
 
-export const mockApi = {
+export const bookingsApi = {
   getBookings: async (filters = {}, sort = null, page = 0, limit = 5) => {
     // Simulate network latency (e.g., 1 to 2 seconds delay)
     const latency = Math.floor(Math.random() * (2000 - 1000 + 1)) + 500 // Delay between 0.5 and 1.5 seconds

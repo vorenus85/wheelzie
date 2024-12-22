@@ -13,14 +13,14 @@
           :filter="filter"
         />
         <SortDropdown
-          :options="carTypes.types"
+          :options="carBodyTypes"
           :selected="selectedCarType"
           placeholder="Car Type"
           @changeSort="onChangeCarTypes"
           class="sort-by-types"
         />
         <SortDropdown
-          :options="carStatus.types"
+          :options="carStatus"
           :selected="selectedCarStatus"
           placeholder="Status"
           @changeSort="onChangeCarStatus"
@@ -37,7 +37,13 @@
             <IconGrid v-if="option === 'grid'" :color="'currentColor'" />
           </template>
         </SelectButton>
-        <MainButton label="Add unit" severity="primary" size="small" class="ml-0 add-new-car" />
+        <MainButton
+          label="Add unit"
+          severity="primary"
+          size="small"
+          class="ml-0 add-new-car"
+          @click="showCarDialogModal"
+        />
       </div>
 
       <!-- Main Content -->
@@ -83,10 +89,11 @@
         @hide="closeConfirmDialog"
       />
     </div>
+
+    <CarDialog :showDialog="showCarDialog" @save="showCarDialogModal" @hide="closeCarDialog" />
   </div>
 </template>
 <script setup>
-import { mockApi } from '@/api/carApi'
 import MainButton from '@/components/buttons/MainButton.vue'
 import ConfirmDialog from '@/components/common/ConfirmDialog.vue'
 import PageHeader from '@/components/common/PageHeader.vue'
@@ -98,10 +105,12 @@ import CarSnapshotHorizontal from '@/components/unitsPage/CarSnapshotHorizontal.
 import CarSnapshotVertical from '@/components/unitsPage/CarSnapshotVertical.vue'
 import SkeletonUnitHorizontal from '@/components/unitsPage/SkeletonUnitHorizontal.vue'
 import SkeletonUnitVertical from '@/components/unitsPage/SkeletonUnitVertical.vue'
+import { carStatuses, carTypes, carsApi } from '@/service/cars'
 import Message from 'primevue/message'
 import SelectButton from 'primevue/selectbutton'
 import { onMounted, ref } from 'vue'
 
+import CarDialog from '@/components/dialogs/CarDialog.vue'
 import CustomPagination from '@/components/unitsPage/CustomPagination.vue'
 /** Page Data **/
 const layout = ref('grid')
@@ -111,24 +120,14 @@ const layoutOptions = ref(['list', 'grid'])
 /** Filters **/
 const filter = ref('')
 const selectedCarType = ref()
-const carTypes = ref({
-  types: [
-    { name: 'Convertible' },
-    { name: 'Hatchback' },
-    { name: 'Sedan' },
-    { name: 'SUV' },
-    { name: 'Truck' },
-    { name: 'Minivan' }
-  ]
-})
+const carBodyTypes = ref([...carTypes])
 const selectedCarStatus = ref()
-const carStatus = ref({
-  types: [{ name: 'Available' }, { name: 'Unavailable' }, { name: 'Maintenance' }]
-})
+const carStatus = ref([...carStatuses])
 
 /** Dialog **/
 const showConfirm = ref(false)
 const selectedCar = ref(null)
+const showCarDialog = ref(null)
 
 /** Pagination and Data **/
 const limit = ref(8)
@@ -141,7 +140,7 @@ const loading = ref(true)
 const fetchCars = async () => {
   loading.value = true
   try {
-    const response = await mockApi.getCars(
+    const response = await carsApi.getCars(
       {
         expression: filter?.value,
         type: selectedCarType?.value?.name,
@@ -200,8 +199,17 @@ const applyConfirmDialog = () => {
   closeConfirmDialog()
 }
 
+const showCarDialogModal = client => {
+  selectedCar.value = client
+  showCarDialog.value = true
+}
+
+const closeCarDialog = () => {
+  showCarDialog.value = false
+}
+
 const onDeleteCar = carId => {
-  mockApi.deleteCar(carId)
+  carsApi.deleteCar(carId)
   fetchCars()
 }
 
@@ -257,6 +265,7 @@ onMounted(fetchCars)
 </style>
 <style lang="scss">
 .cars-toggle-menu {
+  height: 30px;
   &.p-selectbutton .p-togglebutton {
     border-radius: var(--p-togglebutton-border-radius) !important;
   }

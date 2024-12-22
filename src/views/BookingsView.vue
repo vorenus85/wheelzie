@@ -50,13 +50,13 @@
   </div>
 </template>
 <script setup>
-import { mockApi } from '@/api/bookingApi'
 import MainButton from '@/components/buttons/MainButton.vue'
 import BookingsTable from '@/components/common/BookingsTable.vue'
 import PageHeader from '@/components/common/PageHeader.vue'
 import SearchInput from '@/components/common/SearchInput.vue'
 import SortDropdown from '@/components/common/SortDropdown.vue'
 import CustomPagination from '@/components/unitsPage/CustomPagination.vue'
+import { bookingsApi } from '@/service/bookings'
 import Card from 'primevue/card'
 import Message from 'primevue/message'
 import { onMounted, ref } from 'vue'
@@ -72,7 +72,7 @@ const fetchBookings = async () => {
   loading.value = true
 
   try {
-    const response = await mockApi.getBookings(
+    const response = await bookingsApi.getBookings(
       {
         expression: filter?.value,
         status: selectedBookingStatus?.value?.name

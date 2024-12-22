@@ -7,7 +7,7 @@
     @update:visible="closeDialog"
   >
     <form @submit.prevent="validateAndSave" ref="form">
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="firstName">First Name</label>
         </div>
@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="lastName">Last Name</label>
         </div>
@@ -43,7 +43,7 @@
           </div>
         </div>
       </div>
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="email">Email</label>
         </div>
@@ -62,7 +62,7 @@
         </div>
       </div>
 
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="phone">Phone</label>
         </div>
@@ -81,7 +81,7 @@
         </div>
       </div>
 
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="addressLine1">Address Line 1</label>
         </div>
@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="addressLine2">Address Line 2</label>
         </div>
@@ -119,7 +119,7 @@
         </div>
       </div>
 
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="city">City</label>
         </div>
@@ -138,7 +138,7 @@
         </div>
       </div>
 
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="country">Country</label>
         </div>
@@ -157,7 +157,7 @@
         </div>
       </div>
 
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="state">State</label>
         </div>
@@ -176,7 +176,7 @@
         </div>
       </div>
 
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="zip">Zip</label>
         </div>
@@ -195,7 +195,7 @@
         </div>
       </div>
 
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="additional">Additional info</label>
         </div>
@@ -213,7 +213,7 @@
         </div>
       </div>
 
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="residenceCard">Residence card</label>
         </div>
@@ -236,7 +236,7 @@
         </div>
       </div>
 
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="driveLicense">Drive license</label>
         </div>
@@ -259,7 +259,7 @@
         </div>
       </div>
 
-      <div class="flex gap-1 my-3">
+      <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
           <label for="points">Points</label>
         </div>
@@ -277,7 +277,6 @@
           </div>
         </div>
       </div>
-      <!-- Add other fields following the same pattern -->
 
       <div class="flex gap-2 justify-end mt-5 py-3">
         <MainButton label="Cancel" @click="closeDialog" outlined severity="secondary" />

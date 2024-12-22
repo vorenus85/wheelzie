@@ -48,6 +48,7 @@ watch(
 <style lang="scss" scoped>
 .search-input {
   max-width: 150px;
+  height: 30px;
   width: initial;
   border-radius: 6px;
   transition: all 0.2s;
