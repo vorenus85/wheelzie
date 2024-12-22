@@ -56,6 +56,7 @@
                 <CarSnapshotVertical
                   v-bind="car"
                   v-else
+                  @modifyOption="showCarDialogModal(car)"
                   @deleteOption="showConfirmDialog(car.id)"
                 />
               </template>
@@ -64,6 +65,7 @@
                 <CarSnapshotHorizontal
                   v-bind="car"
                   v-else
+                  @modifyOption="showCarDialogModal(car)"
                   @deleteOption="showConfirmDialog(car.id)"
                 />
               </template>
@@ -90,7 +92,12 @@
       />
     </div>
 
-    <CarDialog :showDialog="showCarDialog" @save="showCarDialogModal" @hide="closeCarDialog" />
+    <CarDialog
+      :car="selectedCar"
+      :showDialog="showCarDialog"
+      @save="showCarDialogModal"
+      @hide="closeCarDialog"
+    />
   </div>
 </template>
 <script setup>
@@ -199,8 +206,8 @@ const applyConfirmDialog = () => {
   closeConfirmDialog()
 }
 
-const showCarDialogModal = client => {
-  selectedCar.value = client
+const showCarDialogModal = car => {
+  selectedCar.value = car
   showCarDialog.value = true
 }
 
