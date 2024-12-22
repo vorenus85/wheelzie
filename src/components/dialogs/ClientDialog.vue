@@ -1,7 +1,6 @@
 <template>
   <Dialog
-    :key="dialogKey"
-    :header="header"
+    :header="headerTitle"
     v-model:visible="visible"
     :style="{ width: '650px' }"
     :modal="true"
@@ -296,12 +295,9 @@ import Textarea from 'primevue/textarea'
 import { ref, watch } from 'vue'
 import * as Yup from 'yup'
 import MainButton from '../buttons/MainButton.vue'
-const dialogKey = ref(0)
 const emit = defineEmits(['save', 'hide'])
 const visible = ref(false)
 const props = defineProps({
-  type: { type: String, default: 'new' },
-  header: { type: String, default: 'Confirmation' },
   client: { type: Object, default: () => ({}) },
   showDialog: Boolean
 })
@@ -324,6 +320,8 @@ const initialClient = {
 }
 
 const currentClient = ref({ ...initialClient })
+
+const headerTitle = ref('Add new client')
 
 // Validation schema using Yup
 const validationSchema = Yup.object({
@@ -352,6 +350,7 @@ const errors = ref({})
 watch(
   () => props.showDialog,
   newValue => {
+    headerTitle.value = props.client.id ? 'Edit client' : 'Add new client'
     currentClient.value = { ...props.client }
     visible.value = newValue
   }
@@ -388,7 +387,6 @@ const validateAndSave = async () => {
 // Close dialog
 const closeDialog = () => {
   resetForm()
-  dialogKey.value++ // Increment the key to force rerender
   emit('hide')
 }
 

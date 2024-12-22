@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import clients from '../../static/clients.json'
 
 const inMemoryData = [...clients] // Create an in-memory copy of the data
@@ -47,6 +48,26 @@ export const mockApi = {
           data: paginatedResult
         })
       }, latency) // Simulate the latency
+    })
+  },
+
+  upsertClient: async client => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const index = inMemoryData.findIndex(data => data.id === client.id)
+        client.fullname = `${client.firstName} ${client.lastName}`
+        if (index !== -1) {
+          inMemoryData[index] = {
+            ...client
+          }
+          resolve({ ok: 1, message: 'Client updated successfully', data: inMemoryData[index] })
+        } else {
+          const newClient = { ...client, id: nanoid() }
+          resolve({ ok: 1, message: 'Client added successfully', data: newClient })
+          inMemoryData.push(newClient)
+          console.log(newClient)
+        }
+      }, 500)
     })
   },
 

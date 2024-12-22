@@ -108,7 +108,6 @@
     />
     <ClientDialog
       :client="selectedClient"
-      :type="clientDialogType"
       :showDialog="showClientDialog"
       @save="saveClientDialog"
       @hide="closeClientDialog"
@@ -134,7 +133,6 @@ const filter = ref('')
 
 /** Dialog **/
 const showClientDialog = ref(false)
-const clientDialogType = ref(null)
 const showConfirm = ref(false)
 const selectedClient = ref(null)
 
@@ -158,7 +156,6 @@ const onSearchInput = value => {
 }
 
 const showClientDialogModal = (type, client) => {
-  clientDialogType.value = type
   selectedClient.value = client
   showClientDialog.value = true
 }
@@ -174,11 +171,11 @@ const closeConfirmDialog = () => {
 }
 
 const closeClientDialog = () => {
-  clientDialogType.value = null
   showClientDialog.value = false
 }
 
-const saveClientDialog = () => {
+const saveClientDialog = client => {
+  mockApi.upsertClient(client)
   closeClientDialog()
   fetchClients()
 }
