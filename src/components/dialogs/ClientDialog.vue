@@ -293,7 +293,7 @@ import Dialog from 'primevue/dialog'
 import FileUpload from 'primevue/fileupload'
 import InputText from 'primevue/inputtext'
 import Textarea from 'primevue/textarea'
-import { computed, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import * as Yup from 'yup'
 import MainButton from '../buttons/MainButton.vue'
 const dialogKey = ref(0)
@@ -302,39 +302,28 @@ const visible = ref(false)
 const props = defineProps({
   type: { type: String, default: 'new' },
   header: { type: String, default: 'Confirmation' },
-  client: Object,
+  client: { type: Object, default: () => ({}) },
   showDialog: Boolean
 })
 
-const initialClient = () => {
-  return (
-    props.client ?? {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      addressLine1: '',
-      addressLine2: '',
-      city: '',
-      country: '',
-      state: '',
-      zip: '',
-      additional: '',
-      residenceCard: '',
-      driveLicense: '',
-      points: 0
-    }
-  )
+const initialClient = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  addressLine1: '',
+  addressLine2: '',
+  city: '',
+  country: '',
+  state: '',
+  zip: '',
+  additional: '',
+  residenceCard: '',
+  driveLicense: '',
+  points: 0
 }
 
-const currentClient = computed({
-  get: () => {
-    return initialClient()
-  },
-  set: value => {
-    return { ...value }
-  }
-})
+const currentClient = ref({ ...initialClient })
 
 // Validation schema using Yup
 const validationSchema = Yup.object({
@@ -353,7 +342,7 @@ const validationSchema = Yup.object({
 
 // Reset form function
 const resetForm = () => {
-  currentClient.value = { ...initialClient() }
+  currentClient.value = { ...initialClient }
   errors.value = {}
 }
 
@@ -363,6 +352,7 @@ const errors = ref({})
 watch(
   () => props.showDialog,
   newValue => {
+    currentClient.value = { ...props.client }
     visible.value = newValue
   }
 )
