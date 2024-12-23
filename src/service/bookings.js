@@ -2,6 +2,8 @@ import bookings from '../../static/bookings.json'
 
 const inMemoryData = [...bookings] // Create an in-memory copy of the data
 
+export const bookingStatuses = [{ label: 'Returned' }, { label: 'Ongoing' }, { label: 'Cancelled' }]
+
 export const bookingsApi = {
   getBookings: async (filters = {}, sort = null, page = 0, limit = 5) => {
     // Simulate network latency (e.g., 1 to 2 seconds delay)

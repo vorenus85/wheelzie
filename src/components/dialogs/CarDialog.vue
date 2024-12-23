@@ -15,8 +15,8 @@
           <Select
             id="brand"
             size="small"
-            v-model="currentCar.brand"
-            :options="groupedBrands"
+            v-model="brand"
+            :options="onlyBrands"
             optionLabel="label"
             placeholder="Select a brand"
             @change="onBrandChange"
@@ -31,11 +31,11 @@
           <Select
             id="model"
             size="small"
-            v-model="currentCar.model"
+            v-model="model"
             :options="modelOptions"
             placeholder="Select a model"
             optionLabel="label"
-            :disabled="!currentCar.brand"
+            :disabled="!brand?.label"
           ></Select>
         </div>
       </div>
@@ -66,10 +66,10 @@
             size="small"
             id="type"
             checkmark
-            v-model="currentCar.type"
+            v-model="bodyType"
             :options="carTypes"
             filter
-            optionLabel="name"
+            optionLabel="label"
             placeholder="Select body type"
           ></Select>
         </div>
@@ -96,10 +96,10 @@
             id="status"
             size="small"
             checkmark
-            v-model="currentCar.status"
+            v-model="status"
             :options="carStatuses"
             filter
-            optionLabel="name"
+            optionLabel="label"
             placeholder="Select a status"
           ></Select>
         </div>
@@ -113,10 +113,10 @@
             size="small"
             id="transmission"
             checkmark
-            v-model="currentCar.transmission"
+            v-model="transmission"
             :options="transmissionTypes"
             filter
-            optionLabel="name"
+            optionLabel="label"
             placeholder="Select a transmission type"
           ></Select>
         </div>
@@ -143,10 +143,10 @@
             size="small"
             id="fuel"
             checkmark
-            v-model="currentCar.fuel"
+            v-model="fuel"
             :options="fuelTypes"
             filter
-            optionLabel="name"
+            optionLabel="label"
             placeholder="Select a fuel type"
           ></Select>
         </div>
@@ -216,9 +216,9 @@
               v-model="currentCar.features"
               :inputId="feature.key"
               name="feature"
-              :value="feature.name"
+              :value="feature.label"
             />
-            <label :for="feature.key">{{ feature.name }}</label>
+            <label :for="feature.key">{{ feature.label }}</label>
           </div>
         </div>
       </div>
@@ -238,6 +238,7 @@ import {
   carTypes,
   fuelTypes,
   groupedBrands,
+  onlyBrands,
   transmissionTypes
 } from '@/service/cars'
 import {
@@ -280,12 +281,16 @@ const initialCar = {
 const currentCar = ref({ ...initialCar })
 const modelOptions = ref([])
 
+const brand = ref({ label: '' })
+const model = ref({ label: '' })
+const bodyType = ref({ label: '' })
+const status = ref({ label: '' })
+const transmission = ref({ label: '' })
+const fuel = ref({ label: '' })
+
 const onBrandChange = () => {
-  console.log('Brand changed')
-  console.log(currentCar.value.brand)
-  console.log(findModelOptions(currentCar.value.brand.label))
-  currentCar.value.model = null // Reset model selection
-  modelOptions.value = currentCar.value.brand ? findModelOptions(currentCar.value.brand.label) : []
+  model.value = null // Reset model selection
+  modelOptions.value = brand.value ? findModelOptions(brand.value.label) : []
 }
 
 const findModelOptions = brand => {
@@ -300,13 +305,69 @@ watch(
   newValue => {
     headerTitle.value = props.car?.id ? 'Edit car' : 'Add new car'
     currentCar.value = { ...props.car }
+    brand.value = { label: props.car?.brand }
+    bodyType.value = { label: props.car?.type }
+    status.value = { label: props.car?.status }
+    transmission.value = { label: props.car?.transmission }
+    fuel.value = { label: props.car?.fuel }
+    onBrandChange()
+    model.value = { label: props.car?.model }
+    console.log(props.car)
     visible.value = newValue
+  }
+)
+
+watch(
+  () => brand.value,
+  newValue => {
+    currentCar.value.brand = newValue?.label
+  }
+)
+
+watch(
+  () => model.value,
+  newValue => {
+    currentCar.value.model = newValue?.label
+  }
+)
+
+watch(
+  () => bodyType.value,
+  newValue => {
+    console.log('bodyType fired', newValue)
+    currentCar.value.type = newValue?.label
+  }
+)
+
+watch(
+  () => status.value,
+  newValue => {
+    currentCar.value.status = newValue?.label
+  }
+)
+
+watch(
+  () => transmission.value,
+  newValue => {
+    currentCar.value.transmission = newValue?.label
+  }
+)
+
+watch(
+  () => fuel.value,
+  newValue => {
+    currentCar.value.fuel = newValue?.label
   }
 )
 
 // Close dialog
 const closeDialog = () => {
   emit('hide')
+}
+
+const validateAndSave = () => {
+  console.log(currentCar.value)
+  emit('save', currentCar.value)
 }
 
 const onUpload = () => {

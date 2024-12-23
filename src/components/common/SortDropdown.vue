@@ -29,7 +29,7 @@ const props = defineProps({
   options: Object,
   optionLabel: {
     type: String,
-    default: 'name'
+    default: 'label'
   },
   variant: { type: String, default: 'light' }
 })

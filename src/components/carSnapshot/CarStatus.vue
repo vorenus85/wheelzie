@@ -15,15 +15,15 @@ const props = defineProps({ status: String })
 
 const statusSeverity = computed(() => {
   let statusSeverity = ''
-  if (props.status === 'unavailable') {
+  if (props.status === 'Unavailable') {
     statusSeverity = 'secondary'
   }
 
-  if (props.status === 'available') {
+  if (props.status === 'Available') {
     statusSeverity = 'contrast'
   }
 
-  if (props.status === 'maintenance') {
+  if (props.status === 'Maintenance') {
     statusSeverity = 'danger'
   }
 

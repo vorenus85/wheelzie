@@ -25,7 +25,7 @@
                 variant="dark"
               />
               <SortDropdown
-                :options="bookingStatus.types"
+                :options="bookingStatus"
                 :selected="selectedBookingStatus"
                 placeholder="Status"
                 @changeSort="onChangeBookingStatus"
@@ -46,7 +46,7 @@ import PageHeader from '@/components/common/PageHeader.vue'
 import SearchInput from '@/components/common/SearchInput.vue'
 import SortDropdown from '@/components/common/SortDropdown.vue'
 import CardStatistic from '@/components/dashboardPage/CardStatistic.vue'
-import { bookingsApi } from '@/service/bookings'
+import { bookingsApi, bookingStatuses } from '@/service/bookings'
 import Card from 'primevue/card'
 import { onMounted, ref } from 'vue'
 const statistics = ref([
@@ -105,9 +105,7 @@ const fetchBookings = async () => {
 }
 
 const selectedBookingStatus = ref()
-const bookingStatus = ref({
-  types: [{ name: 'Returned' }, { name: 'Ongoing' }, { name: 'Cancelled' }]
-})
+const bookingStatus = ref([...bookingStatuses])
 
 const onChangeBookingStatus = value => {
   selectedBookingStatus.value = value

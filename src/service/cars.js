@@ -3,156 +3,133 @@ import cars from '../../static/cars.json'
 const inMemoryData = [...cars] // Create an in-memory copy of the data
 
 export const carTypes = [
-  { name: 'SUV' },
-  { name: 'Sedan' },
-  { name: 'Hatchback' },
-  { name: 'Coupe' },
-  { name: 'Convertible' },
-  { name: 'Truck' },
-  { name: 'Van' },
-  { name: 'Wagon' },
-  { name: 'Crossover' },
-  { name: 'Minivan' }
+  { label: 'SUV' },
+  { label: 'Sedan' },
+  { label: 'Hatchback' },
+  { label: 'Coupe' },
+  { label: 'Convertible' },
+  { label: 'Truck' },
+  { label: 'Van' },
+  { label: 'Wagon' },
+  { label: 'Crossover' },
+  { label: 'Minivan' }
 ]
 
 export const carFeatures = [
-  { name: 'Air Conditioning', key: '1' },
-  { name: 'Bluetooth Connectivity', key: '2' },
-  { name: 'Backup Camera', key: '3' },
-  { name: 'Cruise Control', key: '4' },
-  { name: 'Keyless Entry', key: '5' },
-  { name: 'Power Windows and Locks', key: '6' },
-  { name: 'AM/FM Radio with CD Player', key: '7' },
-  { name: 'USB Charging Ports', key: '8' },
-  { name: 'Spacious Trunk', key: '9' },
+  { label: 'Air Conditioning', key: '1' },
+  { label: 'Bluetooth Connectivity', key: '2' },
+  { label: 'Backup Camera', key: '3' },
+  { label: 'Cruise Control', key: '4' },
+  { label: 'Keyless Entry', key: '5' },
+  { label: 'Power Windows and Locks', key: '6' },
+  { label: 'AM/FM Radio with CD Player', key: '7' },
+  { label: 'USB Charging Ports', key: '8' },
+  { label: 'Spacious Trunk', key: '9' },
   {
-    name: 'Advanced Safety Features (e.g., Lane Departure Warning, Automatic Emergency Braking)',
+    label: 'Advanced Safety Features (e.g., Lane Departure Warning, Automatic Emergency Braking)',
     key: '10'
   }
 ]
 
-export const carStatuses = [{ name: 'Available' }, { name: 'Unavailable' }, { name: 'Maintenance' }]
+export const carStatuses = [
+  { label: 'Available' },
+  { label: 'Unavailable' },
+  { label: 'Maintenance' }
+]
 
-export const transmissionTypes = [{ name: 'Automatic' }, { name: 'Manual' }]
+export const transmissionTypes = [{ label: 'Automatic' }, { label: 'Manual' }]
 
 export const fuelTypes = [
-  { name: 'Petrol' },
-  { name: 'Diesel' },
-  { name: 'Electric' },
-  { name: 'Hybrid' }
+  { label: 'Petrol' },
+  { label: 'Diesel' },
+  { label: 'Electric' },
+  { label: 'Hybrid' }
 ]
 
 export const groupedBrands = [
   {
     label: 'Toyota',
-    code: 'TOYOTA',
-    models: [
-      { label: 'Corolla', value: 'Corolla' },
-      { label: 'Camry', value: 'Camry' },
-      { label: 'Yaris', value: 'Yaris' },
-      { label: 'Avalon', value: 'Avalon' }
-    ]
+    models: [{ label: 'Corolla' }, { label: 'Camry' }, { label: 'Yaris' }, { label: 'Avalon' }]
   },
   {
     label: 'Aston Martin',
-    code: 'ASTON_MARTIN',
     models: [
-      { label: 'DB11', value: 'DB11' },
-      { label: 'DBS', value: 'DBS' },
-      { label: 'Vantage', value: 'Vantage' },
-      { label: 'Rapide', value: 'Rapide' }
+      { label: 'DB11' },
+      { label: 'DB12 Volante' },
+      { label: 'DBS' },
+      { label: 'Vantage' },
+      { label: 'Rapide' }
     ]
   },
   {
     label: 'Hyundai',
-    code: 'HYUNDAI',
-    models: [
-      { label: 'Accent', value: 'Accent' },
-      { label: 'Sonata', value: 'Sonata' },
-      { label: 'Ioniq', value: 'Ioniq' },
-      { label: 'Palisade', value: 'Palisade' }
-    ]
+    models: [{ label: 'Accent' }, { label: 'Sonata' }, { label: 'Ioniq' }, { label: 'Palisade' }]
   },
   {
     label: 'BMW',
-    code: 'BMW',
     models: [
-      { label: '5 Series', value: '5 Series' },
-      { label: '7 Series', value: '7 Series' },
-      { label: 'X1', value: 'X1' },
-      { label: 'LX3', value: 'LX3' },
-      { label: 'X5', value: 'X5' },
-      { label: 'X7', value: 'X7' }
+      { label: '5 Series' },
+      { label: '7 Series' },
+      { label: 'X1' },
+      { label: 'LX3' },
+      { label: 'X5' },
+      { label: 'X7' }
     ]
   },
   {
     label: 'Kia',
-    code: 'KIA',
     models: [
-      { label: 'Optima', value: 'Optima' },
-      { label: 'Stinger', value: 'Stinger' },
-      { label: 'Soul', value: 'Soul' },
-      { label: 'Sportage', value: 'Sportage' },
-      { label: 'EV6', value: 'EV6' }
+      { label: 'Optima' },
+      { label: 'Stinger' },
+      { label: 'Soul' },
+      { label: 'Sportage' },
+      { label: 'EV6' }
     ]
   },
   {
     label: 'Mercedes-Benz',
-    code: 'MERCEDES_BENZ',
     models: [
-      { label: 'C-Class', value: 'C-Class' },
-      { label: 'E-Class', value: 'E-Class' },
-      { label: 'S-Class', value: 'S-Class' },
-      { label: 'GLA', value: 'GLA' },
-      { label: 'GLC', value: 'GLC' },
-      { label: 'GLE', value: 'GLE' },
-      { label: 'GLS', value: 'GLS' }
+      { label: 'C-Class' },
+      { label: 'E-Class' },
+      { label: 'S-Class' },
+      { label: 'GLA' },
+      { label: 'GLC' },
+      { label: 'GLE' },
+      { label: 'GLS' }
     ]
   },
   {
     label: 'Nissan',
-    code: 'NISSAN',
     models: [
-      { label: 'Ariya', value: 'Ariya' },
-      { label: 'Maxima', value: 'Maxima' },
-      { label: 'Rogue', value: 'Rogue' },
-      { label: 'Murano', value: 'Murano' },
-      { label: 'Pathfinder', value: 'Pathfinder' }
+      { label: 'Ariya' },
+      { label: 'Maxima' },
+      { label: 'Rogue' },
+      { label: 'Murano' },
+      { label: 'Pathfinder' }
     ]
   },
   {
     label: 'Range Rover',
-    code: 'RANGE_ROVER',
-    models: [
-      { label: 'Evoque', value: 'Evoque' },
-      { label: 'Velar', value: 'Velar' },
-      { label: 'Sport', value: 'Sport' },
-      { label: 'Vogue', value: 'Vogue' }
-    ]
+    models: [{ label: 'Evoque' }, { label: 'Velar' }, { label: 'Sport' }, { label: 'Vogue' }]
   },
   {
     label: 'Volkswagen',
-    code: 'VOLKSWAGEN',
-    models: [
-      { label: 'Golf', value: 'Golf' },
-      { label: 'Passat', value: 'Passat' },
-      { label: 'Amarok', value: 'Amarok' },
-      { label: 'Touareg', value: 'Touareg' }
-    ]
+    models: [{ label: 'Golf' }, { label: 'Passat' }, { label: 'Amarok' }, { label: 'Touareg' }]
   },
   {
     label: 'Audi',
-    code: 'AUDI',
     models: [
-      { label: 'A5', value: 'A5' },
-      { label: 'A6', value: 'A6' },
-      { label: 'Q2', value: 'Q2' },
-      { label: 'Q3', value: 'Q3' },
-      { label: 'Q7', value: 'Q7' },
-      { label: 'Q4 e-tron', value: 'Q4 e-tron' }
+      { label: 'A5' },
+      { label: 'A6' },
+      { label: 'Q2' },
+      { label: 'Q3' },
+      { label: 'Q7' },
+      { label: 'Q4 e-tron' }
     ]
   }
 ]
+
+export const onlyBrands = groupedBrands.map(brand => ({ label: brand.label }))
 
 export const carsApi = {
   getCars: async (filters = {}, sort = null, page = 0, limit = 5) => {
