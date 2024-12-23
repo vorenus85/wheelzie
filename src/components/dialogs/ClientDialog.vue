@@ -9,7 +9,7 @@
     <form @submit.prevent="validateAndSave" ref="form">
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
-          <label for="firstName">First Name</label>
+          <label for="firstName">First Name <sup class="text-red-600">*</sup></label>
         </div>
         <div class="w-1/2">
           <InputText
@@ -27,7 +27,7 @@
       </div>
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
-          <label for="lastName">Last Name</label>
+          <label for="lastName">Last Name <sup class="text-red-600">*</sup></label>
         </div>
         <div class="w-1/2">
           <InputText
@@ -45,7 +45,7 @@
       </div>
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
-          <label for="email">Email</label>
+          <label for="email">Email <sup class="text-red-600">*</sup></label>
         </div>
         <div class="w-1/2">
           <InputText
@@ -64,7 +64,7 @@
 
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
-          <label for="phone">Phone</label>
+          <label for="phone">Phone <sup class="text-red-600">*</sup></label>
         </div>
         <div class="w-1/2">
           <InputText
@@ -83,7 +83,7 @@
 
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
-          <label for="addressLine1">Address Line 1</label>
+          <label for="addressLine1">Address Line 1 <sup class="text-red-600">*</sup></label>
         </div>
         <div class="w-1/2">
           <InputText
@@ -121,7 +121,7 @@
 
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
-          <label for="city">City</label>
+          <label for="city">City <sup class="text-red-600">*</sup></label>
         </div>
         <div class="w-1/2">
           <InputText
@@ -140,7 +140,7 @@
 
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
-          <label for="country">Country</label>
+          <label for="country">Country <sup class="text-red-600">*</sup></label>
         </div>
         <div class="w-1/2">
           <InputText
@@ -159,7 +159,7 @@
 
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
-          <label for="state">State</label>
+          <label for="state">State <sup class="text-red-600">*</sup></label>
         </div>
         <div class="w-1/2">
           <InputText
@@ -178,7 +178,7 @@
 
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
-          <label for="zip">Zip</label>
+          <label for="zip">Zip <sup class="text-red-600">*</sup></label>
         </div>
         <div class="w-1/2">
           <InputText

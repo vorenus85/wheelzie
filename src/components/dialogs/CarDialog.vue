@@ -312,7 +312,6 @@ watch(
     fuel.value = { label: props.car?.fuel }
     onBrandChange()
     model.value = { label: props.car?.model }
-    console.log(props.car)
     visible.value = newValue
   }
 )
@@ -334,7 +333,6 @@ watch(
 watch(
   () => bodyType.value,
   newValue => {
-    console.log('bodyType fired', newValue)
     currentCar.value.type = newValue?.label
   }
 )
@@ -366,7 +364,6 @@ const closeDialog = () => {
 }
 
 const validateAndSave = () => {
-  console.log(currentCar.value)
   emit('save', currentCar.value)
 }
 

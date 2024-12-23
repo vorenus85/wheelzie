@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import cars from '../../static/cars.json'
 
 const inMemoryData = [...cars] // Create an in-memory copy of the data
@@ -191,24 +192,18 @@ export const carsApi = {
     })
   },
 
-  addCar: async newCar => {
+  upsertCar: async car => {
     return new Promise(resolve => {
       setTimeout(() => {
-        inMemoryData.push(newCar)
-        resolve({ ok: 1, message: 'Car added successfully', data: newCar })
-      }, 500)
-    })
-  },
-
-  updateCar: async (id, updatedData) => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        const index = inMemoryData.findIndex(car => car.id === id)
+        const index = inMemoryData.findIndex(data => data.id === car.id)
         if (index !== -1) {
-          inMemoryData[index] = { ...inMemoryData[index], ...updatedData }
-          resolve({ ok: 1, message: 'Car updated successfully', data: inMemoryData[index] })
+          inMemoryData[index] = {
+            ...car
+          }
         } else {
-          resolve({ ok: 0, message: 'Car not found' })
+          const newCar = { ...car, id: nanoid() }
+          inMemoryData.push(newCar)
+          resolve({ ok: 1, message: 'Car added successfully', data: newCar })
         }
       }, 500)
     })

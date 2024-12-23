@@ -95,7 +95,7 @@
     <CarDialog
       :car="selectedCar"
       :showDialog="showCarDialog"
-      @save="showCarDialogModal"
+      @save="saveCarDialogModal"
       @hide="closeCarDialog"
     />
   </div>
@@ -213,6 +213,12 @@ const showCarDialogModal = car => {
 
 const closeCarDialog = () => {
   showCarDialog.value = false
+}
+
+const saveCarDialogModal = car => {
+  carsApi.upsertCar(car)
+  closeCarDialog()
+  fetchCars()
 }
 
 const onDeleteCar = carId => {
