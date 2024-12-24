@@ -145,8 +145,10 @@ export const carsApi = {
         if (filters?.status) {
           result = result.filter(car => car.status.toLowerCase() === filters.status.toLowerCase())
         }
-        if (filters?.type) {
-          result = result.filter(car => car.type.toLowerCase() === filters.type.toLowerCase())
+        if (filters?.bodyType) {
+          result = result.filter(
+            car => car.bodyType.toLowerCase() === filters.bodyType.toLowerCase()
+          )
         }
         if (filters?.expression) {
           // brand, model, transmission, fuel, id

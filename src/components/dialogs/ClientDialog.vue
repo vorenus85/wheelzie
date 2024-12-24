@@ -20,9 +20,7 @@
             id="firstName"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.firstName">
-            {{ errors?.firstName }}
-          </div>
+          <ErrorMessage :message="errors?.firstName" />
         </div>
       </div>
       <div class="flex gap-1 my-5">
@@ -38,9 +36,7 @@
             id="lastName"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.lastName">
-            {{ errors?.lastName }}
-          </div>
+          <ErrorMessage :message="errors?.lastName" />
         </div>
       </div>
       <div class="flex gap-1 my-5">
@@ -56,9 +52,7 @@
             id="email"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.email">
-            {{ errors?.email }}
-          </div>
+          <ErrorMessage :message="errors?.email" />
         </div>
       </div>
 
@@ -75,9 +69,7 @@
             id="phone"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.phone">
-            {{ errors?.phone }}
-          </div>
+          <ErrorMessage :message="errors?.phone" />
         </div>
       </div>
 
@@ -94,9 +86,7 @@
             id="addressLine1"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.addressLine1">
-            {{ errors?.addressLine1 }}
-          </div>
+          <ErrorMessage :message="errors?.addressLine1" />
         </div>
       </div>
 
@@ -113,9 +103,7 @@
             id="addressLine2"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.addressLine2">
-            {{ errors?.addressLine2 }}
-          </div>
+          <ErrorMessage :message="errors?.addressLine2" />
         </div>
       </div>
 
@@ -132,9 +120,7 @@
             id="city"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.city">
-            {{ errors?.city }}
-          </div>
+          <ErrorMessage :message="errors?.city" />
         </div>
       </div>
 
@@ -151,9 +137,7 @@
             id="country"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.country">
-            {{ errors?.country }}
-          </div>
+          <ErrorMessage :message="errors?.country" />
         </div>
       </div>
 
@@ -170,9 +154,7 @@
             id="state"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.state">
-            {{ errors?.state }}
-          </div>
+          <ErrorMessage :message="errors?.state" />
         </div>
       </div>
 
@@ -189,9 +171,7 @@
             id="zip"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.zip">
-            {{ errors.zip }}
-          </div>
+          <ErrorMessage :message="errors?.zip" />
         </div>
       </div>
 
@@ -207,9 +187,7 @@
             id="additional"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.additional">
-            {{ errors.additional }}
-          </div>
+          <ErrorMessage :message="errors?.additional" />
         </div>
       </div>
 
@@ -229,10 +207,7 @@
             :auto="true"
             chooseLabel="Browse"
           />
-
-          <div class="text-xs text-red-600 my-2" v-if="errors?.residenceCard">
-            {{ errors.residenceCard }}
-          </div>
+          <ErrorMessage :message="errors?.residenceCard" />
         </div>
       </div>
 
@@ -252,10 +227,7 @@
             :auto="true"
             chooseLabel="Browse"
           />
-
-          <div class="text-xs text-red-600 my-2" v-if="errors?.driveLicense">
-            {{ errors.driveLicense }}
-          </div>
+          <ErrorMessage :message="errors?.driveLicense" />
         </div>
       </div>
 
@@ -272,9 +244,7 @@
             id="points"
             class="w-full"
           />
-          <div class="text-xs text-red-600 my-2" v-if="errors?.points">
-            {{ errors.points }}
-          </div>
+          <ErrorMessage :message="errors?.points" />
         </div>
       </div>
 
@@ -294,6 +264,7 @@ import Textarea from 'primevue/textarea'
 import { ref, watch } from 'vue'
 import * as Yup from 'yup'
 import MainButton from '../buttons/MainButton.vue'
+import ErrorMessage from '../common/ErrorMessage.vue'
 const emit = defineEmits(['save', 'hide'])
 const visible = ref(false)
 const props = defineProps({

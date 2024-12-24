@@ -1,6 +1,7 @@
 <script setup>
 import '@/assets/car_snapshot.scss'
 import MainButton from '@/components/buttons/MainButton.vue'
+import CarBodyType from '@/components/carSnapshot/CarBodyType.vue'
 import CarBrand from '@/components/carSnapshot/CarBrand.vue'
 import CarCapacity from '@/components/carSnapshot/CarCapacity.vue'
 import CarFuel from '@/components/carSnapshot/CarFuel.vue'
@@ -10,7 +11,6 @@ import CarModel from '@/components/carSnapshot/CarModel.vue'
 import CarPrice from '@/components/carSnapshot/CarPrice.vue'
 import CarStatus from '@/components/carSnapshot/CarStatus.vue'
 import CarTransmission from '@/components/carSnapshot/CarTransmission.vue'
-import CarType from '@/components/carSnapshot/CarType.vue'
 import Button from 'primevue/button'
 import Menu from 'primevue/menu'
 import { ref } from 'vue'
@@ -19,7 +19,7 @@ defineProps({
   id: String,
   brand: String,
   model: String,
-  type: String,
+  bodyType: String,
   price: Number,
   image: String,
   status: String,
@@ -67,7 +67,7 @@ const onDelete = () => {
           <CarBrand :brand="brand" />
           <CarModel :model="model" />
         </div>
-        <CarType :type="type" />
+        <CarBodyType :bodyType="bodyType" />
       </div>
 
       <div class="car-snapshot__price-per-day flex flex-col items-end">
