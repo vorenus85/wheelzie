@@ -54,12 +54,6 @@ watch(
   transition: all 0.2s;
   outline: 1px solid transparent;
 
-  @media (min-width: 768px) {
-    .search-input {
-      max-width: 224px;
-    }
-  }
-
   &:hover {
     outline: 1px solid var(--gray-20);
   }
@@ -91,6 +85,13 @@ watch(
     .p-inputtext::placeholder {
       color: var(--gray-20);
     }
+  }
+}
+
+@media (min-width: 992px) {
+  .search-input {
+    min-width: 224px;
+    max-width: 224px;
   }
 }
 </style>
