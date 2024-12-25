@@ -28,7 +28,7 @@
 import Badge from 'primevue/badge'
 import Card from 'primevue/card'
 import { computed, defineAsyncComponent } from 'vue'
-import IconArrowUp from '../icons/iconArrowUp.vue'
+import IconArrowUp from '../icons/common/iconArrowUp.vue'
 
 const props = defineProps({
   label: String,

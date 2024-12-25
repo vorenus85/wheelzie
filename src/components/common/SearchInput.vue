@@ -12,6 +12,9 @@
       @keyup.enter="onEnterFilter"
       @keyup="onChangeFilter"
     />
+    <InputGroupAddon class="cursor-pointer" v-if="localFilter.length > 0" @click="resetFilter">
+      <IconClose :size="14" />
+    </InputGroupAddon>
   </InputGroup>
 </template>
 <script setup>
@@ -19,6 +22,7 @@ import InputGroup from 'primevue/inputgroup'
 import InputGroupAddon from 'primevue/inputgroupaddon'
 import InputText from 'primevue/inputtext'
 import { ref, watch } from 'vue'
+import IconClose from '../icons/common/iconClose.vue'
 import IconSearch from '../icons/common/iconSearch.vue'
 const emit = defineEmits(['search-input'])
 const props = defineProps({
@@ -35,6 +39,11 @@ const onChangeFilter = () => {
 }
 
 const onEnterFilter = () => {
+  emit('search-input', localFilter.value)
+}
+
+const resetFilter = () => {
+  localFilter.value = ''
   emit('search-input', localFilter.value)
 }
 
