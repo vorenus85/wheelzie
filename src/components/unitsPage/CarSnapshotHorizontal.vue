@@ -3,7 +3,10 @@
     <div
       class="car-snapshot__horizontal-top flex flex-col lg:flex-row justify-between gap-4 bg-white w-full xl:w-5/6 rounded-md"
     >
-      <div class="car-snapshot__image-container p-4 w-full lg:w-4/12">
+      <div
+        class="car-snapshot__image-container p-4 w-full lg:w-4/12"
+        :class="{ 'no-image': image.length === 0 }"
+      >
         <CarImage :brand="brand" :image="image" :model="model" class="w-7/12" />
         <div class="car-snapshot__info-container flex-col justify-center px-3 w-5/12">
           <CarBrand :brand="brand" />

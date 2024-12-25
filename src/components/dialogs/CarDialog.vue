@@ -93,7 +93,10 @@
               <InputNumber
                 :invalid="!!errors?.price"
                 @input="validateField('price')"
-                v-model="currentCar.price"
+                @update:model-value="validateField('price')"
+                @value-change="validateField('price')"
+                @blur="validateField('price')"
+                v-model="price"
                 placeholder="Price"
               />
               <InputGroupAddon>.00</InputGroupAddon>
@@ -152,12 +155,19 @@
             <InputText
               :invalid="!!errors?.capacity"
               size="small"
+              @update:model-value="validateField('capacity')"
               @input="validateField('capacity')"
-              v-model.number="currentCar.capacity"
+              v-model.number="capacity"
               class="w-10 mb-4"
             />
             <div class="px-3">
-              <Slider v-model="currentCar.capacity" class="w-full" :min="1" :max="8" />
+              <Slider
+                v-model="capacity"
+                class="w-full"
+                :min="1"
+                :max="8"
+                @update:model-value="validateField('capacity')"
+              />
             </div>
           </div>
           <ErrorMessage :message="errors?.capacity" />
@@ -193,8 +203,11 @@
             <InputGroup size="small">
               <InputNumber
                 @input="validateField('topSpeed')"
+                @update:model-value="validateField('topSpeed')"
+                @value-change="validateField('topSpeed')"
+                @blur="validateField('topSpeed')"
                 :invalid="!!errors?.topSpeed"
-                v-model.number="currentCar.topSpeed"
+                v-model.number="topSpeed"
               />
               <InputGroupAddon>mph</InputGroupAddon>
             </InputGroup>
@@ -212,8 +225,11 @@
             <InputGroup size="small">
               <InputNumber
                 @input="validateField('range')"
+                @update:model-value="validateField('range')"
+                @value-change="validateField('range')"
+                @blur="validateField('range')"
                 :invalid="!!errors?.range"
-                v-model.number="currentCar.range"
+                v-model.number="range"
               />
               <InputGroupAddon>miles</InputGroupAddon>
             </InputGroup>
@@ -233,8 +249,11 @@
             <InputGroup size="small">
               <InputNumber
                 @input="validateField('acceleration')"
+                @update:model-value="validateField('acceleration')"
+                @value-change="validateField('acceleration')"
+                @blur="validateField('acceleration')"
                 :invalid="!!errors?.acceleration"
-                v-model.number="currentCar.acceleration"
+                v-model.number="acceleration"
               />
               <InputGroupAddon>sec</InputGroupAddon>
             </InputGroup>
@@ -249,9 +268,10 @@
         </div>
         <div class="w-1/2">
           <Textarea
+            @update:model-value="validateField('description')"
             @input="validateField('description')"
             :invalid="!!errors?.description"
-            v-model="currentCar.description"
+            v-model="description"
             id="description"
             class="w-full"
           />
@@ -317,7 +337,25 @@ import ErrorMessage from '../common/ErrorMessage.vue'
 const emit = defineEmits(['save', 'hide'])
 const visible = ref(false)
 const props = defineProps({
-  car: { type: Object, default: () => ({}) },
+  car: {
+    type: Object,
+    default: () => ({
+      brand: '',
+      model: '',
+      bodyType: '',
+      price: 0,
+      image: '',
+      status: '',
+      transmission: '',
+      capacity: 1,
+      fuel: '',
+      topSpeed: 0,
+      range: 0,
+      acceleration: 0,
+      description: '',
+      features: []
+    })
+  },
   showDialog: Boolean
 })
 const headerTitle = ref('Add new car')
@@ -325,15 +363,15 @@ const initialCar = {
   brand: '',
   model: '',
   bodyType: '',
-  price: '',
+  price: 0,
   image: '',
   status: '',
   transmission: '',
   capacity: 1,
   fuel: '',
-  topSpeed: '',
-  range: '',
-  acceleration: '',
+  topSpeed: 0,
+  range: 0,
+  acceleration: 0,
   description: '',
   features: []
 }
@@ -377,9 +415,15 @@ const validationSchema = Yup.object({
 const brand = ref({ label: '' })
 const model = ref({ label: '' })
 const bodyType = ref({ label: '' })
+const price = ref('')
 const status = ref({ label: '' })
 const transmission = ref({ label: '' })
+const capacity = ref(1)
 const fuel = ref({ label: '' })
+const topSpeed = ref(0)
+const range = ref(0)
+const acceleration = ref(0)
+const description = ref('')
 
 // Function to validate a single field
 const validateField = async fieldName => {
@@ -399,6 +443,7 @@ const validateAndSave = async () => {
     errors.value = {} // Clear previous errors
     await validationSchema.validate(currentCar.value, { abortEarly: false })
     emit('save', currentCar.value)
+    console.log(currentCar.value)
     closeDialog()
   } catch (validationErrors) {
     if (validationErrors.inner) {
@@ -439,6 +484,12 @@ watch(
     status.value = { label: props.car?.status }
     transmission.value = { label: props.car?.transmission }
     fuel.value = { label: props.car?.fuel }
+    price.value = props.car.price
+    capacity.value = props.car.capacity
+    topSpeed.value = props.car.topSpeed
+    range.value = props.car.range
+    acceleration.value = props.car.acceleration
+    description.value = props.car.description
     onBrandChange()
     model.value = { label: props.car?.model }
     visible.value = newValue
@@ -484,6 +535,55 @@ watch(
   () => fuel.value,
   newValue => {
     currentCar.value.fuel = newValue?.label
+  }
+)
+
+watch(
+  () => price.value,
+  newValue => {
+    currentCar.value.price = newValue
+  }
+)
+
+watch(
+  () => capacity.value,
+  newValue => {
+    currentCar.value.capacity = newValue
+  }
+)
+
+watch(
+  () => topSpeed.value,
+  newValue => {
+    currentCar.value.topSpeed = newValue
+  }
+)
+
+watch(
+  () => range.value,
+  newValue => {
+    currentCar.value.range = newValue
+  }
+)
+
+watch(
+  () => range.value,
+  newValue => {
+    currentCar.value.range = newValue
+  }
+)
+
+watch(
+  () => acceleration.value,
+  newValue => {
+    currentCar.value.acceleration = newValue
+  }
+)
+
+watch(
+  () => description.value,
+  newValue => {
+    currentCar.value.description = newValue
   }
 )
 

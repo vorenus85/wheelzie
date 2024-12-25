@@ -1,5 +1,6 @@
 <template>
   <img
+    v-if="image"
     :src="getImageUrl(image)"
     :alt="brand + ' ' + model"
     :title="brand + ' ' + model"
@@ -8,9 +9,14 @@
     class="car-snapshot__image"
     :class="{ 'w-full': block, 'h-auto': block }"
   />
+  <template v-else>
+    <PlaceholderImage />
+  </template>
 </template>
 
 <script setup>
+import PlaceholderImage from './PlaceholderImage.vue'
+
 defineProps({ image: String, brand: String, model: String, block: Boolean })
 
 function getImageUrl(image) {

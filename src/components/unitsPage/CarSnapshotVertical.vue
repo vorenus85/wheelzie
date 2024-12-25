@@ -74,7 +74,7 @@ const onDelete = () => {
         <CarPrice :price="price" />
       </div>
     </div>
-    <div class="car-snapshot__image-container">
+    <div class="car-snapshot__image-container" :class="{ 'no-image': image.length === 0 }">
       <CarImage :brand="brand" :image="image" :model="model" block />
     </div>
     <div class="car-snapshot__info-container justify-between items-center">

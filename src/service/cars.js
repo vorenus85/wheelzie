@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid'
 import cars from '../../static/cars.json'
 
 const inMemoryData = [...cars] // Create an in-memory copy of the data
@@ -203,7 +202,9 @@ export const carsApi = {
             ...car
           }
         } else {
-          const newCar = { ...car, id: nanoid() }
+          const carLength = inMemoryData.length
+          const carId = `CAR-${carLength.padStart(3, '0')}`
+          const newCar = { ...car, id: carId }
           inMemoryData.push(newCar)
           resolve({ ok: 1, message: 'Car added successfully', data: newCar })
         }
