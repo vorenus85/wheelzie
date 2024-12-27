@@ -266,10 +266,12 @@ onMounted(() => {
   }
 
   .unit-data {
-    .car-snapshot__brand,
-    .car-snapshot__model {
-      font-size: 2rem;
-      font-weight: 600;
+    @media (min-width: 768px) {
+      .car-snapshot__brand,
+      .car-snapshot__model {
+        font-size: 2rem;
+        font-weight: 600;
+      }
     }
   }
 

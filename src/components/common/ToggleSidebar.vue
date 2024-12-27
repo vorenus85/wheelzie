@@ -87,7 +87,6 @@
   top: -1.5rem;
   padding: 0.25rem;
   z-index: 1;
-  display: flex;
   background: #fff;
   border-radius: 100%;
   transition: all 0.2s;
