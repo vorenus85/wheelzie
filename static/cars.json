@@ -250,21 +250,5 @@
       "Spacious Trunk",
       "Advanced Safety Features (e.g., Lane Departure Warning, Automatic Emergency Braking)"
     ]
-  },
-  {
-    "id": "CAR-010",
-    "brand": "Hyundai",
-    "model": "Accent",
-    "bodyType": "Sedan",
-    "price": 80,
-    "image": "",
-    "status": "Unavailable",
-    "transmission": "Automatic",
-    "capacity": 5,
-    "fuel": "Diesel",
-    "topSpeed": "120",
-    "range": "400",
-    "acceleration": "8.0",
-    "description": "This is a fine car without image."
   }
 ]
