@@ -443,7 +443,6 @@ const validateAndSave = async () => {
     errors.value = {} // Clear previous errors
     await validationSchema.validate(currentCar.value, { abortEarly: false })
     emit('save', currentCar.value)
-    console.log(currentCar.value)
     closeDialog()
   } catch (validationErrors) {
     if (validationErrors.inner) {

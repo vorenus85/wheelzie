@@ -253,9 +253,9 @@
   },
   {
     "id": "CAR-010",
-    "brand": "Volkswagen",
-    "model": "Amarok",
-    "bodyType": "Truck",
+    "brand": "Hyundai",
+    "model": "Accent",
+    "bodyType": "Sedan",
     "price": 80,
     "image": "",
     "status": "Unavailable",
