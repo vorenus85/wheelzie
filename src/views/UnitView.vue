@@ -107,7 +107,49 @@
               ></Skeleton>
             </template>
             <template v-else>
-              <CarTransmission></CarTransmission>
+              <div class="car-snapshot__info-container col-span-2 md:col-span-1">
+                <CarAttribute
+                  title="Transmission"
+                  icon="Transmission"
+                  :data="actualCar.transmission"
+                  showLabel
+                />
+              </div>
+              <div class="car-snapshot__info-container col-span-2 md:col-span-1">
+                <CarAttribute
+                  title="Capacity"
+                  icon="Capacity"
+                  showLabel
+                  :data="`${actualCar.capacity} seats`"
+                />
+              </div>
+              <div class="car-snapshot__info-container col-span-2 md:col-span-1">
+                <CarAttribute
+                  title="Range"
+                  icon="Range"
+                  :data="`${actualCar.range} miles on a full tank`"
+                  showLabel
+                />
+              </div>
+              <div class="car-snapshot__info-container col-span-2 md:col-span-1">
+                <CarAttribute title="Fuel" icon="Fuel" :data="actualCar.fuel" showLabel />
+              </div>
+              <div class="car-snapshot__info-container col-span-2 md:col-span-1">
+                <CarAttribute
+                  title="Top Speed"
+                  icon="TopSpeed"
+                  :data="`${actualCar.topSpeed} mph`"
+                  showLabel
+                />
+              </div>
+              <div class="car-snapshot__info-container col-span-2 md:col-span-1">
+                <CarAttribute
+                  title="Acceleration"
+                  icon="Acceleration"
+                  :data="`${actualCar.acceleration} seconds (0-60 mph)`"
+                  showLabel
+                />
+              </div>
             </template>
           </div>
         </div>
@@ -117,7 +159,9 @@
 </template>
 
 <script setup>
+import '@/assets/car_snapshot.scss'
 import MainButton from '@/components/buttons/MainButton.vue'
+import CarAttribute from '@/components/carSnapshot/CarAttribute.vue'
 import CarBodyType from '@/components/carSnapshot/CarBodyType.vue'
 import CarBrand from '@/components/carSnapshot/CarBrand.vue'
 import CarId from '@/components/carSnapshot/CarId.vue'
@@ -176,5 +220,26 @@ onMounted(() => {
     font-size: 2rem;
     font-weight: 600;
   }
+}
+
+.car-snapshot__info-label-title {
+  font-size: 9px;
+}
+
+.car-snapshot__info-with-icon {
+  gap: 14px;
+}
+
+.car-snapshot__info-icon {
+  padding: 10px;
+
+  svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+.car-snapshot__info-label-value {
+  font-size: 11px;
 }
 </style>

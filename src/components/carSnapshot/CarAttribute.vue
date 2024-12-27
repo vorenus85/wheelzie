@@ -1,10 +1,12 @@
 <template>
-  <div :class="`${classPrefix}__fuel ${classPrefix}__info-with-icon`">
+  <div :class="`${classPrefix}__${icon.toLowerCase()} ${classPrefix}__info-with-icon w-full`">
     <span :class="`${classPrefix}__info-icon`">
       <component v-if="iconComponent" :is="iconComponent"></component>
     </span>
-    <span :class="`${classPrefix}__info-label-title`" v-if="showLabel">{{ title }}</span>
-    <span :class="`${classPrefix}__info-label-value`">{{ data }}</span>
+    <div :class="`${classPrefix}__infos flex flex-col`">
+      <span :class="`${classPrefix}__info-label-title`" v-if="showLabel">{{ title }}</span>
+      <span :class="`${classPrefix}__info-label-value`">{{ data }}</span>
+    </div>
   </div>
 </template>
 
