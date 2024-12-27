@@ -7,7 +7,7 @@
         class="car-snapshot__image-container p-4 w-full lg:w-4/12"
         :class="{ 'no-image': image.length === 0 }"
       >
-        <CarImage :brand="brand" :image="image" :model="model" class="w-7/12" />
+        <CarImage :brand="brand" :image="image" :model="model" class="w-7/12" :id="id" />
         <div class="car-snapshot__info-container flex-col justify-center px-3 w-5/12">
           <CarBrand :brand="brand" />
           <CarModel :model="model" class="mb-2" />
@@ -30,7 +30,7 @@
       <div
         class="car-snapshot__info-container p-5 w-full lg:w-2/12 flex flex-col items-center justify-center"
       >
-        <MainButton severity="primary" label="Select" block></MainButton>
+        <MainButton severity="primary" label="Select" block @click="toCar(id)"></MainButton>
       </div>
     </div>
     <div
@@ -44,6 +44,7 @@
 
 <script setup>
 import '@/assets/car_snapshot.scss'
+import { useRouter } from 'vue-router'
 import MainButton from '../buttons/MainButton.vue'
 import CarBrand from '../carSnapshot/CarBrand.vue'
 import CarCapacity from '../carSnapshot/CarCapacity.vue'
@@ -53,6 +54,7 @@ import CarPrice from '../carSnapshot/CarPrice.vue'
 import CarStatus from '../carSnapshot/CarStatus.vue'
 import CarTransmission from '../carSnapshot/CarTransmission.vue'
 const emit = defineEmits(['delete-option', 'modify-option'])
+const router = useRouter()
 
 defineProps({
   id: String,
@@ -73,6 +75,10 @@ const onModify = () => {
 
 const onDelete = () => {
   emit('delete-option')
+}
+
+const toCar = id => {
+  router.push({ name: 'unit', params: { id: id.toLowerCase() } })
 }
 </script>
 

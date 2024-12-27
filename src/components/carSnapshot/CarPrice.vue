@@ -16,7 +16,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .car-snapshot__price {
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1rem;
 }
 

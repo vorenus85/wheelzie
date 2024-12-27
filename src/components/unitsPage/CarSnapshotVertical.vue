@@ -14,7 +14,10 @@ import CarTransmission from '@/components/carSnapshot/CarTransmission.vue'
 import Button from 'primevue/button'
 import Menu from 'primevue/menu'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const emit = defineEmits(['delete-option', 'modify-option'])
+
 defineProps({
   id: String,
   brand: String,
@@ -57,6 +60,10 @@ const onModify = () => {
 const onDelete = () => {
   emit('delete-option')
 }
+
+const toCar = id => {
+  router.push({ name: 'unit', params: { id: id.toLowerCase() } })
+}
 </script>
 
 <template>
@@ -75,7 +82,7 @@ const onDelete = () => {
       </div>
     </div>
     <div class="car-snapshot__image-container" :class="{ 'no-image': image.length === 0 }">
-      <CarImage :brand="brand" :image="image" :model="model" block />
+      <CarImage :brand="brand" :image="image" :model="model" block :id="id" />
     </div>
     <div class="car-snapshot__info-container justify-between items-center">
       <CarStatus :status="status" />
@@ -88,7 +95,7 @@ const onDelete = () => {
     </div>
     <div class="car-snapshot_actions flex gap-2 w-full">
       <div class="car-snapshot_link w-full">
-        <MainButton label="Select Car" severity="primary" block />
+        <MainButton label="Select Car" severity="primary" block @click="toCar(id)" />
       </div>
       <div class="car-snapshot__more-action">
         <Button

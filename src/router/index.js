@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
 import DashboardView from '@/views/DashboardView.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +26,16 @@ const router = createRouter({
       path: '/clients',
       name: 'clients',
       component: () => import('@/views/ClientsView.vue')
+    },
+    {
+      path: '/unit/:id',
+      name: 'unit',
+      component: () => import('@/views/UnitView.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('@/views/NotFoundView.vue')
     }
   ]
 })

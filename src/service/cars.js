@@ -193,6 +193,19 @@ export const carsApi = {
     })
   },
 
+  getCar: async carId => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const car = inMemoryData.find(item => item.id.toLowerCase() === carId.toLowerCase())
+        if (car) {
+          resolve({ ok: 1, message: 'ok', data: car })
+        } else {
+          resolve({ ok: false, message: 'Car not found' })
+        }
+      }, 500)
+    })
+  },
+
   upsertCar: async car => {
     return new Promise(resolve => {
       setTimeout(() => {

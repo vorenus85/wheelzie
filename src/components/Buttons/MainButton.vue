@@ -1,12 +1,14 @@
 <template>
   <Button
-    :label="label"
     :severity="severity"
     :size="size"
     :disabled="disabled"
     :outlined="outlined"
     :class="{ 'w-full': block }"
-  />
+  >
+    <slot name="icon"></slot>
+    <slot name="label">{{ label }}</slot>
+  </Button>
 </template>
 
 <script setup>

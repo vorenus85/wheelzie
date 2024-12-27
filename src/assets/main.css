@@ -12,6 +12,7 @@
 .module {
   background: #fff;
   border-radius: 8px;
+  padding: 1.25rem;
 }
 
 .module-with-scroller {
@@ -47,6 +48,13 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 125%; /* 17.5px */
+}
+
+h4.module-head-title {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 125%; /* 17.5px */
+  color: var(--gray-20);
 }
 
 .main-content {
