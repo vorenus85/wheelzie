@@ -106,7 +106,9 @@
                 v-for="n in 6"
               ></Skeleton>
             </template>
-            <template v-else> </template>
+            <template v-else>
+              <CarTransmission></CarTransmission>
+            </template>
           </div>
         </div>
       </div>

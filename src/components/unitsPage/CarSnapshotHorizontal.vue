@@ -7,7 +7,8 @@
         class="car-snapshot__image-container p-4 w-full lg:w-4/12"
         :class="{ 'no-image': image.length === 0 }"
       >
-        <CarImage :brand="brand" :image="image" :model="model" class="w-7/12" :id="id" />
+        <div class="w-7/12"><CarImage :brand="brand" :image="image" :model="model" :id="id" /></div>
+
         <div class="car-snapshot__info-container flex-col justify-center px-3 w-5/12">
           <CarBrand :brand="brand" />
           <CarModel :model="model" class="mb-2" />
@@ -18,10 +19,10 @@
       </div>
       <div class="car-snapshot__info-container p-4 flex flex-row gap:4 lg:gap-8 w-full lg:w-5/12">
         <div class="car-snapshot__info-container w-1/3">
-          <CarTransmission :transmission="transmission" showLabel />
+          <CarAttribute title="Transmission" icon="Transmission" :data="transmission" showLabel />
         </div>
         <div class="car-snapshot__info-container w-1/3">
-          <CarCapacity :capacity="capacity" showLabel />
+          <CarAttribute title="Capacity" icon="Capacity" :data="`${capacity} seats`" showLabel />
         </div>
         <div class="car-snapshot__info-container p-4 flex-col justify-center w-1/3">
           <CarPrice :price="price" showLabel />
@@ -46,13 +47,12 @@
 import '@/assets/car_snapshot.scss'
 import { useRouter } from 'vue-router'
 import MainButton from '../buttons/MainButton.vue'
+import CarAttribute from '../carSnapshot/CarAttribute.vue'
 import CarBrand from '../carSnapshot/CarBrand.vue'
-import CarCapacity from '../carSnapshot/CarCapacity.vue'
 import CarImage from '../carSnapshot/CarImage.vue'
 import CarModel from '../carSnapshot/CarModel.vue'
 import CarPrice from '../carSnapshot/CarPrice.vue'
 import CarStatus from '../carSnapshot/CarStatus.vue'
-import CarTransmission from '../carSnapshot/CarTransmission.vue'
 const emit = defineEmits(['delete-option', 'modify-option'])
 const router = useRouter()
 
@@ -67,6 +67,10 @@ defineProps({
   transmission: String,
   capacity: Number,
   fuel: String
+})
+
+defineOptions({
+  inheritAttrs: false
 })
 
 const onModify = () => {

@@ -3,18 +3,16 @@ import '@/assets/car_snapshot.scss'
 import MainButton from '@/components/buttons/MainButton.vue'
 import CarBodyType from '@/components/carSnapshot/CarBodyType.vue'
 import CarBrand from '@/components/carSnapshot/CarBrand.vue'
-import CarCapacity from '@/components/carSnapshot/CarCapacity.vue'
-import CarFuel from '@/components/carSnapshot/CarFuel.vue'
 import CarId from '@/components/carSnapshot/CarId.vue'
 import CarImage from '@/components/carSnapshot/CarImage.vue'
 import CarModel from '@/components/carSnapshot/CarModel.vue'
 import CarPrice from '@/components/carSnapshot/CarPrice.vue'
 import CarStatus from '@/components/carSnapshot/CarStatus.vue'
-import CarTransmission from '@/components/carSnapshot/CarTransmission.vue'
 import Button from 'primevue/button'
 import Menu from 'primevue/menu'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import CarAttribute from '../carSnapshot/CarAttribute.vue'
 const router = useRouter()
 const emit = defineEmits(['delete-option', 'modify-option'])
 
@@ -29,6 +27,10 @@ defineProps({
   transmission: String,
   capacity: Number,
   fuel: String
+})
+
+defineOptions({
+  inheritAttrs: false
 })
 
 const menu = ref()
@@ -81,7 +83,10 @@ const toCar = id => {
         <CarPrice :price="price" />
       </div>
     </div>
-    <div class="car-snapshot__image-container" :class="{ 'no-image': image.length === 0 }">
+    <div
+      class="car-snapshot__image-container w-full flex justify-center"
+      :class="{ 'no-image': image.length === 0 }"
+    >
       <CarImage :brand="brand" :image="image" :model="model" block :id="id" />
     </div>
     <div class="car-snapshot__info-container justify-between items-center">
@@ -89,9 +94,9 @@ const toCar = id => {
       <CarId :id="id" />
     </div>
     <div class="car-snapshot__info-container gap-6 items-center">
-      <CarTransmission :transmission="transmission" />
-      <CarCapacity :capacity="capacity" />
-      <CarFuel :fuel="fuel" />
+      <CarAttribute title="Transmission" icon="Transmission" :data="transmission" />
+      <CarAttribute title="Capacity" icon="Capacity" :data="`${capacity} seats`" />
+      <CarAttribute title="Fuel" icon="Fuel" :data="fuel" />
     </div>
     <div class="car-snapshot_actions flex gap-2 w-full">
       <div class="car-snapshot_link w-full">
@@ -112,3 +117,4 @@ const toCar = id => {
     </div>
   </div>
 </template>
+<style lang="scss"></style>

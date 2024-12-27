@@ -1,7 +1,7 @@
 <template>
   <template v-if="image">
     <template v-if="id">
-      <RouterLink v-if="image" :to="`/unit/${id.toLowerCase()}`">
+      <RouterLink v-if="image" :to="`/unit/${id.toLowerCase()}`" class="w-full h-auto flex">
         <img
           :src="getImageUrl(image)"
           :alt="brand + ' ' + model"
@@ -9,7 +9,6 @@
           :width="width"
           :height="height"
           class="car-snapshot__image"
-          :class="{ 'w-full': block, 'h-auto': block }"
         />
       </RouterLink>
     </template>
@@ -21,7 +20,6 @@
         :width="width"
         :height="height"
         class="car-snapshot__image"
-        :class="{ 'w-full': block, 'h-auto': block }"
       />
     </template>
   </template>
