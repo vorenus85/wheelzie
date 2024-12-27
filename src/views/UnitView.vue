@@ -15,7 +15,7 @@
               v-else
             ></CarImage>
           </div>
-          <div class="unit-data flex justify-between py-5">
+          <div class="unit-data flex justify-between py-5 flex-col md:flex-row">
             <div class="unit-data-left">
               <template v-if="loading">
                 <Skeleton width="4rem" height="1.5rem" class="mb-3"></Skeleton>
@@ -32,7 +32,9 @@
                 <CarId :id="actualCar.id" class="mb-2" />
               </template>
             </div>
-            <div class="unit-data-right flex flex-col items-end">
+            <div
+              class="unit-data-right flex flex-row md:flex-col md:items-end justify-between mt-5 md:mt-0"
+            >
               <template v-if="loading">
                 <div class="flex gap-4">
                   <Skeleton width="7.5rem" height="2.5rem" class="mb-3"></Skeleton>
@@ -55,7 +57,9 @@
                     </template>
                   </MainButton>
                 </div>
-                <CarPrice :price="actualCar.price" />
+                <div class="car-snapshot__price-per-day flex flex-col items-end">
+                  <CarPrice :price="actualCar.price" />
+                </div>
               </template>
             </div>
           </div>
