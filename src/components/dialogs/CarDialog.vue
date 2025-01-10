@@ -478,6 +478,7 @@ watch(
   newValue => {
     headerTitle.value = props.car?.id ? 'Edit car' : 'Add new car'
     currentCar.value = { ...props.car }
+    console.log(currentCar.value)
     brand.value = { label: props.car?.brand }
     bodyType.value = { label: props.car?.bodyType }
     status.value = { label: props.car?.status }

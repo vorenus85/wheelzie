@@ -23,46 +23,46 @@
     </Column>
     <Column header="Plan" sortable>
       <template #body="slotProps"
-        ><FormattedDifferenceInDays :from="slotProps.data.plan.from" :to="slotProps.data.plan.to"
+        ><FormattedDifferenceInDays :from="slotProps.data.planFrom" :to="slotProps.data.planTo"
       /></template>
     </Column>
-    <Column field="plan.from" header="Date" sortable>
+    <Column field="planFrom" header="Date" sortable>
       <template #body="slotProps">
         <div class="flex gap-2 mb-1 items-center">
           <span class="plan-from-to">Start</span>
-          <BookingDateTag :timestamp="slotProps.data.plan.from" />
+          <BookingDateTag :timestamp="slotProps.data.planFrom" />
         </div>
         <div class="flex gap-2 items-center">
           <span class="plan-from-to">End</span>
-          <BookingDateTag :timestamp="slotProps.data.plan.to" />
+          <BookingDateTag :timestamp="slotProps.data.planTo" />
         </div>
       </template>
     </Column>
-    <Column field="payment" header="Payment" sortable>
+    <Column field="paymentStatus" header="Payment" sortable>
       <template #body="slotProps">
         <div>
           <span class="plan-price">
             ${{
               calcPlanPrice({
-                from: slotProps.data.plan.from,
-                to: slotProps.data.plan.to,
+                from: slotProps.data.planFrom,
+                to: slotProps.data.planTo,
                 price: slotProps.data.car.price
               })
             }}
           </span>
         </div>
 
-        <BadgeStatus statusType="payment" :status="slotProps.data.payment" />
+        <BadgeStatus statusType="payment" :status="slotProps.data.paymentStatus" />
       </template>
     </Column>
-    <Column field="status" header="Status" sortable>
+    <Column field="bookingStatus" header="Status" sortable>
       <template #body="slotProps">
-        <BadgeStatus statusType="rent" :status="slotProps.data.status" />
+        <BadgeStatus statusType="rent" :status="slotProps.data.bookingStatus" />
       </template>
     </Column>
     <Column header="Actions">
       <template #body="slotProps">
-        <MainButton size="small" label="Edit" outlined @click="onEditBooking(slotProps.data.id)" />
+        <MainButton size="small" label="Edit" outlined @click="onEditBooking(slotProps.data)" />
       </template>
     </Column>
   </DataTable>
@@ -78,6 +78,7 @@ import BookingDateTag from './BookingDateTag.vue'
 import CarNumberTag from './CarNumberTag.vue'
 import FormattedDate from './FormattedDate.vue'
 import FormattedDifferenceInDays from './FormattedDifferenceInDays.vue'
+const emit = defineEmits(['edit-booking'])
 
 defineProps({
   bookings: Object,
@@ -87,8 +88,8 @@ defineProps({
   }
 })
 
-const onEditBooking = id => {
-  console.log('onEditBooking', id)
+const onEditBooking = data => {
+  emit('edit-booking', data)
 }
 </script>
 

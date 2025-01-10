@@ -10,12 +10,10 @@
       "price": 40,
       "brandModel": "Kia EV6"
     },
-    "plan": {
-      "from": 1727896391,
-      "to": 1727982791
-    },
-    "payment": "pending",
-    "status": "ongoing"
+    "planFrom": 1727896391,
+    "planTo": 1727982791,
+    "paymentStatus": "pending",
+    "bookingStatus": "ongoing"
   },
   {
     "id": "BK-WZ1002",
@@ -28,12 +26,10 @@
       "price": 130,
       "brandModel": "Audi Q7"
     },
-    "plan": {
-      "from": 1727874854,
-      "to": 1728566054
-    },
-    "payment": "paid",
-    "status": "returned"
+    "planFrom": 1727874854,
+    "planTo": 1728566054,
+    "paymentStatus": "paid",
+    "bookingStatus": "returned"
   },
   {
     "id": "BK-WZ1003",
@@ -46,11 +42,9 @@
       "price": 120,
       "brandModel": "BMW LX3"
     },
-    "plan": {
-      "from": 1727874854,
-      "to": 1728566054
-    },
-    "payment": "pending",
-    "status": "cancelled"
+    "planFrom": 1727874854,
+    "planTo": 1728566054,
+    "paymentStatus": "pending",
+    "bookingStatus": "cancelled"
   }
 ]

@@ -2,6 +2,8 @@ import bookings from '../../static/bookings.json'
 
 const inMemoryData = [...bookings] // Create an in-memory copy of the data
 
+export const paymentStatuses = [{ label: 'Paid' }, { label: 'Pending' }]
+
 export const bookingStatuses = [{ label: 'Returned' }, { label: 'Ongoing' }, { label: 'Cancelled' }]
 
 export const bookingsApi = {

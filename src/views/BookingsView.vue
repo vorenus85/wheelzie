@@ -26,6 +26,7 @@
                 label="Add booking"
                 severity="primary"
                 size="small"
+                @click="showBookingDialogNodal"
                 class="add-booking ml-auto lg:ml-0"
               />
             </div>
@@ -36,7 +37,11 @@
               >
             </template>
             <template v-else>
-              <BookingsTable :bookings="bookings" :loading="loading" />
+              <BookingsTable
+                :bookings="bookings"
+                :loading="loading"
+                @edit-booking="onEditBooking()"
+              />
             </template>
 
             <div class="page-content-bottom">
@@ -46,7 +51,12 @@
         </template>
       </Card>
     </div>
-    <!-- Pagination -->
+    <BookingDialog
+      :booking="selectedBooking"
+      :showDialog="showBookingDialog"
+      @save="saveBookingDialog"
+      @hide="closeBookingDialog"
+    />
   </div>
 </template>
 <script setup>
@@ -55,7 +65,9 @@ import BookingsTable from '@/components/common/BookingsTable.vue'
 import PageHeader from '@/components/common/PageHeader.vue'
 import SearchInput from '@/components/common/SearchInput.vue'
 import SortDropdown from '@/components/common/SortDropdown.vue'
+import BookingDialog from '@/components/dialogs/BookingDialog.vue'
 import CustomPagination from '@/components/unitsPage/CustomPagination.vue'
+import { initialBooking } from '@/composables/useBooking'
 import { bookingsApi, bookingStatuses } from '@/service/bookings'
 import Card from 'primevue/card'
 import Message from 'primevue/message'
@@ -68,6 +80,9 @@ const limit = ref(15)
 const total = ref(0)
 const currentPage = ref(0) // zero index
 const loading = ref(true)
+const showBookingDialog = ref(false)
+const selectedBooking = ref(initialBooking())
+
 const fetchBookings = async () => {
   loading.value = true
 
@@ -101,6 +116,15 @@ const onPageChange = ({ page, rows }) => {
   fetchBookings()
 }
 
+const showBookingDialogNodal = () => {
+  showBookingDialog.value = true
+}
+
+const onEditBooking = event => {
+  showBookingDialog.value = true
+  selectedBooking.value = event
+}
+
 const selectedBookingStatus = ref()
 const bookingStatus = ref([...bookingStatuses])
 
@@ -112,6 +136,12 @@ const onChangeBookingStatus = value => {
 const onSearchInput = value => {
   filter.value = value
   fetchBookings()
+}
+
+const saveBookingDialog = () => {}
+
+const closeBookingDialog = () => {
+  showBookingDialog.value = false
 }
 
 onMounted(() => {
