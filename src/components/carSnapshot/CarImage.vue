@@ -1,7 +1,11 @@
 <template>
   <template v-if="image">
     <template v-if="id">
-      <RouterLink v-if="image" :to="`/unit/${id.toLowerCase()}`" class="w-full h-auto flex">
+      <RouterLink
+        v-if="image"
+        :to="`/unit/${id.toLowerCase()}`"
+        class="w-full h-auto flex justify-center"
+      >
         <img
           :src="getImageUrl(image)"
           :alt="brand + ' ' + model"

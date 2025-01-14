@@ -2,49 +2,55 @@
   {
     "id": "BK-WZ1001",
     "timestamp": 1727809991,
-    "clientName": "Alice Johnson",
+    "client": {
+      "id": "1",
+      "fullname": "Alice Johnson"
+    },
     "car": {
       "brand": "Kia",
       "model": "EV6",
       "id": "CAR-008",
-      "price": 40,
-      "brandModel": "Kia EV6"
+      "price": 40
     },
     "planFrom": 1727896391,
     "planTo": 1727982791,
-    "paymentStatus": "pending",
-    "bookingStatus": "ongoing"
+    "paymentStatus": "Pending",
+    "bookingStatus": "Ongoing"
   },
   {
     "id": "BK-WZ1002",
     "timestamp": 1727809991,
-    "clientName": "Thomas Pickettie",
+    "client": {
+      "id": "4",
+      "fullname": "Diana White"
+    },
     "car": {
       "brand": "Audi",
       "model": "Q7",
       "id": "CAR-006",
-      "price": 130,
-      "brandModel": "Audi Q7"
+      "price": 130
     },
     "planFrom": 1727874854,
     "planTo": 1728566054,
-    "paymentStatus": "paid",
-    "bookingStatus": "returned"
+    "paymentStatus": "Paid",
+    "bookingStatus": "Returned"
   },
   {
     "id": "BK-WZ1003",
     "timestamp": 1727809991,
-    "clientName": "Thomas Pickettie",
+    "client": {
+      "id": "3",
+      "fullname": "Charlie Davies"
+    },
     "car": {
       "brand": "BMW",
       "model": "LX3",
       "id": "CAR-005",
-      "price": 120,
-      "brandModel": "BMW LX3"
+      "price": 120
     },
     "planFrom": 1727874854,
     "planTo": 1728566054,
-    "paymentStatus": "pending",
-    "bookingStatus": "cancelled"
+    "paymentStatus": "Pending",
+    "bookingStatus": "Cancelled"
   }
 ]

@@ -1,11 +1,12 @@
 export const initialBooking = () => {
+  const now = new Date().valueOf()
   return {
     id: '',
     client: null,
     car: null,
-    planFrom: new Date().valueOf(),
+    planFrom: now / 1000,
     planTo: null,
-    paymentStatus: { label: 'Pending' },
-    bookingStatus: { label: 'Ongoing' }
+    paymentStatus: 'Pending',
+    bookingStatus: 'Ongoing'
   }
 }

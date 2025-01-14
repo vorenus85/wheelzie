@@ -26,7 +26,7 @@
                 label="Add booking"
                 severity="primary"
                 size="small"
-                @click="showBookingDialogNodal"
+                @click="showBookingDialogModal"
                 class="add-booking ml-auto lg:ml-0"
               />
             </div>
@@ -40,7 +40,7 @@
               <BookingsTable
                 :bookings="bookings"
                 :loading="loading"
-                @edit-booking="onEditBooking()"
+                @edit-booking="onEditBooking"
               />
             </template>
 
@@ -116,7 +116,7 @@ const onPageChange = ({ page, rows }) => {
   fetchBookings()
 }
 
-const showBookingDialogNodal = () => {
+const showBookingDialogModal = () => {
   showBookingDialog.value = true
 }
 

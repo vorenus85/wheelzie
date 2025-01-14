@@ -17,20 +17,15 @@
             :invalid="!!errors?.client"
             id="client"
             filter
+            showClear
             filterPlaceholder="Filter by name"
-            v-model="client"
+            v-model="actualClient"
             :options="clients"
             optionLabel="fullname"
+            optionId="id"
             placeholder="Select a client"
+            :loading="clientsLoading"
             @change="handleChange('client')"
-            :virtualScrollerOptions="{
-              lazy: true,
-              onLazyLoad: onLazyLoadClients,
-              itemSize: 38,
-              showLoader: true,
-              loading: clientsLoading,
-              delay: 250
-            }"
           ></Select>
           <ErrorMessage :message="errors?.client" />
         </div>
@@ -38,7 +33,7 @@
 
       <div class="flex gap-1 my-5">
         <div class="flex items-start pt-3 w-1/2">
-          <label for="car">Car <sup class="text-red-600">*</sup></label>
+          <label for="carSelect">Car <sup class="text-red-600">*</sup></label>
         </div>
         <div class="flex items-start flex-col w-1/2">
           <Select
@@ -46,21 +41,16 @@
             :invalid="!!errors?.car"
             filterPlaceholder="Filter by id"
             filter
-            id="car"
+            showClear
+            id="carSelect"
             class="w-full"
-            v-model="car"
+            v-model="actualCar"
             :options="cars"
             optionLabel="id"
+            optionId="id"
             placeholder="Select a car"
+            :loading="carsLoading"
             @change="handleChange('car')"
-            :virtualScrollerOptions="{
-              lazy: true,
-              onLazyLoad: onLazyLoadCars,
-              itemSize: 38,
-              showLoader: true,
-              loading: carsLoading,
-              delay: 250
-            }"
           >
             <template #option="slotProps">
               <div class="flex py-3">
@@ -169,13 +159,13 @@ const props = defineProps({
   }
 })
 const clientsLimit = ref(10)
-const client = ref(null)
+const actualClient = ref(null)
 const clients = ref([])
 const clientsLoading = ref(false)
 const clientCurrentPage = ref(0) // zero index
 
 const carsLimit = ref(10)
-const car = ref(null)
+const actualCar = ref(null)
 const cars = ref([])
 const carsLoading = ref(false)
 const carCurrentPage = ref(0) // zero index
@@ -204,21 +194,13 @@ const errorMessages = {
 
 // Validation schema using Yup
 const validationSchema = Yup.object({
-  client: Yup.string().required(errorMessages.client),
-  car: Yup.string().required(errorMessages.car),
+  client: Yup.object().required(errorMessages.client),
+  car: Yup.object().required(errorMessages.car),
   planFrom: Yup.string().required(errorMessages.planFrom),
   planTo: Yup.string().required(errorMessages.planTo),
   paymentStatus: Yup.string().required(errorMessages.paymentStatus),
   bookingStatus: Yup.string().required(errorMessages.bookingStatus)
 })
-
-const onLazyLoadClients = () => {
-  fetchClients()
-}
-
-const onLazyLoadCars = () => {
-  fetchCars()
-}
 
 const fetchCars = async () => {
   carsLoading.value = true
@@ -235,7 +217,12 @@ const fetchCars = async () => {
       throw new Error('Failed to load data')
     }
 
-    cars.value = response.data
+    cars.value = response.data.map(({ id, brand, model, price }) => ({
+      id,
+      brand,
+      model,
+      price
+    }))
   } catch (error) {
     error.value = error.message
   } finally {
@@ -257,8 +244,7 @@ const fetchClients = async () => {
     if (!response.ok) {
       throw new Error('Failed to load data')
     }
-
-    clients.value = response.data
+    clients.value = response.data.map(({ id, fullname }) => ({ id, fullname }))
   } catch (error) {
     error.value = error.message
   } finally {
@@ -268,31 +254,42 @@ const fetchClients = async () => {
 
 watch(
   () => props.showDialog,
-  newValue => {
-    console.log(props.booking?.planFrom)
+  async newValue => {
     headerTitle.value = props.booking?.id ? 'Edit booking' : 'Add new booking'
     currentBooking.value = { ...props.booking }
-    client.value = { ...props.booking?.client }
-    car.value = { ...props.booking?.car }
-    planFrom.value = props.booking?.planFrom ? new Date(props.booking?.planFrom) : null
-    planTo.value = props.booking?.planTo ? { ...props.booking?.planTo } : null
-    paymentStatus.value = { ...props.booking?.paymentStatus }
-    bookingStatus.value = { ...props.booking?.bookingStatus }
+    actualClient.value = currentBooking.value?.client
+    actualCar.value = currentBooking.value?.car
+    planFrom.value = currentBooking.value?.planFrom
+      ? new Date(currentBooking.value?.planFrom * 1000)
+      : null
+    planTo.value = currentBooking.value?.planTo
+      ? new Date(currentBooking.value?.planTo * 1000)
+      : null
+    paymentStatus.value = { label: currentBooking.value?.paymentStatus }
+    bookingStatus.value = { label: currentBooking.value?.bookingStatus }
     visible.value = newValue
+    if (!cars.value.length) {
+      fetchCars()
+      await nextTick()
+    }
+    if (!clients.value.length) {
+      fetchClients()
+      await nextTick()
+    }
   }
 )
 
 watch(
-  () => client.value,
+  () => actualClient.value,
   newValue => {
-    currentBooking.value.client = newValue?.label
+    currentBooking.value.client = newValue
   }
 )
 
 watch(
-  () => car.value,
+  () => actualCar.value,
   newValue => {
-    currentBooking.value.car = newValue?.label
+    currentBooking.value.car = newValue
   }
 )
 
@@ -325,8 +322,7 @@ watch(
 )
 
 const handleChange = async field => {
-  await nextTick() // Wait for Vue to update the reactive value
-  console.log('handleChange', field)
+  await nextTick()
   validateField(field)
 }
 
@@ -345,6 +341,7 @@ const validateField = async fieldName => {
 // Validation and save function
 const validateAndSave = async () => {
   try {
+    console.log(currentBooking.value)
     errors.value = {} // Clear previous errors
     await validationSchema.validate(currentBooking.value, { abortEarly: false })
     emit('save', currentBooking.value)
@@ -360,7 +357,13 @@ const validateAndSave = async () => {
 
 // Reset form function
 const resetForm = () => {
-  currentBooking.value = { ...initialBooking }
+  currentBooking.value = { ...initialBooking() }
+  actualClient.value = null
+  actualCar.value = null
+  planFrom.value = null
+  planTo.value = null
+  paymentStatus.value = null
+  bookingStatus.value = null
   errors.value = {}
 }
 

@@ -2,7 +2,7 @@
   <Tag
     :icon="icon"
     class="badge-status"
-    :class="`badge-status-${statusType}`"
+    :class="`badge-status-${statusType.toLowerCase()}`"
     :value="status"
     :severity="statusSeverity"
   />
@@ -17,7 +17,7 @@ const props = defineProps({
     type: String,
     validator: value => {
       const available = ['payment', 'expenses', 'invoice', 'rent']
-      return available.includes(value)
+      return available.includes(value.toLowerCase())
     }
   },
   status: {
@@ -33,21 +33,23 @@ const props = defineProps({
         'returned',
         'cancelled'
       ]
-      return available.includes(value)
+      return available.includes(value.toLowerCase())
     }
   }
 })
 
 const icon = computed(() => {
   let icon
-  if (props.statusType === 'rent') {
-    if (props.status === 'ongoing') {
+  const statusType = props.statusType.toLowerCase()
+  const status = props.status.toLowerCase()
+  if (statusType === 'rent') {
+    if (status === 'ongoing') {
       icon = 'pi pi-ellipsis-h'
     }
-    if (props.status === 'returned') {
+    if (status === 'returned') {
       icon = 'pi pi-verified'
     }
-    if (props.status === 'cancelled') {
+    if (status === 'cancelled') {
       icon = 'pi pi-undo'
     }
   }
@@ -56,24 +58,26 @@ const icon = computed(() => {
 })
 
 const statusSeverity = computed(() => {
+  const statusType = props.statusType.toLowerCase()
+  const status = props.status.toLowerCase()
   let severity
-  if (props.statusType === 'payment') {
-    if (props.status === 'paid') {
+  if (statusType === 'payment') {
+    if (status === 'paid') {
       severity = 'success'
     }
-    if (props.status === 'pending') {
+    if (status === 'pending') {
       severity = 'danger'
     }
   }
 
-  if (props.statusType === 'rent') {
-    if (props.status === 'ongoing') {
+  if (statusType === 'rent') {
+    if (status === 'ongoing') {
       severity = 'success'
     }
-    if (props.status === 'returned') {
+    if (status === 'returned') {
       severity = 'primary'
     }
-    if (props.status === 'cancelled') {
+    if (status === 'cancelled') {
       severity = 'danger'
     }
   }

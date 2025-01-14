@@ -8,7 +8,6 @@ const menuMode = ref(layout.sidebarIsOpen)
 
 const updateWindowSize = () => {
   if (window.innerWidth < 991) {
-    console.log('updateWindowSize')
     layout.closeSidebar()
   }
 }

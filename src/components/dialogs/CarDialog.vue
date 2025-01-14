@@ -478,20 +478,19 @@ watch(
   newValue => {
     headerTitle.value = props.car?.id ? 'Edit car' : 'Add new car'
     currentCar.value = { ...props.car }
-    console.log(currentCar.value)
-    brand.value = { label: props.car?.brand }
-    bodyType.value = { label: props.car?.bodyType }
-    status.value = { label: props.car?.status }
-    transmission.value = { label: props.car?.transmission }
-    fuel.value = { label: props.car?.fuel }
-    price.value = props.car.price
-    capacity.value = props.car.capacity
-    topSpeed.value = props.car.topSpeed
-    range.value = props.car.range
-    acceleration.value = props.car.acceleration
-    description.value = props.car.description
+    brand.value = { label: currentCar.value?.brand }
+    bodyType.value = { label: currentCar.value?.bodyType }
+    status.value = { label: currentCar.value?.status }
+    transmission.value = { label: currentCar.value?.transmission }
+    fuel.value = { label: currentCar.value?.fuel }
+    price.value = currentCar.value?.price
+    capacity.value = currentCar.value?.capacity
+    topSpeed.value = currentCar.value?.topSpeed
+    range.value = currentCar.value?.range
+    acceleration.value = currentCar.value?.acceleration
+    description.value = currentCar.value?.description
     onBrandChange()
-    model.value = { label: props.car?.model }
+    model.value = { label: currentCar.value?.model }
     visible.value = newValue
   }
 )
