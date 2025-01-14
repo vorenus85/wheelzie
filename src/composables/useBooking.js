@@ -4,7 +4,7 @@ export const initialBooking = () => {
     id: '',
     client: null,
     car: null,
-    planFrom: now / 1000,
+    planFrom: now,
     planTo: null,
     paymentStatus: 'Pending',
     bookingStatus: 'Ongoing'

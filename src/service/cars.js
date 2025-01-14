@@ -216,7 +216,7 @@ export const carsApi = {
           }
         } else {
           const carLength = inMemoryData.length
-          const carId = `CAR-${carLength.padStart(3, '0')}`
+          const carId = `CAR-${(carLength + 1).toString().padStart(3, '0')}`
           const newCar = { ...car, id: carId }
           inMemoryData.push(newCar)
           resolve({ ok: 1, message: 'Car added successfully', data: newCar })

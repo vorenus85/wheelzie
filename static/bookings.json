@@ -1,7 +1,7 @@
 [
   {
-    "id": "BK-WZ1001",
-    "timestamp": 1727809991,
+    "id": "BK-WZ0001",
+    "timestamp": 1727809991000,
     "client": {
       "id": "1",
       "fullname": "Alice Johnson"
@@ -12,14 +12,14 @@
       "id": "CAR-008",
       "price": 40
     },
-    "planFrom": 1727896391,
-    "planTo": 1727982791,
+    "planFrom": 1727896391000,
+    "planTo": 1727982791000,
     "paymentStatus": "Pending",
     "bookingStatus": "Ongoing"
   },
   {
-    "id": "BK-WZ1002",
-    "timestamp": 1727809991,
+    "id": "BK-WZ0002",
+    "timestamp": 1727809991000,
     "client": {
       "id": "4",
       "fullname": "Diana White"
@@ -30,14 +30,14 @@
       "id": "CAR-006",
       "price": 130
     },
-    "planFrom": 1727874854,
-    "planTo": 1728566054,
+    "planFrom": 1727874854000,
+    "planTo": 1728566054000,
     "paymentStatus": "Paid",
     "bookingStatus": "Returned"
   },
   {
-    "id": "BK-WZ1003",
-    "timestamp": 1727809991,
+    "id": "BK-WZ0003",
+    "timestamp": 1727809991000,
     "client": {
       "id": "3",
       "fullname": "Charlie Davies"
@@ -48,8 +48,8 @@
       "id": "CAR-005",
       "price": 120
     },
-    "planFrom": 1727874854,
-    "planTo": 1728566054,
+    "planFrom": 1727874854000,
+    "planTo": 1728566054000,
     "paymentStatus": "Pending",
     "bookingStatus": "Cancelled"
   }

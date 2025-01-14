@@ -260,11 +260,9 @@ watch(
     actualClient.value = currentBooking.value?.client
     actualCar.value = currentBooking.value?.car
     planFrom.value = currentBooking.value?.planFrom
-      ? new Date(currentBooking.value?.planFrom * 1000)
+      ? new Date(currentBooking.value?.planFrom)
       : null
-    planTo.value = currentBooking.value?.planTo
-      ? new Date(currentBooking.value?.planTo * 1000)
-      : null
+    planTo.value = currentBooking.value?.planTo ? new Date(currentBooking.value?.planTo) : null
     paymentStatus.value = { label: currentBooking.value?.paymentStatus }
     bookingStatus.value = { label: currentBooking.value?.bookingStatus }
     visible.value = newValue
@@ -341,7 +339,8 @@ const validateField = async fieldName => {
 // Validation and save function
 const validateAndSave = async () => {
   try {
-    console.log(currentBooking.value)
+    currentBooking.value.planFrom = currentBooking.value.planFrom.getTime()
+    currentBooking.value.planTo = currentBooking.value.planTo.getTime()
     errors.value = {} // Clear previous errors
     await validationSchema.validate(currentBooking.value, { abortEarly: false })
     emit('save', currentBooking.value)

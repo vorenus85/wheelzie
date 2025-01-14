@@ -48,5 +48,25 @@ export const bookingsApi = {
         })
       }, latency) // Simulate the latency
     })
+  },
+
+  upsertBooking: async booking => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const index = inMemoryData.findIndex(data => data.id === booking.id)
+        if (index !== -1) {
+          inMemoryData[index] = {
+            ...booking
+          }
+        } else {
+          booking.timestamp = new Date().valueOf()
+          const bookingLength = inMemoryData.length
+          const bookingId = `BK-WZ${(bookingLength + 1).toString().padStart(4, '0')}`
+          const newBooking = { ...booking, id: bookingId }
+          inMemoryData.push(newBooking)
+          resolve({ ok: 1, message: 'Booking added successfully', data: newBooking })
+        }
+      }, 500)
+    })
   }
 }

@@ -138,7 +138,11 @@ const onSearchInput = value => {
   fetchBookings()
 }
 
-const saveBookingDialog = () => {}
+const saveBookingDialog = booking => {
+  bookingsApi.upsertBooking(booking)
+  closeBookingDialog()
+  fetchBookings()
+}
 
 const closeBookingDialog = () => {
   showBookingDialog.value = false

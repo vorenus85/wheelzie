@@ -9,8 +9,8 @@ import { computed } from 'vue'
 const props = defineProps({ from: Number, to: Number })
 
 const diffDays = computed(() => {
-  const fromDate = startOfDay(new Date(props.from * 1000))
-  const toDate = startOfDay(new Date(props.to * 1000))
+  const fromDate = startOfDay(new Date(props.from))
+  const toDate = startOfDay(new Date(props.to))
   return differenceInDays(toDate, fromDate)
 })
 </script>

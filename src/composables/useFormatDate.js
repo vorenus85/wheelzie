@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
 
 export const formatDate = timestamp => {
-  return format(new Date(timestamp * 1000), 'MMM d, yyyy')
+  return format(new Date(timestamp), 'MMM d, yyyy')
 }
