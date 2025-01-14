@@ -1,1 +1,0 @@
-import{k as o,c as r,a as s,w as a,K as c,e as l,b as n}from"./index-D9LVu841.js";const u={};function d(_,e){const t=c("center");return l(),r("div",null,[s(t,null,{default:a(()=>e[0]||(e[0]=[n("h1",null,"404 not found",-1),n("h2",null,"it seems you're in the wrong page",-1)])),_:1})])}const i=o(u,[["render",d]]);export{i as default};
