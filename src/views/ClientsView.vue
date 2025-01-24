@@ -48,8 +48,13 @@
                   <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
                   <Column field="fullname" sortable header="Client">
                     <template #body="slotProps">
-                      <div>{{ slotProps.data.fullname }}</div>
-                      <span class="text-muted">{{ slotProps.data.email }}</span>
+                      <div class="flex">
+                        <MonogramBadge :name="slotProps.data.fullname" />
+                        <div class="flex flex-col">
+                          <div>{{ slotProps.data.fullname }}</div>
+                          <span class="text-muted">{{ slotProps.data.email }}</span>
+                        </div>
+                      </div>
                     </template>
                   </Column>
                   <Column field="phone" sortable header="Phone"></Column>
@@ -118,6 +123,7 @@
 import MainButton from '@/components/buttons/MainButton.vue'
 import ConfirmDialog from '@/components/common/ConfirmDialog.vue'
 import DocumentTag from '@/components/common/DocumentTag.vue'
+import MonogramBadge from '@/components/common/MonogramBadge.vue'
 import PageHeader from '@/components/common/PageHeader.vue'
 import SearchInput from '@/components/common/SearchInput.vue'
 import ClientDialog from '@/components/dialogs/ClientDialog.vue'
