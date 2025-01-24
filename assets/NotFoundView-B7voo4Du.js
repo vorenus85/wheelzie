@@ -1,1 +1,0 @@
-import{ai as t,c as r,I as s,J as a,x as c,o as l,a as n}from"./index-Br32wEr5.js";const u={};function d(i,e){const o=c("center");return l(),r("div",null,[s(o,null,{default:a(()=>e[0]||(e[0]=[n("h1",null,"404 not found",-1),n("h2",null,"it seems you're in the wrong page",-1)])),_:1})])}const f=t(u,[["render",d]]);export{f as default};
