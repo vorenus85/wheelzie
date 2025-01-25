@@ -58,7 +58,7 @@
         <BadgeStatus statusType="rent" :status="slotProps.data.bookingStatus" />
       </template>
     </Column>
-    <Column header="Actions">
+    <Column header="Actions" v-if="!hideActions">
       <template #body="slotProps">
         <MainButton size="small" label="Edit" outlined @click="onEditBooking(slotProps.data)" />
       </template>
@@ -80,6 +80,10 @@ const emit = defineEmits(['edit-booking'])
 
 defineProps({
   bookings: Object,
+  hideActions: {
+    type: Boolean,
+    default: false
+  },
   loading: {
     type: Boolean,
     default: false

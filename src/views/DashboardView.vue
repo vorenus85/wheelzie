@@ -33,7 +33,7 @@
                 class="dashboard-booking-sort ml-auto lg:ml-0"
               />
             </div>
-            <BookingsTable :bookings="bookings" :loading="loading" />
+            <BookingsTable :bookings="bookings" :loading="loading" hideActions />
           </div>
         </template>
       </Card>
