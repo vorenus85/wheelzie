@@ -3,6 +3,7 @@ import { useLayout } from '@/composables/useLayout'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { RouterView } from 'vue-router'
 import ToggleSidebar from './components/common/ToggleSidebar.vue'
+import ProjectCredits from './components/common/ProjectCredits.vue'
 const layout = useLayout()
 const menuMode = ref(layout.sidebarIsOpen)
 
@@ -28,6 +29,7 @@ onUnmounted(() => {
     <ToggleSidebar />
     <main class="main-content">
       <RouterView />
+      <ProjectCredits />
     </main>
   </div>
 </template>
