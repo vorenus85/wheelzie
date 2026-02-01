@@ -24,7 +24,7 @@ import IconGithub from '../icons/special/iconGithub.vue'
 import IconLinkedin from '../icons/special/iconLinkedin.vue'
 
 const linkedinUrl = 'https://hu.linkedin.com/in/janos-perge-508514142'
-const githubRepoUrl = 'https://github.com/vorenus85/library-dashboard'
+const githubRepoUrl = 'https://github.com/vorenus85/wheelzie'
 </script>
 
 <style scoped>
