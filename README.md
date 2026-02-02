@@ -2,8 +2,6 @@
 
 **Wheelzie** is a modern, feature-rich Car Rental Admin Dashboard designed to simplify and streamline the management of car rental operations. Built with the MEVN stack (MongoDB, Express, Vue.js, and Node.js), it offers a robust and scalable solution for handling vehicle inventory, reservations, customer data, and more. With its user-friendly interface and advanced features, Wheelzie empowers administrators to efficiently oversee their rental business with ease.
 
-## Special thank
-
 ## Features
 
 - **Built with Vue 3:** Harnesses the Composition API for modern front-end development.
